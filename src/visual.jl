@@ -1,5 +1,5 @@
 for (name, T) ∈ ((:ft, FieldType         ),
-                 (:rt, RingType          ),
+                #(:rt, RingType          ),
                  (:at, AffTransformation2),
                  (:bb, BBox2             ),
                  (:c,  Circle2           ),
