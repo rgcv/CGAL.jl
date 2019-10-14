@@ -21,7 +21,7 @@ translated to Julia using this package:
 # points_and_segments.jl
 using CGAL
 
-p, q = Point2(1, 1), Point2(10, 10);
+p, q = Point2(1, 1), Point2(10, 10)
 
 println("p = $p")
 println("q = $(x(q)) $(y(q))")
