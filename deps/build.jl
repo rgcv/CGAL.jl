@@ -9,7 +9,7 @@ const gh = "https://github.com"
 const dependencies = [
     "$gh/benlorenz/boostBuilder/releases/download/v1.69.0-1/build_boost.v1.69.0.jl",
     "$gh/rgcv/CGALBuilder/releases/download/v4.14.1-1/build_CGAL.v4.14.1.jl",
-    "$gh/rgcv/libcgal-julia/releases/download/v0.1.1/build_libcgal-julia.v0.1.1.jl"
+    "$gh/rgcv/libcgal-julia/releases/download/v0.1.2/build_libcgal-julia.v0.1.2.jl"
 ]
 
 products = Product[]
