@@ -7,7 +7,7 @@ const prefix = Prefix(get([a for a in ARGS if a != "--verbose"], 1, joinpath(@__
 
 const gh = "https://github.com"
 const dependencies = [
-    "$gh/benlorenz/boostBuilder/releases/download/v1.69.0-1/build_boost.v1.69.0.jl",
+    "$gh/benlorenz/boostBuilder/releases/download/v1.71.0-1/build_boost.v1.71.0.jl",
     "$gh/JuliaPackaging/Yggdrasil/releases/download/GMP-v6.1.2-1/build_GMP.v6.1.2.jl",
     "$gh/JuliaPackaging/Yggdrasil/releases/download/MPFR-v4.0.2-1/build_MPFR.v4.0.2.jl",
     "$gh/rgcv/CGALBuilder/releases/download/v4.14.1-3/build_CGAL.v4.14.1.jl",
