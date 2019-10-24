@@ -1,7 +1,8 @@
 module CGAL
 
 # We need to import these so they can be overwritten in c++, per se
-import Base: ==, <, <=, >=, >, +, -, *, /
+import Base: ==, <, <=, >=, >, +, -, *, /,
+             angle, min, max
 
 using CxxWrap
 
@@ -29,7 +30,11 @@ function __init__()
     global TRANSLATION = Translation()
 end
 
+include("origin.jl")
+include("enum.jl")
 include("kernel.jl")
+include("global_kernel_functions.jl")
+
 include("visual.jl")
 
 end # CGAL
