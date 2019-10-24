@@ -45,9 +45,6 @@ end
 println(" midpoint(p,q) = $(midpoint(p, q))")
 ```
 
-**N.B.**: At the time of writing, `squared_distance` and `midpoint` aren't yet
-available. Nonetheless, they can *fortunately* be mapped with little effort.
-
 # Installation
 
 Until it some day makes its way to the official Julia package registry, you can
