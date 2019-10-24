@@ -1,8 +1,8 @@
 ### CONSTANTS ##################################################################
 
 export IDENTITY_TRANSFORMATION,
-       ORIGIN,
        NULL_VECTOR,
+       ORIGIN,
        ROTATION,
        SCALING,
        TRANSLATION
@@ -19,7 +19,7 @@ export Sign,
        NEGATIVE, ZERO, POSITIVE
 
 const  Orientation = Sign
-export Orientation
+export Orientation,
        LEFT_TURN, RIGHT_TURN,
        CLOCKWISE, COUNTERCLOCKWISE,
        COLLINEAR, COPLANAR, DEGENERATE
@@ -34,6 +34,7 @@ export ComparisonResult,
 
 ### TYPES #####################################################################
 
+# only true for cartesian kernels, see homogeneous kernels
 const RingType = FieldType
 const FT = FieldType
 const RT = RingType

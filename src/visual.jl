@@ -15,12 +15,12 @@ for (name, T) ∈ ((:ft, FieldType         ),
    @eval Base.show(io::IO, $name::$T) = print(io, repr($name))
 end
 
-for T ∈ ((:IdentityTransformation,
-          :Origin,
-          :NullVector,
-          :Rotation,
-          :Scaling,
-          :Translation))
+for T ∈ (:IdentityTransformation,
+         :Origin,
+         :NullVector,
+         :Rotation,
+         :Scaling,
+         :Translation)
    C = uppercase(replace(string(T), r"([A-Z]+)" => s"_\1"))[2:end]
    @eval Base.show(io::IO, ::$T) = print(io, "$(@__MODULE__).$($C)")
 end

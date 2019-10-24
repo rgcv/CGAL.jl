@@ -1,6 +1,6 @@
 module CGAL
 
-# We need to import these so we can override them on the c++ side of things
+# We need to import these so they can be overwritten in c++, per se
 import Base: ==, <, <=, >=, >, +, -, *, /
 
 using CxxWrap
