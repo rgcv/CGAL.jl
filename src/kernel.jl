@@ -61,14 +61,13 @@ export # Operations
        orientation,
        oriented_side,
        orthogonal_transform,
-       # Coordinate Access
+       # Access Functions
        cartesian,
+       center,
        dimension,
        homogeneous,
        hm, hw, hx, hy,
        m, x, y,
-       # Access Functions
-       center,
        orientation,
        squared_radius,
        weight,
