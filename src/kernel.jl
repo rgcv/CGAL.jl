@@ -12,98 +12,72 @@ const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
-export FT, RT, FieldType, RingType
+export AffTransformatino2,
+       BBox2,
+       Circle2,
+       Direction2,
+       IsoRectangle2,
+       Line2,
+       Point2,
+       Ray2,
+       Segment2,
+       Triangle2,
+       Vector2,
+       WeightedPoint2
 
-export AffTransformation2,
-       # Operations
-       transform,
-       # Miscellaneous
-       inverse, is_even, is_odd,
-       # Matrix Entry Access
-       cartesian, m, homogeneous, hm
+### METHODS ####################################################################
 
-export BBox2,
-       # Operations
-       dimension, xmin, ymin, xmax, ymax, min, max, dilate
-
-export Circle2,
-       # Access Functions
-       center, squared_radius, orientation,
-       # Predicates
-       is_degenerate, oriented_side, bounded_side, has_on_positive_side,
-       has_on_negative_side, has_on_boundary, has_on_bounded_side,
-       has_on_unbounded_side,
-       # Miscellaneous
-       opposite, orthogonal_transform, bbox
-
-export Direction2,
-       # Operations
-       delta, dx, dy, counterclockwise_in_between,
-       # Miscellaneous
-       vector, transform
-
-export IsoRectangle2,
-       # Operations
-       vertex, min, max, xmin, ymin, xmax, ymax, min_coord, max_coord,
-       # Predicates
-       is_degenerate, bounded_side, has_on_boundary, has_on_bounded_side,
-       has_on_unbounded_side,
-       # Miscellaneous
-       area, bbox, transform
-
-export Line2,
-       # Operations
-       a, b, c, point, projection, x_at_y, y_at_x,
-       # Predicates
-       is_degenerate, is_horizontal, is_vertical, oriented_side,
-       # Convenience boolean functions
-       has_on, has_on_positive_side, has_on_negative_side,
-       # Miscellaneous
-       to_vector, direction, opposite, perpendicular, transform
-
-export Point2,
-       # Coordinate Access
-       hx, hy, hw, x, y,
-       # Convenience Operations
-       homogeneous, cartesian, dimension, bbox, transform
-
-export Ray2,
-       # Operations
-       source, point, direction, to_vector, supporting_line, opposite,
-       # Predicates
-       is_degenerate, is_horizontal, is_vertical, has_on, collinear_has_on,
-       # Miscellaneous
-       transform
-
-export Segment2,
-       # Operations
-       source, target, min, max, vertex, point, squared_length, direction,
-       to_vector, opposite, supporting_line,
-       # Predicates
-       is_degenerate, is_horizontal, is_vertical, has_on, collinear_has_on,
-       # Miscellaneous
-       bbox, transform
-
-export Triangle2,
-       # Operations
+export # Operations
+       a, b, c,
+       counterclockwise_in_between,
+       delta,
+       dilate,
+       direction,
+       dimension,
+       dx, dy,
+       max, min,
+       xmin, ymin,
+       xmax, ymax,
+       min_coord, max_coord,
+       opposite,
+       point,
+       projection,
+       source,
+       squared_length,
+       supporting_line,
+       target,
        vertex,
+       x_at_y, y_at_x,
        # Predicates
-       is_degenerate, orientation, oriented_side, bounded_side,
-       has_on_positive_side, has_on_negative_side, has_on_boundary,
-       has_on_bounded_side, has_on_unbounded_side,
+       bounded_side,
+       collinear_has_on,
+       has_on,
+       has_on_boundary, has_on_bounded_side, has_on_unbounded_side,
+       has_on_positive_side, has_on_negative_side,
+       inverse,
+       is_degenerate,
+       is_even, is_odd,
+       is_horizontal, is_vertical,
+       orientation,
+       oriented_side,
+       orthogonal_transform,
+       # Coordinate Access
+       cartesian,
+       dimension,
+       homogeneous,
+       hm, hw, hx, hy,
+       m, x, y,
+       # Access Functions
+       center,
+       orientation,
+       squared_radius,
+       weight,
        # Miscellaneous
-       opposite, area, bbox, transform
-
-export Vector2,
-       # Coordinate Access
-       hx, hy, hw, x, y,
-       # Convenience Operations
-       homogeneous, cartesian, dimension, direction, transform, perpendicular
-
-export WeightedPoint2,
-       # Bare point and weight accessor
-       point, weight,
-       # Coordinate Access
-       hx, hy, hw, x, y,
-       # Convenience Operations
-       homogeneous, cartesian, dimension, bbox, transform
+       area,
+       bbox,
+       direction,
+       opposite,
+       perpendicular,
+       vector,
+       to_vector,
+       transform
