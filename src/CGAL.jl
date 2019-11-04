@@ -1,10 +1,10 @@
 module CGAL
-
-# We need to import these so they can be overwritten in c++, per se
-import Base: ==, <, <=, >=, >, +, -, *, /,
-             angle, min, max
-
 using CxxWrap
+
+# We need to import these since they're specialized in the c++ side
+import Base: ==, <, <=, >=, >, +, -, *, /,
+             angle, min, max,
+             abs, sign, sqrt
 
 const depsfile = joinpath(dirname(@__DIR__), "deps", "deps.jl")
 if !isfile(depsfile)
@@ -33,6 +33,7 @@ end
 include("origin.jl")
 include("enum.jl")
 include("kernel.jl")
+include("algebra.jl")
 include("global_kernel_functions.jl")
 
 include("visual.jl")

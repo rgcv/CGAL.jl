@@ -12,9 +12,7 @@ const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
-export FT, RT, FieldType, RingType,
-       # Conversion
-       to_double
+export FT, RT, FieldType, RingType
 
 export AffTransformation2,
        # Operations
