@@ -14,7 +14,7 @@ const RT = RingType
 
 export FT, RT, FieldType, RingType
 
-export AffTransformatino2,
+export AffTransformation2,
        BBox2,
        Circle2,
        Direction2,
