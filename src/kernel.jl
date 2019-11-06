@@ -12,6 +12,8 @@ const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
+export FT, RT, FieldType, RingType
+
 export AffTransformatino2,
        BBox2,
        Circle2,
