@@ -1,18 +1,19 @@
-for (name, T) ∈ ((:ft, FieldType         ),
-                #(:rt, RingType          ),
-                 (:at, AffTransformation2),
-                 (:bb, BBox2             ),
-                 (:c,  Circle2           ),
-                 (:d,  Direction2        ),
-                 (:ir, IsoRectangle2     ),
-                 (:l,  Line2             ),
-                 (:p,  Point2            ),
-                 (:r,  Ray2              ),
-                 (:s,  Segment2          ),
-                 (:t,  Triangle2         ),
-                 (:v,  Vector2           ),
-                 (:wp, WeightedPoint2    ))
-   @eval Base.show(io::IO, $name::$T) = print(io, repr($name))
+for T ∈ (FieldType,
+        #RingType,
+         AffTransformation2,
+         BBox2,
+         Circle2,
+         Direction2,
+         IsoRectangle2,
+         Line2,
+         Point2,
+         Ray2,
+         Segment2,
+         Triangle2,
+         Vector2,
+         WeightedPoint2,
+        )
+    @eval Base.show(io::IO, x::$T) = print(io, repr(x))
 end
 
 for T ∈ (:IdentityTransformation,
