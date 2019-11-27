@@ -1,11 +1,7 @@
-export Angle,
-       OBTUSE, RIGHT, ACUTE
-
-export BoundedSide,
-       ON_UNBOUNDED_SIDE, ON_BOUNDARY, ON_BOUNDED_SIDE
-
 export Sign,
-       NEGATIVE, ZERO, POSITIVE
+       NEGATIVE,
+       ZERO,
+       POSITIVE
 
 const  Orientation = Sign
 export Orientation,
@@ -15,8 +11,22 @@ export Orientation,
 
 const  OrientedSide = Sign
 export OrientedSide,
-       ON_NEGATIVE_SIDE, ON_ORIENTED_BOUNDARY, ON_POSITIVE_SIDE
+       ON_NEGATIVE_SIDE,
+       ON_ORIENTED_BOUNDARY,
+       ON_POSITIVE_SIDE
 
 const  ComparisonResult = Sign
 export ComparisonResult,
-       SMALLER, EQUAL, LARGER
+       SMALLER,
+       EQUAL,
+       LARGER
+
+export BoundedSide,
+       ON_UNBOUNDED_SIDE,
+       ON_BOUNDARY,
+       ON_BOUNDED_SIDE
+
+export Angle,
+       OBTUSE,
+       RIGHT,
+       ACUTE
