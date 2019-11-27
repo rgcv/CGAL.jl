@@ -8,7 +8,7 @@ const prefix = Prefix(get([a for a in ARGS if a != "--verbose"], 1, joinpath(@__
 const vBoost = v"1.71.0"
 const vGMP = v"6.1.2"
 const vMPFR = v"4.0.2"
-const vCGAL = v"4.14.1"
+const vCGAL = v"4.14.2"
 const vCGALjl = v"0.1.6"
 
 const gh = "https://github.com"
@@ -16,7 +16,7 @@ const dependencies = [
     "$gh/benlorenz/boostBuilder/releases/download/v$vBoost-1/build_boost.v$vBoost.jl",
     "$gh/JuliaPackaging/Yggdrasil/releases/download/GMP-v$vGMP-1/build_GMP.v$vGMP.jl",
     "$gh/JuliaPackaging/Yggdrasil/releases/download/MPFR-v$vMPFR-1/build_MPFR.v$vMPFR.jl",
-    "$gh/rgcv/CGALBuilder/releases/download/v$vCGAL-3/build_CGAL.v$vCGAL.jl",
+    "$gh/rgcv/CGALBuilder/releases/download/v$vCGAL-1/build_CGAL.v$vCGAL.jl",
     "$gh/rgcv/libcgal-julia/releases/download/v$vCGALjl/build_libcgal-julia.v$vCGALjl.jl"
 ]
 
