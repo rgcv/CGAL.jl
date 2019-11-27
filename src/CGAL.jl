@@ -22,7 +22,7 @@ function __init__()
     # Julia's side of things.
     #
     # see https://github.com/JuliaInterop/libcxxwrap-julia/issues/23#issuecomment-478019042
-    global IDENTITY_TRANSFORMATION = IdentityTransformation()
+    global IDENTITY = IdentityTransformation()
     global NULL_VECTOR = NullVector()
     global ORIGIN = Origin()
     global ROTATION = Rotation()

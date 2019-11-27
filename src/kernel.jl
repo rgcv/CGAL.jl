@@ -1,6 +1,6 @@
 ### CONSTANTS ##################################################################
 
-export IDENTITY_TRANSFORMATION,
+export IDENTITY,
        ROTATION,
        SCALING,
        TRANSLATION
