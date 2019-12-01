@@ -16,12 +16,12 @@ for T ∈ (FieldType,
     @eval Base.show(io::IO, x::$T) = print(io, repr(x))
 end
 
-for T ∈ (:IdentityTransformation,
-         :Origin,
-         :NullVector,
-         :Rotation,
-         :Scaling,
-         :Translation)
-   C = uppercase(replace(string(T), r"([A-Z]+)" => s"_\1"))[2:end]
-   @eval Base.show(io::IO, ::$T) = print(io, "$(@__MODULE__).$($C)")
+for (T, N) ∈ ((IdentityTransformation, :IDENTITY),
+              (Origin,                 :ORIGIN),
+              (NullVector,             :NULL_VECTOR),
+              (Rotation,               :ROTATION),
+              (Scaling,                :SCALING),
+              (Translation,            :TRANSLATION),
+             )
+    @eval Base.show(io::IO, ::$T) = print(io, $(string(N)))
 end
