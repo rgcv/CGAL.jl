@@ -14,6 +14,7 @@ for T ∈ (FieldType,
          WeightedPoint2,
         )
     @eval Base.show(io::IO, x::$T) = print(io, repr(x))
+    @eval Base.show(io::IO, x::CxxWrap.CxxBaseRef{$T}) = show(io, x[])
 end
 
 for (T, N) ∈ ((IdentityTransformation, :IDENTITY),
