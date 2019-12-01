@@ -8,10 +8,12 @@ version = "0.5.7"
 
 [[CxxWrap]]
 deps = ["BinaryProvider", "Libdl"]
-git-tree-sha1 = "c7865f82d1ccfd98d11bba256bd22c27b5ca2864"
+git-tree-sha1 = "20dc870e3c8a52969bd30992d87bd57e0952b2ba"
 pinned = true
+repo-rev = "0c82e3e"
+repo-url = "https://github.com/JuliaInterop/CxxWrap.jl.git"
 uuid = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
-version = "0.8.2"
+version = "0.9.0"
 
 [[Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
