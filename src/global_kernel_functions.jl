@@ -21,7 +21,8 @@ export angle,
        has_larger_signed_distance_to_line,
        has_smaller_distance_to_point,
        has_smaller_signed_distance_to_line,
-       # TODO: intersections
+       intersection,
+       # TODO: other circular intersections
        l_infinity_distance,
        left_turn,
        lexicographically_xy_larger, lexicographically_xy_larger_or_equal,
