@@ -1,11 +1,6 @@
 module CGAL
 using CxxWrap
 
-# We need to import these since they're specialized in the c++ side
-import Base: ==, <, <=, >=, >, +, -, *, /,
-             angle, min, max,
-             abs, sign, sqrt
-
 const depsfile = joinpath(dirname(@__DIR__), "deps", "deps.jl")
 if !isfile(depsfile)
     error("$depsfile not present, try rebuilding CGAL.jl")

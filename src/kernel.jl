@@ -29,6 +29,7 @@ export AffTransformation2,
 
 ### METHODS ####################################################################
 
+# min and max specialize Base's functions
 export # Operations
        a, b, c,
        counterclockwise_in_between,

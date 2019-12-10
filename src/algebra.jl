@@ -1,3 +1,4 @@
+# abs, sign and, sqrt specialize Base's functions
 export compare,
        integral_division,
        inverse,
@@ -5,7 +6,6 @@ export compare,
        is_positive,
        is_square,
        is_zero,
-       # sign and sqrt specialize Base's
        square,
        to_double,
        to_interval,
