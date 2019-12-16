@@ -7,11 +7,6 @@ export IDENTITY,
 
 ### TYPES #####################################################################
 
-# only true for cartesian kernels, see homogeneous kernels
-const RingType = FieldType
-const FT = FieldType
-const RT = RingType
-
 export FT, RT, FieldType, RingType
 
 export AffTransformation2,
@@ -83,3 +78,12 @@ export # Operations
        vector,
        to_vector,
        transform
+
+# only true for cartesian kernels, see homogeneous kernels
+const RingType = FieldType
+const FT = FieldType
+const RT = RingType
+
+Base.convert(::Type{<:FT}, r::Real) = FT(r)
+Base.convert(::Type{<:FT}, r::Rational) = convert(FT, float(r)) # exactness loss
+Base.promote_rule(::Type{<:FT}, ::Type{<:Real}) = FT
