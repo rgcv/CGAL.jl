@@ -1,7 +1,7 @@
-# CGAL.jl - [CGAL][1] meets [Julia][2]
+# CGAL.jl - [CGAL][1] meets [Julia](https://julialang.org)
 
 :warning: **DISCLAIMER** :warning: As it stands, this package is terribly
-experimental. See [libcgal-julia][3] for more information.
+experimental. See [libcgal-julia][2] for more information.
 
 ---
 
@@ -10,12 +10,14 @@ A package exposing a series of types, constructs, functions, and predicates from
 efficient C++ library
 
 This package is supported by a C++ wrapper around CGAL in the form of
-[libcgal-julia][3], itself powered by [JlCxx][4].
+[libcgal-julia][2], itself powered by
+[JlCxx](https://github.com/JuliaInterop/libcxxwrap-julia).
 
 # Usage
 
-Since the kernel is being fixed on the C++ side, the usual `typedefs` you see
-in CGAL's examples aren't as common. Here's [one of CGAL's examples][5]
+Since the kernel is being fixed on the C++ side, the usual `typedefs` you see in
+CGAL's examples aren't as common. Here's [one of CGAL's
+examples](https://doc.cgal.org/latest/Kernel_23/Kernel_23_2points_and_segment_8cpp-example.html)
 translated to Julia using this package:
 
 ```julia
@@ -60,8 +62,5 @@ Alternatively, in a blank REPL, after hitting `]`,
 pkg> add https://github.com/rgcv/CGAL.jl
 ```
 
-[1]: https://github.com/CGAL/cgal
-[2]: https://github.com/julialang/julia
-[3]: https://github.com/rgcv/libcgal-julia
-[4]: https://github.com/JuliaInterop/libcxxwrap-julia
-[5]: https://doc.cgal.org/latest/Kernel_23/Kernel_23_2points_and_segment_8cpp-example.html
+[1]: https://www.cgal.org
+[2]: https://github.com/rgcv/libcgal-julia
