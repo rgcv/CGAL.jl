@@ -18,7 +18,7 @@ Since the kernel is being fixed on the C++ side, the usual `typedefs` you see
 in CGAL's examples aren't as common. Here's [one of CGAL's examples][5]
 translated to Julia using this package:
 
-```jl
+```julia
 # points_and_segments.jl
 using CGAL
 
