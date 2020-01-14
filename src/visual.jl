@@ -13,8 +13,7 @@ for T ∈ (FieldType,
          Vector2,
          WeightedPoint2,
         )
-    @eval Base.show(io::IO, x::$T) = print(io, repr(x))
-    @eval Base.show(io::IO, x::CxxWrap.CxxBaseRef{$T}) = show(io, x[])
+    @eval Base.show(io::IO, x::Union{<:$T,Ref{<:$T}}) = print(io, repr(x))
 end
 
 for (T, N) ∈ ((IdentityTransformation, :IDENTITY),
@@ -24,5 +23,5 @@ for (T, N) ∈ ((IdentityTransformation, :IDENTITY),
               (Scaling,                :SCALING),
               (Translation,            :TRANSLATION),
              )
-    @eval Base.show(io::IO, ::$T) = print(io, $(string(N)))
+    @eval Base.show(io::IO, ::Union{<:$T,Ref{<:$T}}) = print(io, $(string(N)))
 end
