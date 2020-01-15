@@ -1,3 +1,5 @@
+using CxxWrap
+
 ### CONSTANTS ##################################################################
 
 export IDENTITY,
@@ -8,6 +10,21 @@ export IDENTITY,
 ### TYPES #####################################################################
 
 export FT, RT, FieldType, RingType
+
+# only true for cartesian kernels, see homogeneous kernels
+const RingType = FieldType
+const FT = FieldType
+const RT = RingType
+
+Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
+
+@cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
+
+@cxxdereference Base.float(x::FT) = to_double(x)
+@cxxdereference (::Type{T})(x::FT) where {T<:AbstractFloat} = T(float(x))
+Base.convert(::Type{T}, x::Ref{FT}) where {T<:AbstractFloat} = convert(T, x[])
+
+FT(x::Rational) = convert(FT, x.num)/convert(FT, x.den)
 
 export AffTransformation2,
        BBox2,
@@ -78,12 +95,3 @@ export # Operations
        vector,
        to_vector,
        transform
-
-# only true for cartesian kernels, see homogeneous kernels
-const RingType = FieldType
-const FT = FieldType
-const RT = RingType
-
-Base.convert(::Type{<:FT}, r::Real) = FT(r)
-Base.convert(::Type{<:FT}, r::Rational) = convert(FT, float(r)) # exactness loss
-Base.promote_rule(::Type{<:FT}, ::Type{<:Real}) = FT
