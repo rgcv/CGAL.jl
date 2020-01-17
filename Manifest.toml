@@ -11,17 +11,17 @@ version = "0.5.8"
 
 [[CxxWrap]]
 deps = ["BinaryProvider", "Libdl", "MacroTools"]
-git-tree-sha1 = "052d37b5d6bd49d2c9839412d4e058d66bcc5390"
-repo-rev = "9968860"
+git-tree-sha1 = "5b9a4ae9fdfe8eb6508005b30501dfc8188cae66"
+repo-rev = "ad7b0af"
 repo-url = "https://github.com/JuliaInterop/CxxWrap.jl.git"
 uuid = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
 version = "0.9.0"
 
 [[DataStructures]]
 deps = ["InteractiveUtils", "OrderedCollections"]
-git-tree-sha1 = "f784254f428fb8fd7ac15982e5862a38a44523d3"
+git-tree-sha1 = "b7720de347734f4716d1815b00ce5664ed6bbfd4"
 uuid = "864edb3b-99cc-5e75-8d2d-829cb0a9cfe8"
-version = "0.17.7"
+version = "0.17.9"
 
 [[Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
