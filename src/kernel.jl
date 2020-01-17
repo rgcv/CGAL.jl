@@ -28,7 +28,7 @@ FT(x::Rational) = convert(FT, x.num)/convert(FT, x.den)
 
 for op ∈ (:(==), :<, :>, :<=, :>=, :+, :*, :-, :/)
     @eval Base.$op(x::Ref{FT}, y) = $op(x[], y)
-    @eval Base.$op(x, y::Ref{FT}) = $op(y, x)
+    @eval Base.$op(x, y::Ref{FT}) = $op(x, y[])
 end
 
 export AffTransformation2,
