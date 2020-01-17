@@ -26,6 +26,11 @@ Base.convert(::Type{T}, x::Ref{FT}) where {T<:AbstractFloat} = convert(T, x[])
 
 FT(x::Rational) = convert(FT, x.num)/convert(FT, x.den)
 
+for op ∈ (:(==), :<, :>, :<=, :>=, :+, :*, :-, :/)
+    @eval Base.$op(x::Ref{FT}, y) = $op(x[], y)
+    @eval Base.$op(x, y::Ref{FT}) = $op(y, x)
+end
+
 export AffTransformation2,
        BBox2,
        Circle2,
