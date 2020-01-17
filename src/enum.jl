@@ -30,3 +30,8 @@ export Angle,
        OBTUSE,
        RIGHT,
        ACUTE
+
+export BoxParameterSpace2,
+       LEFT_BOUNDARY, RIGHT_BOUNDARY,
+       BOTTOM_BOUNDARY, TOP_BOUNDARY,
+       INTERIOR, EXTERIOR
