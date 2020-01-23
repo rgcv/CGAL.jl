@@ -1,3 +1,5 @@
+import CxxWrap: @cxxdereference
+
 for T ∈ (FieldType,
         #RingType,
          AffTransformation2,
@@ -13,15 +15,5 @@ for T ∈ (FieldType,
          Vector2,
          WeightedPoint2,
         )
-    @eval Base.show(io::IO, x::Union{<:$T,Ref{<:$T}}) = print(io, repr(x))
-end
-
-for (T, N) ∈ ((IdentityTransformation, :IDENTITY),
-              (Origin,                 :ORIGIN),
-              (NullVector,             :NULL_VECTOR),
-              (Rotation,               :ROTATION),
-              (Scaling,                :SCALING),
-              (Translation,            :TRANSLATION),
-             )
-    @eval Base.show(io::IO, ::Union{<:$T,Ref{<:$T}}) = print(io, $(string(N)))
+    @eval @cxxdereference Base.show(io::IO, x::$T) = print(io, repr(x))
 end

@@ -9,7 +9,7 @@ const vBoost = v"1.71"
 const vGMP = v"6.1.2"
 const vMPFR = v"4.0.2"
 const vCGAL = v"5"
-const vCGALjl = v"0.3.1"
+const vCGALjl = v"0.3.2"
 
 const gh = "https://github.com"
 const dependencies = [

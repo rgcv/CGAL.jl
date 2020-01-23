@@ -1,4 +1,13 @@
 module CGAL
+
+struct Origin end; const ORIGIN = Origin()
+struct NullVector end; const NULL_VECTOR = NullVector()
+
+struct IdentityTransformation end; const IDENTITY_TRANSFORMATION = IdentityTransformation()
+struct Rotation end; const ROTATION = Rotation()
+struct Scaling end; const SCALING = Scaling()
+struct Translation end; const TRANSLATION = Translation()
+
 using CxxWrap
 
 const depsfile = joinpath(dirname(@__DIR__), "deps", "deps.jl")
@@ -8,22 +17,7 @@ end
 include(depsfile)
 @wrapmodule(libcgal_julia)
 
-function __init__()
-    @initcxx
-    # References to these constants are nullified when the module's loaded
-    # despite the constants themselves having been compiled in during
-    # pre-compilation. As a workaround, we wrap the value within a function and
-    # define the references to the constants inside the `__init__` function on
-    # Julia's side of things.
-    #
-    # see https://github.com/JuliaInterop/libcxxwrap-julia/issues/23#issuecomment-478019042
-    global IDENTITY = IdentityTransformation()
-    global NULL_VECTOR = NullVector()
-    global ORIGIN = Origin()
-    global ROTATION = Rotation()
-    global SCALING = Scaling()
-    global TRANSLATION = Translation()
-end
+__init__() = @initcxx
 
 include("origin.jl")
 include("enum.jl")
