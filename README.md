@@ -54,13 +54,26 @@ Until it some day makes its way to the official Julia package registry, you can
 add it directly from this repo right here! Drop into a REPL and type de
 following:
 
-```jl
+```julia
 julia> import Pkg; Pkg.add("https://github.com/rgcv/CGAL.jl")
 ```
+
 Alternatively, in a blank REPL, after hitting `]`,
-```jl
+
+```julia
 pkg> add https://github.com/rgcv/CGAL.jl
 ```
+
+:warning: **N.B.:** Currently, this package is using a specific revision of the
+[CxxWrap](https://github.com/JuliaInterop/CxxWrap). Temporarily, in order to be
+able to use this package, one additionally must add said revision manually:
+
+```julia
+pkg> add CxxWrap#ad7b0af
+```
+
+In case these instructions are outdated, please check the `Manifest.toml` file
+for the current revision of the dependency being used.
 
 [1]: https://www.cgal.org
 [2]: https://github.com/rgcv/libcgal-julia
