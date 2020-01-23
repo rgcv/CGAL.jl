@@ -65,8 +65,8 @@ pkg> add https://github.com/rgcv/CGAL.jl
 ```
 
 :warning: **N.B.:** Currently, this package is using a specific revision of the
-[CxxWrap](https://github.com/JuliaInterop/CxxWrap). Temporarily, in order to be
-able to use this package, one additionally must add said revision manually:
+[CxxWrap](https://github.com/JuliaInterop/CxxWrap.jl). Temporarily, in order to
+be able to use this package, one additionally must add said revision manually:
 
 ```julia
 pkg> add CxxWrap#ad7b0af
