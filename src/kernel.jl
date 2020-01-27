@@ -100,3 +100,7 @@ export # Operations
        vector,
        to_vector,
        transform
+
+@cxxdereference Base.:*(s::Real, v::Vector2) = convert(FT, s) * v
+@cxxdereference Base.:*(v::Vector2, s::Real) = s * v
+@cxxdereference Base.:/(v::Vector2, s::Real) = v / convert(FT, s)
