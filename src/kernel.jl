@@ -17,6 +17,10 @@ const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
+# upscaling
+FT(x::AbstractFloat) = FT(Float64(x))
+FT(x::Integer) = FT(Int64(x))
+
 Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
 
 @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
