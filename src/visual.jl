@@ -3,7 +3,7 @@ import CxxWrap: @cxxdereference
 for T ∈ (FieldType,
         #RingType,
          AffTransformation2,
-         BBox2,
+         Bbox2,
          Circle2,
          Direction2,
          IsoRectangle2,

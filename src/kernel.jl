@@ -37,7 +37,7 @@ Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
 Base.convert(::Type{T}, x::Ref{FT}) where {T<:AbstractFloat} = convert(T, x[])
 
 export AffTransformation2,
-       BBox2,
+       Bbox2,
        Circle2,
        Direction2,
        IsoRectangle2,

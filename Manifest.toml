@@ -11,9 +11,7 @@ version = "0.5.8"
 
 [[CxxWrap]]
 deps = ["BinaryProvider", "Libdl", "MacroTools"]
-git-tree-sha1 = "5b9a4ae9fdfe8eb6508005b30501dfc8188cae66"
-repo-rev = "ad7b0af"
-repo-url = "https://github.com/JuliaInterop/CxxWrap.jl.git"
+git-tree-sha1 = "dd6809ca3f34269b9daa3ae397d74283234830fe"
 uuid = "1f15a43c-97ca-5a2a-ae31-89f07a497df4"
 version = "0.9.0"
 
