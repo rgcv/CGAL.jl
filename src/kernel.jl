@@ -21,6 +21,8 @@ const RT = RingType
 FT(x::AbstractFloat) = FT(Float64(x))
 FT(x::Integer) = FT(Int64(x))
 
+Base.convert(::Type{FT}, x::Ref{FT}) = x[]
+
 Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
 
 @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
