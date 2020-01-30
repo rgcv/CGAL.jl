@@ -3,6 +3,7 @@ using CxxWrap
 ### CONSTANTS ##################################################################
 
 export IDENTITY,
+       REFLECTION,
        ROTATION,
        SCALING,
        TRANSLATION
