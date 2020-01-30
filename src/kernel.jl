@@ -49,6 +49,36 @@ export AffTransformation2,
        Vector2,
        WeightedPoint2
 
+const AT2 = AffTransformation2
+@cxxdereference AT2(::Union{Rotation,Ref{Rotation}}, d::Direction2, num::Real, den::Real = 1) =
+    AT2(ROTATION, d, convert.(FT, (num, den))...)
+AT2(::Union{Rotation,Ref{Rotation}}, sinᵨ::Real, cosᵨ::Real, hw::Real = 1) =
+    AT2(ROTATION, convert.(FT, (sinᵨ, cosᵨ, hw))...)
+AT2(::Union{Scaling,Ref{Scaling}}, s, hw = 1) =
+    AT2(SCALING, convert.(FT, (s, hw))...)
+AT2(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₁₀::Real, m₁₁::Real, m₁₂::Real, hw::Real = 1) =
+    AT2(convert.(FT, (m₀₀, m₀₁, m₀₂, m₁₀, m₁₁, m₁₂, hw))...)
+AT2(m₀₀::Real, m₀₁::Real, m₁₀::Real, m₁₁::Real, hw::Real = 1) =
+    AT2(convert.(FT, (m₀₀, m₀₁, m₁₀, m₁₁, hw))...)
+
+@cxxdereference Circle2(c::Point2, r²::Real, ori::Union{Orientation,Ref{Orientation}} = COUNTERCLOCKWISE) =
+    Circle2(c, convert(FT, r²), ori)
+
+Direction2(x::Real, y::Real) = Direction2(convert.(FT, (x, y))...)
+
+IsoRectangle2(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real = 1) =
+    IsoRectangle2(convert.(FT, (min_hx, min_hy, max_hx, max_hy, hw))...)
+
+Line2(a, b, c) = Line2(convert.(FT, (a, b, c))...)
+
+Point2(x::Real, y::Real, hw::Real = 1) = Point2(convert.(FT, (x, y, hw))...)
+
+Vector2(x::Real, y::Real, hw::Real = 1) = Vector2(convert.(FT, (x, y, hw))...)
+
+@cxxdereference WeightedPoint2(p::Point2, w::Real) = WeightedPoint2(p, convert(FT, w))
+WeightedPoint2(x::Real, y::Real) = WeightedPoint2(convert.(FT, (x, y))...)
+
+
 ### METHODS ####################################################################
 
 # min and max specialize Base's functions
