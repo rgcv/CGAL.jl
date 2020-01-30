@@ -20,6 +20,11 @@ const RT = RingType
 # upscaling
 FT(x::AbstractFloat) = FT(Float64(x))
 FT(x::Integer) = FT(Int64(x))
+# have one for Rational
+function FT(x::Rational)
+    isinf(x) && return x*Inf # preserve sign
+    convert(FT, x.num)/convert(FT, x.den)
+end
 
 Base.convert(::Type{FT}, x::Ref{FT}) = x[]
 
@@ -30,13 +35,6 @@ Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
 @cxxdereference Base.float(x::FT) = to_double(x)
 @cxxdereference (::Type{T})(x::FT) where {T<:AbstractFloat} = T(float(x))
 Base.convert(::Type{T}, x::Ref{FT}) where {T<:AbstractFloat} = convert(T, x[])
-
-FT(x::Rational) = convert(FT, x.num)/convert(FT, x.den)
-
-for op ∈ (:(==), :<, :>, :<=, :>=, :+, :*, :-, :/)
-    @eval Base.$op(x::Ref{FT}, y) = $op(x[], y)
-    @eval Base.$op(x, y::Ref{FT}) = $op(x, y[])
-end
 
 export AffTransformation2,
        BBox2,
