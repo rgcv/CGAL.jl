@@ -1,3 +1,4 @@
+VERSION < v"1.3.0-rc4" || exit() # use artifacts/jll instead
 using BinaryProvider # requires BinaryProvider 0.5.0 or later
 using CxxWrap
 
