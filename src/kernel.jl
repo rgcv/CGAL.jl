@@ -1,4 +1,4 @@
-using CxxWrap
+import CxxWrap: @cxxdereference
 
 ### CONSTANTS ##################################################################
 
@@ -12,29 +12,37 @@ export IDENTITY,
 
 export FT, RT, FieldType, RingType
 
+if !@isdefined FieldType
+    const FieldType = Float64
+end
+
 # only true for cartesian kernels, see homogeneous kernels
 const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
-# upscaling
-FT(x::AbstractFloat) = FT(Float64(x))
-FT(x::Integer) = FT(Int64(x))
-# have one for Rational
-function FT(x::Rational)
-    isinf(x) && return x*Inf # preserve sign
-    convert(FT, x.num)/convert(FT, x.den)
+if FT !== Float64 # define a couple more constructors, convertions, promotions
+    # upscaling
+    FT(x::AbstractFloat) = FT(Float64(x))
+    FT(x::Integer) = FT(Int64(x))
+    # have one for Rational
+    function FT(x::Rational)
+        isinf(x) && return x*Inf # preserve sign
+        convert(FT, x.num)/convert(FT, x.den)
+    end
+
+    Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
+
+    @cxxdereference Base.float(x::FT) = to_double(x)
+    @cxxdereference (::Type{T})(x::FT) where {T<:AbstractFloat} = T(float(x))
+
+    @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
+    @cxxdereference Base.isinteger(x::FT) = isinteger(float(x))
 end
 
 Base.convert(::Type{FT}, x::Ref{FT}) = x[]
-
-Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
-
-@cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
-
-@cxxdereference Base.float(x::FT) = to_double(x)
-@cxxdereference (::Type{T})(x::FT) where {T<:AbstractFloat} = T(float(x))
-Base.convert(::Type{T}, x::Ref{FT}) where {T<:AbstractFloat} = convert(T, x[])
+Base.convert(::Type{T}, x::Ref{FT}) where {T<:Real} = convert(T, x[])
+Base.isnan(x::Ref{FT}) = isnan(x[])
 
 export AffTransformation2,
        Bbox2,

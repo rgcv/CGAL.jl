@@ -15,5 +15,9 @@ for T ∈ (FieldType,
          Vector2,
          WeightedPoint2,
         )
+    if T === FieldType === Float64
+        Base.show(io::IO, x::Ref{FT}) = show(io, x[])
+        continue
+    end
     @eval @cxxdereference Base.show(io::IO, x::$T) = print(io, repr(x))
 end

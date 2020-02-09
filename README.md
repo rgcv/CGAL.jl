@@ -64,5 +64,47 @@ Alternatively, in a blank REPL, after hitting `]`,
 pkg> add https://github.com/rgcv/CGAL.jl
 ```
 
+# Using a different kernel
+
+Currently, two different libraries are made available: one compiled with
+a geometric kernel using plain old `doubles`, and another compiled with `CORE`
+bignums (i.e. inexact constructions, and exact constructions respectively). By
+default, this package uses the inexact variant, trading better performance for
+minor, even sometimes negligible, dare I say, inexact results.
+
+There are two different ways of loading a custom library, both of which come in
+the form of defining environment variables. One of the glaring downsides of this
+approach is the package must be rebuilt in order to pick up the change before
+loading the module due to precompilation.
+
+On the julia side, this distinction is made based on the existence of
+a `FieldType` type mapped from the C++ side. Take a look inside `kernel.jl` to
+see how this is handled.
+
+## Switching between inexact/exact kernels
+
+As mentioned, an inexact constructions kernel is used. In order to use a kernel
+with exact constructions, one must define the `JLCGAL_EXACT_CONSTRUCTIONS`
+environment variable. The variable's value is ignored. It only needs to exist.
+For example,
+
+```sh
+$ export JLCGAL_EXACT_CONSTRUCTIONS="I'm willing to pay for some performance penalties"
+$ julia
+julia> build CGAL
+...
+julia> using CGAL
+...
+julia> FT
+FieldType # numeric type from CGAL. when using inexact constructions => Float64
+```
+
+## Loading a custom wrapper library
+
+The full path to an alternative version of the wrapper library can be specified
+by defining the `JLCGAL_LIBPATH` environment variable. This will override the
+`JLCGAL_EXACT_CONSTRUCTIONS` definition since the former is more specific than
+the latter.
+
 [1]: https://www.cgal.org
 [2]: https://github.com/rgcv/libcgal-julia
