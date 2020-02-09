@@ -11,9 +11,9 @@ version = "0.5.8"
 
 [[CGAL_jll]]
 deps = ["GMP_jll", "Libdl", "MPFR_jll", "Pkg", "Zlib_jll", "boost_jll"]
-git-tree-sha1 = "f94795108539ada5336bdcb1238d3632455bb6fa"
+git-tree-sha1 = "5fcabd74142b1c5989a3a75746f3a47595250a25"
 uuid = "8fcd9439-76b0-55f4-a525-bad0597c05d8"
-version = "5.0.0+2"
+version = "5.0.1+0"
 
 [[CxxWrap]]
 deps = ["BinaryProvider", "Libdl", "MacroTools"]
