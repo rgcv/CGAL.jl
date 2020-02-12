@@ -50,11 +50,12 @@ export AffTransformation2,
        Direction2,
        IsoRectangle2,
        Line2,
-       Point2,
+       Plane3,
+       Point2, Point3,
        Ray2,
-       Segment2,
+       Segment2, Segment3,
        Triangle2,
-       Vector2,
+       Vector2, Vector3,
        WeightedPoint2
 
 const AT2 = AffTransformation2
@@ -79,9 +80,16 @@ IsoRectangle2(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real =
 
 Line2(a, b, c) = Line2(convert.(FT, (a, b, c))...)
 
+Plane3(a::Real, b::Real, c::Real, d::Real) =
+    Plane3(convert.(FT, (a, b, c, d))...)
+
 Point2(x::Real, y::Real, hw::Real = 1) = Point2(convert.(FT, (x, y, hw))...)
+Point3(x::Real, y::Real, z::Real, hw::Real = 1) =
+    Point2(convert.(FT, (x, y, z, hw))...)
 
 Vector2(x::Real, y::Real, hw::Real = 1) = Vector2(convert.(FT, (x, y, hw))...)
+Vector3(x::Real, y::Real, z::Real, hw::Real = 1) =
+    Vector3(convert.(FT, (x, y, z, hw))...)
 
 @cxxdereference WeightedPoint2(p::Point2, w::Real) = WeightedPoint2(p, convert(FT, w))
 WeightedPoint2(x::Real, y::Real) = WeightedPoint2(convert.(FT, (x, y))...)
@@ -91,26 +99,30 @@ WeightedPoint2(x::Real, y::Real) = WeightedPoint2(convert.(FT, (x, y))...)
 
 # min and max specialize Base's functions
 export # Operations
-       a, b, c,
+       a, b, c, d,
+       base1, base2,
        counterclockwise_in_between,
        delta,
        dilate,
        direction,
        dimension,
        dx, dy,
-       max, min,
        xmin, ymin,
        xmax, ymax,
        min_coord, max_coord,
        opposite,
+       orthogonal_vector,
        point,
        projection,
        source,
        squared_length,
        supporting_line,
        target,
+       to_vector,
        vertex,
        x_at_y, y_at_x,
+       # 2D Conversion
+       to_2d, to_3d,
        # Predicates
        bounded_side,
        collinear_has_on,
@@ -123,14 +135,15 @@ export # Operations
        is_horizontal, is_vertical,
        orientation,
        oriented_side,
+       orthogonal_vector,
        orthogonal_transform,
        # Access Functions
        cartesian,
        center,
        dimension,
        homogeneous,
-       hm, hw, hx, hy,
-       m, x, y,
+       hm, hw, hx, hy, hz,
+       m, x, y, z,
        orientation,
        squared_radius,
        weight,
@@ -144,6 +157,10 @@ export # Operations
        to_vector,
        transform
 
-@cxxdereference Base.:*(s::Real, v::Vector2) = convert(FT, s) * v
-@cxxdereference Base.:*(v::Vector2, s::Real) = s * v
-@cxxdereference Base.:/(v::Vector2, s::Real) = v / convert(FT, s)
+for V ∈ (Vector2, Vector3)
+    @eval begin
+        @cxxdereference Base.:*(s::Real, v::$V) = convert(FT, s) * v
+        @cxxdereference Base.:*(v::$V, s::Real) = s * v
+        @cxxdereference Base.:/(v::$V, s::Real) = v / convert(FT, s)
+    end
+end
