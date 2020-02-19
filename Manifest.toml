@@ -126,9 +126,9 @@ version = "1.71.0+1"
 
 [[libcgal_julia_jll]]
 deps = ["CGAL_jll", "Libdl", "Pkg", "libcxxwrap_julia_jll"]
-git-tree-sha1 = "4a1d771427a293f37f9e57e07f965ca4f16ae257"
+git-tree-sha1 = "ed676922cada2ce4404f9017cdf15bfb7ae5c14c"
 uuid = "e9ad47b2-a301-5fb7-a0bd-6eece649b37c"
-version = "0.6.1+0"
+version = "0.6.3+0"
 
 [[libcxxwrap_julia_jll]]
 deps = ["Libdl", "Pkg"]
