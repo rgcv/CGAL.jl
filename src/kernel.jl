@@ -38,6 +38,15 @@ if FT !== Float64 # define a couple more constructors, convertions, promotions
 
     @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
     @cxxdereference Base.isinteger(x::FT) = isinteger(float(x))
+else
+    for o ∈ (:==, :<, :<=, :>, :>=, :/, :+, :-, :-, :*)
+        @eval begin
+            Base.$o(x::Ref{FT}, y) = $o(x[], y)
+            Base.$o(x, y::Ref{FT}) = $o(x, y[])
+        end
+    end
+    Base.:+(x::Ref{FT}) = +x[]
+    Base.:-(x::Ref{FT}) = -x[]
 end
 
 Base.convert(::Type{FT}, x::Ref{FT}) = x[]
