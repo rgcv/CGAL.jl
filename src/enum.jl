@@ -47,9 +47,6 @@ See also: [`Orientation`](@ref)
 """
 Sign
 
-Base.:*(x::Number, s::Sign  ) = x * convert(Int32, s)
-Base.:*(s::Sign,   x::Number) = x * s
-
 """
     Orientation
 
@@ -245,3 +242,11 @@ Returns the opposite side (for example [`ON_BOUNDED_SIDE`](@ref) if `o ==
 [ON_BOUNDARY](@ref)`)
 """
 opposite(o::BoundedSide)
+
+for E  ∈ (Angle, BoundedSide, BoxParameterSpace2, Sign),
+    op ∈ (:(==), :<, :>, :<=, :>=, :+, :-, :*, :/)
+    @eval begin
+        Base.$op(x::Number, e::$E  ) = $op(x, convert(Int32, e))
+        Base.$op(e::$E,   x::Number) = $op(convert(Int32, e), x)
+    end
+end
