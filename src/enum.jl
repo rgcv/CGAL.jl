@@ -47,6 +47,9 @@ See also: [`Orientation`](@ref)
 """
 Sign
 
+Base.:*(x::Number, s::Sign  ) = x * convert(Int32, s)
+Base.:*(s::Sign,   x::Number) = x * s
+
 """
     Orientation
 
