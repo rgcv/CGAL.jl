@@ -246,7 +246,7 @@ opposite(o::BoundedSide)
 for E  ∈ (Angle, BoundedSide, BoxParameterSpace2, Sign),
     op ∈ (:(==), :<, :>, :<=, :>=, :+, :-, :*, :/)
     @eval begin
-        Base.$op(x::Number, e::$E  ) = $op(x, convert(Int32, e))
-        Base.$op(e::$E,   x::Number) = $op(convert(Int32, e), x)
+        Base.$op(x::Number, e::$E) = $op(x, convert(Int32, e))
+        Base.$op(e::$E, x::Number) = $op(convert(Int32, e), x)
     end
 end
