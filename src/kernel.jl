@@ -29,8 +29,8 @@ if FT !== Float64 # define a couple more constructors, convertions, promotions
 
     Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
 
-    @cxxdereference Base.float(x::FT) = to_double(x)
-    @cxxdereference (::Type{T})(x::FT) where {T<:AbstractFloat} = T(float(x))
+    Base.float(x::FT) = to_double(x)
+    (::Type{T})(x::FT) where {T<:AbstractFloat} = T(float(x))
 
     @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
     @cxxdereference Base.isinteger(x::FT) = isinteger(float(x))
@@ -48,6 +48,9 @@ end
 
 Base.convert(::Type{FT}, x::Ref{FT}) = x[]
 Base.convert(::Type{T}, x::Ref{FT}) where {T<:Real} = convert(T, x[])
+
+Base.float(x::Ref{FT}) = float(x[])
+(::Type{T})(x::Ref{FT}) where {T<:AbstractFloat} = T(float(x))
 Base.isnan(x::Ref{FT}) = isnan(x[])
 
 export AffTransformation2,

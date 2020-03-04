@@ -243,7 +243,7 @@ Returns the opposite side (for example [`ON_BOUNDED_SIDE`](@ref) if `o ==
 """
 opposite(o::BoundedSide)
 
-for E  ∈ (Angle, BoundedSide, BoxParameterSpace2, Sign)
+for E ∈ (Angle, BoundedSide, BoxParameterSpace2, Sign)
     for op ∈ (:(==), :<, :>, :<=, :>=, :+, :-, :*, :/)
         @eval begin
             Base.$op(x::Number, e::$E) = $op(x, convert(Int32, e))
