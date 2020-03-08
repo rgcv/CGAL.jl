@@ -274,7 +274,7 @@ barycenter(p1::Point23, w1, p2::Point23, w2, p3::Point23, w3, p4::Point23)
 Compute the barycenter of the points `p1`,`p2`, `p3` and `p4` with corresponding
 weights `w1,w2,w3` and `w4`.
 """
-barycenter(p1::Pt, w1, p2::Pt, w2, p3::Pt, w3, p4::Pt, w4)
+barycenter(p1::Point23, w1, p2::Point23, w2, p3::Point23, w3, p4::Point23, w4)
 
 for P ∈ (Point2, Point3)
     @eval begin
