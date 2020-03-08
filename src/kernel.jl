@@ -81,7 +81,6 @@ export # Operations
        xmax, ymax,
        min_coord, max_coord,
        opposite,
-       orthogonal_vector,
        point,
        projection,
        source,
@@ -105,7 +104,6 @@ export # Operations
        is_horizontal, is_vertical,
        orientation,
        oriented_side,
-       orthogonal_vector,
        orthogonal_transform,
        # Access Functions
        cartesian,
@@ -154,13 +152,13 @@ name tags solve ambiguities in the function overloading and they make the code
 more readable, i.e., what type of transformation is created.
 
 Since two-dimensional points have three homogeneous coordinates, we have a
-``3\times 3`` matrix ``{(m_{ij})}_{i,\,j=0\ldots 2}``.
+``3 × 3`` matrix ``(m_{ij})_{i,j=0…2}``.
 
 If the homogeneous representations are normalized (the homogenizing coordinate
 is 1), then the upper left ``2 × 2`` matrix realizes linear transformations. In
 the matrix form of a translation, the translation vector ``(v_0,\,v_1,\,1)``
-appears in the last column of the matrix. The entries ``m₂₀`` and ``m₂₁`` are
-always zero and therefore do not appear in the contructors.
+appears in the last column of the matrix. The entries ``m_{20}`` and ``m_{21}``
+are always zero and therefore do not appear in the contructors.
 
 # Examples
 ```julia-repl
@@ -243,7 +241,7 @@ the approximating rotation are at most `num/den` each.
 
 !!! info "Precondition"
 
-    ``num/den>0`` and ``d != 0``.
+    ``num/den>0`` and ``d ≠ 0``.
 """
 AffTransformation2(::Rotation, d::Direction2, num::RT, den::RT = RT(1))
 
@@ -258,7 +256,7 @@ Introduces a rotation by the angle `ρ`.
 
 !!! info "Precondition"
 
-    ``sine_{\rho}^2 + cosine_{\rho}^2 = hw^2``.
+    ``sine_ρ^2 + cosine_ρ^2 = hw^2``.
 """
 AffTransformation2(::Rotation, sinᵨ::RT, cosᵨ::RT, hw::RT = RT(1))
 
@@ -284,17 +282,26 @@ Introduces a reflection by a line ``l``.
 AffTransformation2(::Reflection, l::Line2)
 
 @doc raw"""
-    AffTransformation(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₁₀::RT, m₁₁::RT, m₁₂::RT, hw::RT = RT(1))
-    AffTransformation(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₁₀::Real, m₁₁::Real, m₁₂::Real, hw::Real = 1)
+    AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₁₀::RT, m₁₁::RT, m₁₂::RT, hw::RT = RT(1))
+    AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₁₀::Real, m₁₁::Real, m₁₂::Real, hw::Real = 1)
 
-Introduces a general affine transformation in the ``3\times 3`` matrix form
-``\small \left( \begin{array}{ccc} m_{00} & m_{01} & m_{02} \\ m_{10} & m_{11} & m_{12} \\ 0 & 0 & hw \end{array} \right)``.
+Introduces a general affine transformation in the ``3 × 3`` matrix form ``
+\small\left(\begin{array}{ccc}
+    m_{00} & m_{01} & m_{02} \\ m_{10} & m_{11} & m_{12} \\ 0 & 0 & hw
+\end{array}\right)
+``.
 
-The sub-matrix ``1 \over hw``
-``\small \left( \begin{array}{cc} m_{00} & m_{01} \\ m_{10} & m_{11} \end{array} \right)``
-contains the scaling and rotation information, the vector
-``\small \left( \begin{array}{c} m_{02} \\ m_{12} \end{array} \right)`` contains the
-translational part of the transformation.
+The sub-matrix ``
+\frac{1}{hw}\small\left(\begin{array}{cc}
+    m_{00} & m_{01} \\ m_{10} & m_{11}
+\end{array}\right)
+``
+contains the scaling and rotation information, the vector ``
+\small\left(\begin{array}{c}
+    m_{02}\\ m_{12}
+\end{array}\right)
+``
+contains the translational part of the transformation.
 """
 AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₁₀::RT, m₁₁::RT, m₁₂::RT, hw::RT = RT(1))
 
@@ -305,8 +312,11 @@ AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₁₀::Real, m
     AffTransformation2(m₀₀::RT, m₀₁::RT, m₁₀::RT, m₁₁::RT, hw::RT = RT(1))
     AffTransformation2(m₀₀::Real, m₀₁::Real, m₁₀::Real, m₁₁::Real, hw::Real = 1)
 
-Introduces a general linear transformation
-``\small \left( \begin{array}{ccc} m_{00} & m_{01} & 0 \\ m_{10} & m_{11} & 0 \\ 0 & 0 & hw \end{array} \right)``
+Introduces a general linear transformation ``
+\small\left(\begin{array}{ccc}
+    m_{00} & m_{01} & 0 \\ m_{10} & m_{11} & 0 \\ 0 & 0 & hw
+\end{array}\right)
+``,
 i.e. there is no translational part.
 """
 AffTransformation2(m₀₀::RT, m₀₁::RT, m₁₀::RT, m₁₁::RT, hw::RT = RT(1))
@@ -377,16 +387,15 @@ is_odd(t::AffTransformation2)
     Bbox2
 
 An object `b` of the type [`Bbox2`](@ref) is a bounding box in the
-two-dimensional Euclidean plane ``\Epsilon^2``.
+two-dimensional Euclidean plane ``Ε^2``.
 """
 Bbox2
 
 @doc raw"""
     Bbox2()
 
-Introduces an *empty* bounding box with lower left corner point at
-``(\infty, \infty)`` and with upper right corner point at
-``(-\infty, -\infty)``, ``\infty`` being [`Inf`](@ref).
+Introduces an *empty* bounding box with lower left corner point at ``(∞, ∞)``
+and with upper right corner point at ``(-∞, -∞)``, ``∞`` being [`Inf`](@ref).
 """
 Bbox2()
 
@@ -439,12 +448,12 @@ dilate(b::Bbox2, dist::Integer)
     Circle2
 
 An object `c` of type [`Circle2`](@ref) is a circle in the two-dimensional
-Euclidean plane ``\Epsilon^2``.
+Euclidean plane ``Ε^2``.
 
 The circle is oriented, i.e. its boundary has clockwise or counterclockwise
-orientation. The boundary splits ``\Epsilon^2`` into a positive and a negative
+orientation. The boundary splits ``Ε^2`` into a positive and a negative
 side, where the positive side is to the left of the boundary. The boundary also
-splits ``\Epsilon^2`` into a bounded and an unbounded side. Note that the circle
+splits ``Ε^2`` into a bounded and an unbounded side. Note that the circle
 can be degenerated, i.e. the squared radius may be zero.
 """
 Circle2
@@ -460,7 +469,7 @@ It is initalized to the circle with center `center`, squared radius
 
 !!! info "Precondition"
 
-    `ori` ``≠`` `COLLINEAR`, and further, `squared_radius` ``≥`` 0.
+    `ori` ``≠`` `COLLINEAR`, and further, `squared_radius` ``≥ 0``.
 """
 Circle2(center::Point2, squared_radius, ori::Orientation = COUNTERCLOCKWISE)
 
@@ -639,7 +648,7 @@ bbox(c::Circle2)
     Direction2
 
 An object `d` of the class [`Direction_2`](@ref) is a vector in the
-two-dimensional vector space ``\mathbb{R}^2`` where we forget about its length.
+two-dimensional vector space ``ℝ^2`` where we forget about its length.
 
 They can be viewed as unit vectors, although there is no normalization
 internally, since this is error prone. Directions are used whenever the
@@ -702,7 +711,7 @@ Returns values, such that `d == [Direction2](@ref)(delta(d, 0), delta(d, 1))`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 1``
+    ``0 ≤ i ≤ 1``
 """
 delta(d::Direction2, i::Integer)
 
@@ -747,7 +756,7 @@ transform(d::Direction2, t::AffTransformation2)
     IsoRectangle2
 
 An object `r` of the data type [`IsoRectangle2`](@ref) is a rectangle in the
-Euclidean plane ``\Epsilon^2`` with sides parallel to the ``x`` and ``y`` axis
+Euclidean plane ``Ε^2`` with sides parallel to the ``x`` and ``y`` axis
 of the coordinate system.
 
 Although they are represented in a canonical form by only two vertices, namely
@@ -809,8 +818,8 @@ IsoRectangle2(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real =
 """
     IsoRectangle2(bbox::Bbox2)
 
-If [`RT`] is constructible from `Float64`, introduces an iso-oriented rectangle
-from `bbox`.
+If [`RT`](@ref) is constructible from `Float64`, introduces an iso-oriented
+rectangle from `bbox`.
 """
 IsoRectangle2(bbox::Bbox2)
 
@@ -968,19 +977,19 @@ transform(t::AffTransformation2)
     Line2
 
 An object `l` of the data type [`Line2`](@ref) is a directed straight line in
-the two-dimensional Euclidean plane ``\Epsilon^2``.
+the two-dimensional Euclidean plane ``Ε^2``.
 
 It is defined by the set of points with Cartesian coordinates ``(x, y)`` that
 satisfy the equation
 
 ```math
-    l:\; a\, x + b\, y + c = 0.
+    l: a x + b y + c = 0.
 ```
 
-The line splits ``\Epsilon^2``in a *positive* and a *negative* side. A point p
-with Cartesian coordinates ``(px, py)`` is on the positive side of `l`, iff
-``a\,px + b\,py + c > 0``, it is on the negative side of `l`, iff ``a\, px + b\,
-py + c < 0``. The positive side is to the left of `l`.
+The line splits ``Ε^2`` in a *positive* and a *negative* side. A point p with
+Cartesian coordinates ``(p_x, p_y)`` is on the positive side of `l`, iff
+``ap_x + bp_y + c > 0``, it is on the negative side of `l`, iff
+``ap_x + bp_y + c < 0``. The positive side is to the left of `l`.
 
 # Example
 
@@ -1007,7 +1016,7 @@ Line2
     Line2(a::Real, b::Real, c::Real)
 
 Introduces a line `l` with the line equation in Cartesian coordinates
-``ax + by + c = 0``.
+``a x + b y + c = 0``.
 """
 Line2(a, b, c)
 
@@ -1223,19 +1232,19 @@ transform(l::Line2, t::AffTransformation2)
     Plane3
 
 An object `h` of the data type [`Plane3`](@ref) is an oriented plane in the
-three-dimensional Euclidean space ``\Epsilon^3``.
+three-dimensional Euclidean space ``Ε^3``.
 
 It is defined by the set of points with Cartesian coordinates ``(x,y,z)`` that
 satisfy the plane equation
 
 ```math
-    h :\; a\, x + b\, y + c\, z + d = 0.
+    h: a x + b y + c z + d = 0.
 ```
 
-The plane splits ``\Epsilon^3`` in a *positive* and a *negative side*. A point
-`p` with Cartesian coordinates ``(px, py, pz)`` is on the positive side of `h`,
-iff ``a\, px +b\, py +c\, pz + d > 0``. It is on the negative side, iff ``a\, px
-b\, py +c\, pz + d < 0``.
+The plane splits ``Ε^3`` in a *positive* and a *negative side*. A point `p` with
+Cartesian coordinates ``(p_x, p_y, p_z)`` is on the positive side of `h`, iff
+``a p_x + b p_y + c p_z + d > 0``. It is on the negative side, iff
+``a p_x + b p_y + c p_z + d < 0``.
 """
 Plane3
 
@@ -1243,7 +1252,7 @@ Plane3
     Plane3(a::RT, b::RT, c::RT, d::RT)
     Plane3(a::Real, b::Real, c::Real, d::Real)
 
-Create a plane `h` defined by the equation ``a\, px + b\, py + c\, pz + d = 0``.
+Create a plane `h` defined by the equation ``a p_x + b p_y + c p_z + d = 0``.
 
 Notice that `h` is degenerate if ``a = b = c = 0``.
 """
@@ -1338,14 +1347,6 @@ Returns an arbitrary point on `h`.
 point(h::Plane3)
 
 """
-    orthogonal_vector(h::Plane3)
-
-Returns a vector that is orthogonal to `h` and that is directed to the positive
-side of `h`.
-"""
-orthogonal_vector(h::Plane3)
-
-"""
     base1(h::Plane3)
 
 Returns a vector orthogonal to [`orthogonal_vector()`](@ref).
@@ -1373,7 +1374,7 @@ to_2d(h::Plane3, p::Point3)
 """
     to_3d(h::Plane3, p::Point2)
 
-Returns a point `q`, such that `to_2d(h, to_3d(h, p) )` is equal to `p`.
+Returns a point `q`, such that `to_2d(h, to_3d(h, p))` is equal to `p`.
 """
 to_3d(h::Plane3, p::Point2)
 
@@ -1424,7 +1425,7 @@ is_degenerate(h::Plane3)
     Point2
 
 An object `p` of the type [`Point2`](@ref) is a point in the two-dimensional
-Euclidean plane ``\Epsilon^2``.
+Euclidean plane ``Ε^2``.
 
 # Example
 
@@ -1461,7 +1462,7 @@ Introduces a point `p` initialized to `(hx/hw,hy/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``\neq`` `RT(0)`
+    `hw` ``≠`` `RT(0)`
 """
 Point2(x, y, hw)
 
@@ -1528,7 +1529,7 @@ Returns the `i`ᵗʰ homogeneous coordinate of `p`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 2``.
+    ``0 ≤ i ≤ 2``.
 """
 homogeneous(p::Point2, i::Integer)
 
@@ -1539,7 +1540,7 @@ Returns the `i`ᵗʰ Cartesian coordinate of `p`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 1``.
+    ``0 ≤ i ≤ 1``.
 """
 cartesian(p::Point2, i::Integer)
 
@@ -1602,30 +1603,16 @@ You can substitute [`ORIGIN`](@ref) for either `p` or `q`, but not for both.
 """
 -(p::Point2, q::Point2)
 
-"""
-    +(p::Point2, v::Vector2)
-
-Returns the point obtained by translating `p` by the vector `v`.
-"""
-+(p::Point2, v::Vector2)
-
-"""
-    -(p::Point2, v::Vector2)
-
-Returns the point obtained by translating `p` by the vector -`v`.
-"""
--(p::Point2, v::Vector2)
-
 
 # =====================================
-# = Point2
+# = Point3
 # =====================================
 
 @doc raw"""
     Point3
 
 An object of the type [`Point3`](@ref) is a point in the three-dimensional
-Euclidean space ``\Epsilon^3``.
+Euclidean space ``Ε^3``.
 """
 Point3
 
@@ -1653,7 +1640,7 @@ Introduces a point `p` initialized to `(hx/hw,hy/hw,hz/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``\neq`` `RT(0)`
+    `hw` ``≠`` `RT(0)`
 """
 Point3(x, y, z, hw)
 
@@ -1727,7 +1714,7 @@ Returns the `i`ᵗʰ homogeneous coordinate of `p`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 3``.
+    ``0 ≤ i ≤ 3``.
 """
 homogeneous(p::Point3, i::Integer)
 
@@ -1738,7 +1725,7 @@ Returns the `i`ᵗʰ Cartesian coordinate of `p`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 2``.
+    ``0 ≤ i ≤ 2``.
 """
 cartesian(p::Point3, i::Integer)
 
@@ -1787,20 +1774,6 @@ You can substitute [`ORIGIN`](@ref) for either `p` or `q`, but not for both.
 """
 -(p::Point3, q::Point3)
 
-"""
-    +(p::Point3, v::Vector3)
-
-Returns the point obtained by translating `p` by the vector `v`.
-"""
-+(p::Point3, v::Vector3)
-
-"""
-    -(p::Point3, v::Vector3)
-
-Returns the point obtained by translating `p` by the vector -`v`.
-"""
--(p::Point3, v::Vector3)
-
 
 # =====================================
 # = Ray2
@@ -1810,7 +1783,7 @@ Returns the point obtained by translating `p` by the vector -`v`.
     Ray2
 
 An object `r` of the data type [`Ray2`](@ref) is a directed straight ray in the
-two-dimensional Euclidean plane ``\Epsilon^2``.
+two-dimensional Euclidean plane ``Ε^2``.
 
 It starts in a point called the *source* of `r` and goes to infinity.
 """
@@ -1867,7 +1840,7 @@ Returns a point on `r`.
 
 !!! info "Precondition"
 
-    ``i \geq 0``.
+    ``i ≥ 0``.
 """
 point(r::Ray2, i)
 
@@ -1961,8 +1934,8 @@ transform(r::Ray2, t::AffTransformation2)
     Segment2
 
 An object `s` of the data type [`Segment2`](@ref) is a directed straight line
-segment in the two-dimensional Euclidean plane ``\Epsilon^2``, i.e. a straight
-line segment ``[p, q]`` connecting two points ``p, q \in \mathbb{R}^2``.
+segment in the two-dimensional Euclidean plane ``Ε^2``, i.e. a straight line
+segment ``[p, q]`` connecting two points ``p, q ∈ ℝ^2``.
 
 The segment is topologically closed, i.e. the end points belong to it. Point `p`
 is called the *source* and `q` is called the *target* of `s`. The length of `s`
@@ -2136,8 +2109,8 @@ transform(s::Segment2, t::AffTransformation2)
     Segment3
 
 An object `s` of the data type [`Segment3`](@ref) is a directed straight line
-segment in the three-dimensional Euclidean space ``\Epsilon^3``, i.e. a straight
-line segment ``[p, q]`` connecting two points ``p, q \in \mathbb{R}^3``.
+segment in the three-dimensional Euclidean space ``Ε^3``, i.e. a straight line
+segment ``[p, q]`` connecting two points ``p, q \in ℝ^3``.
 
 The segment is topologically closed, i.e. the end points belong to it. Point `p`
 is called the *source* and `q` is called the *target* of `s`. The length of `s`
@@ -2255,7 +2228,7 @@ has_on(s::Segment3, p::Point3)
     Triangle2
 
 An object `t` of the type [`Triangle2`](@ref) is a triangle in the
-two-dimensional Euclidean plane ``\Epsilon^2``.
+two-dimensional Euclidean plane ``Ε^2``.
 
 Triangle `t` is oriented, i.e., its boundary has clockwise or
 counterclockwise orientation. We call the side to the left of the boundary the
@@ -2400,7 +2373,7 @@ transform(t::Triangle2, at::AffTransformation2)
     Vector2
 
 An object `v` of the type [`Vector2`](@ref) is a vector in the two-dimensional
-vector space ``\mathbb{R}^2``.
+vector space ``ℝ^2``.
 
 Geometrically spoken, a vector is the difference of two points ``p_2, p_1`` and
 and denotes the direction and the distance from ``p_1`` to ``p_2``.
@@ -2463,7 +2436,7 @@ Introduces a vector `v` initialized to `(hx/hw,hy/hw,hz/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``\neq`` `RT(0)`
+    `hw` ``≠`` `RT(0)`
 """
 Vector2(x, y, z, hw)
 
@@ -2513,7 +2486,7 @@ Returns the `i`ᵗʰ homogeneous coordinate of `v`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 2``.
+    ``0 ≤ i ≤ 2``.
 """
 homogeneous(v::Vector2, i::Integer)
 
@@ -2524,7 +2497,7 @@ Returns the `i`ᵗʰ Cartesian coordinate of `v`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 1``.
+    ``0 ≤ i ≤ 1``.
 """
 cartesian(v::Vector2, i::Integer)
 
@@ -2603,29 +2576,11 @@ Returns the scalar product (= inner product) of the two vectors.
 *(v::Vector2, w::Vector2)
 
 """
-    *(v::Vector2, s::RT)
-    *(v::Vector2, s::FT)
-    *(v::Vector2, s::Real)
-
-Multiplication with a scalar from the right.
-"""
-*(v::Vector2, s)
-
-"""
-    *(s::RT, v::Vector2)
-    *(s::FT, v::Vector2)
-    *(s::Real, v::Vector2)
-
-Multiplication with a scalar from the left.
-"""
-*(s, v::Vector2)
-
-"
     /(v::Vector2, s::RT)
     /(v::Vector2, s::Real)
 
 Division by a scalar.
-"
+"""
 /(v::Vector2, s)
 
 
@@ -2637,7 +2592,7 @@ Division by a scalar.
     Vector3
 
 An object `v` of the type [`Vector3`](@ref) is a vector in the three-dimensional
-vector space ``\mathbb{R}^3``.
+vector space ``ℝ^3``.
 
 Geometrically spoken, a vector is the difference of two points ``p_2, p_1`` and
 and denotes the direction and the distance from ``p_1`` to ``p_2``.
@@ -2686,7 +2641,7 @@ Introduces a vector `v` initialized to `(hx/hw,hy/hw,hz/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``\neq`` `RT(0)`
+    `hw` ``≠`` `RT(0)`
 """
 Vector3(hx, hy, hz, hw)
 
@@ -2750,7 +2705,7 @@ Returns the `i`ᵗʰ homogeneous coordinate of `v`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 3``.
+    ``0 ≤ i ≤ 3``.
 """
 homogeneous(v::Vector3, i::Integer)
 
@@ -2761,7 +2716,7 @@ Returns the `i`ᵗʰ Cartesian coordinate of `v`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 2``.
+    ``0 ≤ i ≤ 2``.
 """
 cartesian(v::Vector3, i::Integer)
 
@@ -2817,24 +2772,6 @@ Returns the scalar product (= inner product) of the two vectors.
 """
 *(v::Vector3, w::Vector3)
 
-"""
-    *(v::Vector3, s::RT)
-    *(v::Vector3, s::FT)
-    *(v::Vector3, s::Real)
-
-Multiplication with a scalar from the right.
-"""
-*(v::Vector3, s)
-
-"""
-    *(s::RT, v::Vector3)
-    *(s::FT, v::Vector3)
-    *(s::Real, v::Vector3)
-
-Multiplication with a scalar from the left.
-"""
-*(s, v::Vector3)
-
 "
     /(v::Vector3, s::RT)
     /(v::Vector3, s::Real)
@@ -2844,11 +2781,7 @@ Division by a scalar.
 /(v::Vector3, s)
 
 for V ∈ (Vector2, Vector3)
-    @eval begin
-        @cxxdereference Base.:*(s::Real, v::$V) = convert(FT, s) * v
-        @cxxdereference Base.:*(v::$V, s::Real) = s * v
-        @cxxdereference Base.:/(v::$V, s::Real) = v / convert(FT, s)
-    end
+    @eval @cxxdereference Base.:/(v::$V, s::Real) = v / convert(FT, s)
 end
 
 
@@ -2985,7 +2918,7 @@ Returns the `i`ᵗʰ homogeneous coordinate of `p`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 2``.
+    ``0 ≤ i ≤ 2``.
 """
 homogeneous(p::WeightedPoint2, i::Integer)
 
@@ -2996,7 +2929,7 @@ Returns the `i`ᵗʰ Cartesian coordinate of `p`.
 
 !!! info "Precondition"
 
-    ``0 \leq i \leq 1``.
+    ``0 ≤ i ≤ 1``.
 """
 cartesian(p::WeightedPoint2, i::Integer)
 
