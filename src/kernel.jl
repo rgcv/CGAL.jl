@@ -961,7 +961,7 @@ and upper right corner of `r`.
 
 !!! info "Precondition"
 
-    The angle at a rotation must be a multiple of ``\frac{\pi}{2}``, otherwise the
+    The angle at a rotation must be a multiple of ``π \over 2``, otherwise the
     resulting rectangle does not have the same side length. Note that rotating
     about an arbitrary angle can even result in a degenerate iso-oriented
     rectangle.
@@ -983,19 +983,19 @@ It is defined by the set of points with Cartesian coordinates ``(x, y)`` that
 satisfy the equation
 
 ```math
-    l: a x + b y + c = 0.
+    l:\; a\, x + b\, y + c = 0.
 ```
 
 The line splits ``Ε^2`` in a *positive* and a *negative* side. A point p with
-Cartesian coordinates ``(p_x, p_y)`` is on the positive side of `l`, iff
-``ap_x + bp_y + c > 0``, it is on the negative side of `l`, iff
-``ap_x + bp_y + c < 0``. The positive side is to the left of `l`.
+Cartesian coordinates ``(px, py)`` is on the positive side of `l`, iff
+``a\, px + b\, py + c > 0``, it is on the negative side of `l`, iff
+``a\, px + b\, py + c < 0``. The positive side is to the left of `l`.
 
 # Example
 
 Let us first define two Cartesian two-dimensional points in the Euclidean place
-``\Epsilon^2``. Their dimension and the fact that they are Cartesian is
-expressed by the suffix `2` and the `C2` suffix in their representation.
+``Ε^2``. Their dimension and the fact that they are Cartesian is expressed by
+the suffix `2` and the `C2` suffix in their representation.
 
 ```jldoctest
 julia> p, q = Point2(1.0,1.0), Point2(4.0,7.0)
@@ -1016,7 +1016,7 @@ Line2
     Line2(a::Real, b::Real, c::Real)
 
 Introduces a line `l` with the line equation in Cartesian coordinates
-``a x + b y + c = 0``.
+``ax + by + c = 0``.
 """
 Line2(a, b, c)
 
@@ -1238,13 +1238,13 @@ It is defined by the set of points with Cartesian coordinates ``(x,y,z)`` that
 satisfy the plane equation
 
 ```math
-    h: a x + b y + c z + d = 0.
+    h:\; a\, x + b\, y + c\, z + d = 0.
 ```
 
 The plane splits ``Ε^3`` in a *positive* and a *negative side*. A point `p` with
-Cartesian coordinates ``(p_x, p_y, p_z)`` is on the positive side of `h`, iff
-``a p_x + b p_y + c p_z + d > 0``. It is on the negative side, iff
-``a p_x + b p_y + c p_z + d < 0``.
+Cartesian coordinates ``(px, py, pz)`` is on the positive side of `h`, iff
+``a\, px + b\, py + c\, pz + d > 0``. It is on the negative side, iff
+``a\, px + b\, py + c\, pz + d < 0``.
 """
 Plane3
 
@@ -1252,7 +1252,7 @@ Plane3
     Plane3(a::RT, b::RT, c::RT, d::RT)
     Plane3(a::Real, b::Real, c::Real, d::Real)
 
-Create a plane `h` defined by the equation ``a p_x + b p_y + c p_z + d = 0``.
+Create a plane `h` defined by the equation ``a\, px + b\, py + c\, pz + d = 0``.
 
 Notice that `h` is degenerate if ``a = b = c = 0``.
 """
@@ -2110,7 +2110,7 @@ transform(s::Segment2, t::AffTransformation2)
 
 An object `s` of the data type [`Segment3`](@ref) is a directed straight line
 segment in the three-dimensional Euclidean space ``Ε^3``, i.e. a straight line
-segment ``[p, q]`` connecting two points ``p, q \in ℝ^3``.
+segment ``[p, q]`` connecting two points ``p, q ∈ ℝ^3``.
 
 The segment is topologically closed, i.e. the end points belong to it. Point `p`
 is called the *source* and `q` is called the *target* of `s`. The length of `s`
