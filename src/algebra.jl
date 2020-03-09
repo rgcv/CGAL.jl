@@ -1,4 +1,4 @@
-# abs, sign and, sqrt specialize Base's functions
+# abs, sign, and sqrt specialize Base's functions
 export compare,
        integral_division,
        inverse,

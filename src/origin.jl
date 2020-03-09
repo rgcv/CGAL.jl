@@ -5,7 +5,7 @@ export ORIGIN, NULL_VECTOR
 
 A symbolic constant which denotes the point at the origin.
 
-This constant is used in the conversion between points and vecors.
+This constant is used in the conversion between points and vectors.
 
 # Example
 
@@ -29,6 +29,7 @@ ORIGIN
 
 """
     NULL_VECTOR
+
 A symbolic constant used to construct zero length vectors.
 
 See also: [`Vector2`](@ref), [`Vector3`](@ref)

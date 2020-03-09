@@ -146,7 +146,7 @@ the rational entries.) Hence, it is sufficient to use the number type
 [`RT`](@ref) to represent the entries of the transformation matrix.
 
 CGAL offers several specialized affine transformations. Different constructors
-are provided to create them. They are aparemeterized with a symbolic name to
+are provided to create them. They are paremeterized with a symbolic name to
 denote the transformation type, followed by additional parameters. The symbolic
 name tags solve ambiguities in the function overloading and they make the code
 more readable, i.e., what type of transformation is created.
@@ -158,7 +158,7 @@ If the homogeneous representations are normalized (the homogenizing coordinate
 is 1), then the upper left ``2 × 2`` matrix realizes linear transformations. In
 the matrix form of a translation, the translation vector ``(v_0,\,v_1,\,1)``
 appears in the last column of the matrix. The entries ``m_{20}`` and ``m_{21}``
-are always zero and therefore do not appear in the contructors.
+are always zero and therefore do not appear in the constructors.
 
 # Examples
 ```julia-repl
@@ -464,7 +464,7 @@ Circle2
 
 Introduces a variable `c` of type [`Circle2`](@ref).
 
-It is initalized to the circle with center `center`, squared radius
+It is initialized to the circle with center `center`, squared radius
 `squared_radius`, and orientation `ori`.
 
 !!! info "Precondition"
@@ -510,7 +510,7 @@ Circle2(p::Point2, q::Point2, ori::Orientation = COUNTERCLOCKWISE)
 
 Introduces a variable `c` of type [`Circle2`](@ref).
 
-It is initalized to the circle with center `center`, squared radius zero, and
+It is initialized to the circle with center `center`, squared radius zero, and
 orientation `ori`.
 
 !!! info "Precondition"
@@ -827,7 +827,7 @@ IsoRectangle2(bbox::Bbox2)
     ==(r::IsoRectangle2, r2::IsoRectangle2)
 
 Test for equality: two iso-oriented rectangles are equal, iff their lower left
-annd upper right vertices are equal.
+and upper right vertices are equal.
 """
 ==(r::IsoRectangle2, r2::IsoRectangle2)
 
@@ -895,7 +895,7 @@ min_coord(r::IsoRectangle2, i::Integer)
 """
     max_coord(r::IsoRectangle2, i::Integer)
 
-Returns the `i`ᵗʰ Cartesian coordinate of the uperr right vertex of `r`.
+Returns the `i`ᵗʰ Cartesian coordinate of the upper right vertex of `r`.
 
 !!! info "Precondition"
 
@@ -2088,7 +2088,7 @@ collinear_has_on(s::Segment2, p::Point2)
 """
     bbox(s::Segment2)
 
-Retuns a bounding box containing `s`.
+Returns a bounding box containing `s`.
 """
 bbox(s::Segment2)
 
@@ -2186,7 +2186,7 @@ point(s::Segment3, i::Integer)
 """
     squared_length(s::Segment3)
 
-Returns the squared lenght of `s`.
+Returns the squared length of `s`.
 """
 squared_length(s::Segment3)
 

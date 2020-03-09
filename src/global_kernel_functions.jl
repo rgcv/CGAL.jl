@@ -871,7 +871,7 @@ compare_xy(p::Point23, q::Point23)
 """
     compare_x_at_y(p::Point2, h::Line2)
 
-Copmares the ``x``-coordinates of `p` and the horizontal projection of `p` on
+Compares the ``x``-coordinates of `p` and the horizontal projection of `p` on
 `h`.
 
 !!! info "Precondition"
@@ -946,7 +946,7 @@ compare_x_at_y(l₁::Line2, l₂::Line2, h₁::Line2, h₂::Line2)
 """
     compare_y_at_x(p::Point2, h::Line2)
 
-Copmares the ``y``-coordinates of `p` and the vertical projection of `p` on `h`.
+Compares the ``y``-coordinates of `p` and the vertical projection of `p` on `h`.
 
 !!! info "Precondition"
 
@@ -1210,7 +1210,7 @@ coplanar_orientation(p::Point3, q::Point3, r::Point3)
 """
     coplanar_side_of_bounded_circle(p::Point3, q::Point3, r::Point3, s::Point3)
 
-Returns the bounded side o fthe circle deifned by `p`, `q`, and `r` on which `s`
+Returns the bounded side of the circle defined by `p`, `q`, and `r` on which `s`
 lies.
 
 
@@ -1342,7 +1342,7 @@ has_larger_signed_distance_to_line(l::Line2, p::Point2, q::Point2)
 """
     has_larger_signed_distance_to_line(p::Point2, q::Point2, r::Point2, s::Point2)
 
-Returns `true` iff the signed istance of `r` and `l` is larger than the signed
+Returns `true` iff the signed distance of `r` and `l` is larger than the signed
 distance of `s` and `l`, where `l` is the directed line through points `p` and
 `q`.
 
@@ -1450,7 +1450,7 @@ has_smaller_signed_distance_to_line(l::Line2, p::Point2, q::Point2)
 """
     has_smaller_signed_distance_to_line(p::Point2, q::Point2, r::Point2, s::Point2)
 
-Returns `true` iff the signed istance of `r` and `l` is smaller than the signed
+Returns `true` iff the signed distance of `r` and `l` is smaller than the signed
 distance of `s` and `l`, where `l` is the directed line through points `p` and
 `q`.
 
@@ -1562,7 +1562,7 @@ The following tables give the possible values for `Type1` and `Type2`.
 
 # Examples
 
-The following examples demosntrate the most common use of
+The following examples demonstrate the most common use of
 [`intersection()`](@ref) functions.
 
 In the first two examples we intersect a segment and a line.
@@ -1634,7 +1634,7 @@ lexicographically_xy_larger(p::Point2, q::Point2)
     lexicographically_xy_larger_or_equal(p::Point2, q::Point2)
 
 
-Returns `tru` iff `p` is lexicographically not smaller than `q` with respect to
+Returns `true` iff `p` is lexicographically not smaller than `q` with respect to
 ``xy`` order.
 
 See also: [`compare_xy()`](@ref),
@@ -1671,7 +1671,7 @@ lexicographically_xy_smaller(p::Point2, q::Point2)
     lexicographically_xy_smaller_or_equal(p::Point2, q::Point2)
 
 
-Returns `tru` iff `p` is lexicographically not larger than `q` with respect to
+Returns `true` iff `p` is lexicographically not larger than `q` with respect to
 ``xy`` order.
 
 See also: [`compare_xy()`](@ref),
@@ -1706,7 +1706,7 @@ lexicographically_xyz_smaller(p::Point3, q::Point3)
     lexicographically_xyz_smaller_or_equal(p::Point3, q::Point3)
 
 
-Returns `tru` iff `p` is lexicographically not larger than `q` with respect to
+Returns `true` iff `p` is lexicographically not larger than `q` with respect to
 ``xyz`` order.
 
 See also: [`compare_xyz()`](@ref),
@@ -1722,7 +1722,7 @@ lexicographically_xyz_smaller_or_equal(p::Point3, q::Point3)
 """
     max_vertex(ir::IsoRectangle2)
 
-Computes the vertex with te lexicographically largest coordinates of the iso
+Computes the vertex with the lexicographically largest coordinates of the iso
 rectangle `ir`.
 """
 max_vertex(ir::IsoRectangle2)
@@ -1748,7 +1748,7 @@ midpoint(p::Point23, q::Point23)
 """
     min_vertex(ir::IsoRectangle2)
 
-Computes the vertex with te lexicographically smallest coordinates of the iso
+Computes the vertex with the lexicographically smallest coordinates of the iso
 rectangle `ir`.
 """
 min_vertex(ir::IsoRectangle2)
@@ -1871,7 +1871,7 @@ end
 """
     radical_line(c₁::Circle2, c₂::Circle2)
 
-Reutrns the radical line of the two circles.
+Returns the radical line of the two circles.
 
 !!! info "Precondition"
 
@@ -1909,7 +1909,7 @@ The difference between the sine and the approximating rational is bounded by
 **Implementation**
 
 The approximation is based on Farey sequences as described in the rational
-rotation method presented by Canny and Resller at the 8th SoCG 1992. The authors
+rotation method presented by Canny and Ressler at the 8th SoCG 1992. The authors
 of the implementation use a slower version which needs no division operation in
 the approximation.
 
