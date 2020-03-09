@@ -2429,20 +2429,20 @@ Introduces a vector `v` initialized to ``(x, y)``.
 Vector2(x, y)
 
 @doc raw"""
-    Vector2(hx::RT, hy::RT, hz::RT, hw::RT = RT(1))
-    Vector2(hx::Real, hy::Real, hz::Real, hw::Real = 1)
+    Vector2(hx::RT, hy::RT, hw::RT = RT(1))
+    Vector2(hx::Real, hy::Real, hw::Real = 1)
 
-Introduces a vector `v` initialized to `(hx/hw,hy/hw,hz/hw)`.
+Introduces a vector `v` initialized to `(hx/hw,hy/hw)`.
 
 !!! info "Precondition"
 
     `hw` ``≠`` `RT(0)`
 """
-Vector2(x, y, z, hw)
+Vector2(hx, hy, hw)
 
-Vector2(x::Real, y::Real, z::Real, hw::Real = 1) = isone(hw) ?
-    Vector2(convert.(FT, (x, y, z))...) :
-    Vector2(convert.(RT, (x, y, z, hw))...)
+Vector2(hx::Real, hy::Real, hw::Real = 1) = isone(hw) ?
+    Vector2(convert.(FT, (hx, hy))...) :
+    Vector2(convert.(RT, (hx, hy, hw))...)
 
 """
     hx(p::Vector2)
