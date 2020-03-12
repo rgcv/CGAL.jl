@@ -1916,22 +1916,24 @@ the approximation.
 See also: [`AffTransformation2`](@ref)
 """
 rational_rotation_approximation(dirx, diry,
-                                sin_num::Ref, cos_num::Ref, denom::Ref,
+                                sin_num::Ref,
+                                cos_num::Ref,
+                                denom::Ref,
                                 eps_num, eps_den)
 
 rational_rotation_approximation(dirx::Real, diry::Real,
-                                sin_num::Ref{<:Real},
-                                cos_num::Ref{<:Real},
-                                denom::Ref{<:Real},
-                                eps_num::Real, eps_den::Real) =
-    let (real_sin, real_cos, real_denom) = Ref{RT}.((0, 0, 0)),
+                                sin_num::Ref{U},
+                                cos_num::Ref{V},
+                                denom::Ref{W},
+                                eps_num::Real, eps_den::Real) where {U<:Real,V<:Real,W<:Real} =
+    let (rsin_num, rcos_num, rdenom) = Ref.(NT.((0,0,0))),
         res = rational_rotation_approximation(convert.(RT, (dirx, diry))...,
-            real_sin, real_cos, real_denom,
-            convert.(RT, (eps_num, eps_den))...)
+                                              rsin_num, rcos_num, rdenom,
+                                              convert.(RT, (eps_num, eps_den))...)
 
-        sin_num[] = convert(AbstractFloat, real_sin[])
-        cos_num[] = convert(AbstractFloat, real_cos[])
-        denom[] = convert(AbstractFloat, real_denom[])
+        sin_num[] = convert(U, rsin_num[])
+        cos_num[] = convert(V, rcos_num[])
+        denom[]   = convert(W, rdenom[])
 
         res
     end
