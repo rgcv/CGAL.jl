@@ -1926,7 +1926,7 @@ rational_rotation_approximation(dirx::Real, diry::Real,
                                 cos_num::Ref{V},
                                 denom::Ref{W},
                                 eps_num::Real, eps_den::Real) where {U<:Real,V<:Real,W<:Real} =
-    let (rsin_num, rcos_num, rdenom) = Ref.(NT.((0,0,0))),
+    let (rsin_num, rcos_num, rdenom) = Ref.(RT.((0,0,0))),
         res = rational_rotation_approximation(convert.(RT, (dirx, diry))...,
                                               rsin_num, rcos_num, rdenom,
                                               convert.(RT, (eps_num, eps_den))...)
