@@ -26,7 +26,7 @@ in a side-by-side comparison with a Julia translation using this package:
 <th>Julia</th>
 </tr>
 <tr>
-<td style="vertical-align:top">
+<td>
 
 ```cpp
 // points_and_segment.cpp
@@ -73,7 +73,7 @@ int main()
 ```
 
 </td>
-<td style="vertical-align:top">
+<td>
 
 ```julia
 # points_and_segment.jl
