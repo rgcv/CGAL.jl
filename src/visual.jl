@@ -1,5 +1,3 @@
-import CxxWrap: @cxxdereference
-
 for T ∈ (FieldType,
         #RingType,
          AffTransformation2,

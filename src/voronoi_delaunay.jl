@@ -1,4 +1,4 @@
-import CxxWrap: @cxxdereference, CxxRef
+import CxxWrap: CxxRef
 
 export VoronoiDiagram,
        DelaunayTriangulation
