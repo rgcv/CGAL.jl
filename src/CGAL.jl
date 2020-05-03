@@ -4,10 +4,10 @@ include("mappings.jl") # early jl/c++ mappings
 
 using CxxWrap
 using libcgal_julia_jll
-const libcgal_julia = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
+libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
                       libcgal_julia_exact :
                       libcgal_julia_inexact
-@wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia))
+@wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia()))
 
 __init__() = @initcxx
 
