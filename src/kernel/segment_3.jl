@@ -91,11 +91,28 @@ Returns the vector `target(s) - source(s)`.
 to_vector(s::Segment3)
 
 """
+    direction(s::Segment3)
+
+Returns the direction from source to target.
+"""
+direction(s::Segment3)
+
+"""
     opposite(s::Segment3)
 
 Returns a segment with source and target point interchanged.
 """
 opposite(s::Segment3)
+
+"""
+    supporting_line(s::Segment3)
+
+Returns the line `l` passing through `s`.
+
+Line `l` has the same orientation as segment `s`, that is from the source to the
+target of `s`.
+"""
+supporting_line(s::Segment3)
 
 """
     is_degenerate(s::Segment3)
@@ -111,3 +128,18 @@ A point is on `s`, iff it is equal to the source or target of `s` or if it is
 in the interior of `s`.
 """
 has_on(s::Segment3, p::Point3)
+
+"""
+    bbox(s::Segment3)
+
+Returns a bounding box containing `s`.
+"""
+bbox(s::Segment3)
+
+"""
+    transform(s::Segment3, t::AffTransformation3)
+
+Returns the segment obtained by applying `t` on the source and the target of
+`s`.
+"""
+transform(s::Segment3, t::AffTransformation3)

@@ -39,6 +39,13 @@ Point3(x::Real, y::Real, z::Real, hw::Real = 1) = isone(hw) ?
     Point3(convert.(RT, (x, y, z, hw))...)
 
 """
+    Point3(wp::WeightedPoint3)
+
+Introduces a point from a weighted point.
+"""
+Point3(wp::WeightedPoint3)
+
+"""
     ==(p::Point3, q::Point3)
 
 Test for equality.
@@ -125,6 +132,20 @@ cartesian(p::Point3, i::Integer)
 Returns the dimension (the constant 3).
 """
 dimension(p::Point3)
+
+"""
+    bbox(p::Point3)
+
+Returns a bounding box containing `p`.
+"""
+bbox(p::Point3)
+
+"""
+    transform(p::Point3, t::AffTransformation3)
+
+Returns the point obtained by applying `t` on `p`.
+"""
+transform(p::Point3, t::AffTransformation3)
 
 """
     <(p::Point3, q::Point3)

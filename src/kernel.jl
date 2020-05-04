@@ -49,42 +49,57 @@ Base.float(x::Ref{FT}) = float(x[])
 FT(x::Ref{FT}) = FT(x[])
 Base.isnan(x::Ref{FT}) = isnan(x[])
 
-export AffTransformation2,
-       Bbox2,
-       Circle2,
-       Direction2,
-       IsoRectangle2,
-       Line2,
+export IDENTITY,
+       REFLECTION,
+       ROTATION,
+       SCALING,
+       TRANSLATION
+
+export AffTransformation2, AffTransformation3,
+       Bbox2, Bbox3,
+       Circle2, Circle3,
+       Direction2, Direction3,
+       IsoRectangle2, IsoCuboid3,
+       Line2, Line3,
        Plane3,
        Point2, Point3,
-       Ray2,
+       Ray2, Ray3,
        Segment2, Segment3,
-       Triangle2,
+       Sphere3,
+       Tetrahedron3,
+       Triangle2, Triangle3,
        Vector2, Vector3,
-       WeightedPoint2
+       WeightedPoint2, WeightedPoint3
 
 # min and max specialize Base's respective functions
 export # Operations
        a, b, c, d,
+       area_divided_by_pi,
+       approximate_area,
+       approximate_squared_length,
        base1, base2,
        counterclockwise_in_between,
        delta,
+       diametral_sphere,
        dilate,
        direction,
        dimension,
-       dx, dy,
-       xmin, ymin,
-       xmax, ymax,
+       dx, dy, dz,
+       xmin, ymin, zmin,
+       xmax, ymax, zmax,
        min_coord, max_coord,
        opposite,
        point,
        projection,
        source,
        squared_length,
+       squared_length_divided_by_pi_square,
        supporting_line,
+       supporting_plane,
        target,
        to_vector,
        vertex,
+       volume,
        x_at_y, y_at_x,
        # 2D Conversion
        to_2d, to_3d,
@@ -100,6 +115,7 @@ export # Operations
        is_horizontal, is_vertical,
        orientation,
        oriented_side,
+       orthogonal_direction,
        orthogonal_transform,
        orthogonal_vector,
        # Access Functions
@@ -118,6 +134,8 @@ export # Operations
        direction,
        opposite,
        perpendicular,
+       perpendicular_line,
+       perpendicular_plane,
        vector,
        to_vector,
        transform
@@ -128,12 +146,25 @@ include("kernel/circle_2.jl")
 include("kernel/direction_2.jl")
 include("kernel/iso_rectangle_2.jl")
 include("kernel/line_2.jl")
-include("kernel/plane_3.jl")
 include("kernel/point_2.jl")
-include("kernel/point_3.jl")
 include("kernel/ray_2.jl")
 include("kernel/segment_2.jl")
-include("kernel/segment_3.jl")
+include("kernel/triangle_2.jl")
 include("kernel/vector_2.jl")
-include("kernel/vector_3.jl")
 include("kernel/weighted_point_2.jl")
+
+include("kernel/aff_transformation_3.jl")
+include("kernel/bbox_3.jl")
+include("kernel/circle_3.jl")
+include("kernel/direction_3.jl")
+include("kernel/iso_cuboid_3.jl")
+include("kernel/line_3.jl")
+include("kernel/plane_3.jl")
+include("kernel/point_3.jl")
+include("kernel/ray_3.jl")
+include("kernel/segment_3.jl")
+include("kernel/sphere_3.jl")
+include("kernel/tetrahedron_3.jl")
+include("kernel/triangle_3.jl")
+include("kernel/vector_3.jl")
+include("kernel/weighted_point_3.jl")

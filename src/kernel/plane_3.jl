@@ -51,6 +51,30 @@ Introduces a plane `h` that passes through point `p` and that is orthogonal to
 Plane3(p::Point3, v::Vector3)
 
 """
+    Plane3(p::Point3, d::Direction3)
+
+Introduces a plane `h` that passes through point `p` and that has an orthogonal
+direction equal to `d`.
+"""
+Plane3(p::Point3, d::Direction3)
+
+"""
+    Plane3(l::Line3, p::Point3)
+
+Introduces a plane `h` that is defined through the three points `point(l, 0)`,
+`point(l, 1)` and `p`.
+"""
+Plane3(l::Line3, p::Point3)
+
+"""
+    Plane3(r::Ray3, p::Point3)
+
+Introduces a plane `h` that is defined through the three points `point(r, 0)`,
+`point(r, 1)` and `p`.
+"""
+Plane3(r::Ray3, p::Point3)
+
+"""
     Plane3(s::Segment3, p::Point3)
 
 Introduces a plane `h` that is defined through the three points `source(s)`,
@@ -59,12 +83,19 @@ Introduces a plane `h` that is defined through the three points `source(s)`,
 Plane3(s::Segment3, p::Point3)
 
 """
-    ==(h::Plane3, h2::Plane3)
+    Plane3(c::Circle3)
+
+Introduces a plane `h` that is defined as the plane containing the circle `c`.
+"""
+Plane3(c::Circle3)
+
+"""
+    ==(h₁::Plane3, h₂::Plane3)
 
 Test for equality: two planes are equal, iff they have a non empty intersection
 and the same orientation.
 """
-==(h::Plane3, h2::Plane3)
+==(h₁::Plane3, h₂::Plane3)
 
 """
     a(h::Plane3)
@@ -95,6 +126,15 @@ Returns the fourth coefficient of `h`.
 d(h::Plane3)
 
 """
+    perpendicular_line(h::Plane3, p::Point3)
+
+Returns the line that is perpendicular to `h` and that passes through point `p`.
+
+The line is oriented from the negative to the positive side of `h`.
+"""
+perpendicular_line(h::Plane3, p::Point3)
+
+"""
     projection(h::Plane3, p::Point3)
 
 Returns the orthogonal projection of `p` on `h`.
@@ -114,6 +154,22 @@ opposite(h::Plane3)
 Returns an arbitrary point on `h`.
 """
 point(h::Plane3)
+
+"""
+    orthogonal_vector(h::Plane3)
+
+Returns a vector that is orthogonal to `h` and that is directed to the positive
+side of `h`.
+"""
+orthogonal_vector(h::Plane3)
+
+"""
+    orthogonal_direction(h::Plane3)
+
+Returns a direction that is orthogonal to `h` and that is directed to the positive
+side of `h`.
+"""
+orthogonal_direction(h::Plane3)
 
 """
     base1(h::Plane3)
@@ -178,9 +234,31 @@ Returns `true`, iff `p` lies on the negative side of `h`.
 has_on_negative_side(h::Plane3, p::Point3)
 
 """
+    has_on(h::Plane3, l::Line3)
+
+Returns `true`, iff `l` properly lies on `h`.
+"""
+has_on(h::Plane3, l::Line3)
+
+"""
+    has_on(h::Plane3, c::Circle3)
+
+Returns `true`, iff `c` properly lies on `h`.
+"""
+has_on(h::Plane3, c::Circle3)
+
+"""
     is_degenerate(h::Plane3)
 
 Plane `h` is degenerate, if the coefficients `a`, `b`, and `c` of the plane
 equation are zero.
 """
 is_degenerate(h::Plane3)
+
+"""
+    transform(h::Plane3, t::AffTransformation3)
+
+Returns the plane obtained by applying `t` on a point of `h` and the
+orthogonal direction of `h`.
+"""
+transform(h::Plane3, t::AffTransformation3)

@@ -1,9 +1,3 @@
-export IDENTITY,
-       REFLECTION,
-       ROTATION,
-       SCALING,
-       TRANSLATION
-
 @doc raw"""
     AffTransformation2
 
