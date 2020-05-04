@@ -36,7 +36,7 @@ Note that the object is brought in the canonical form.
 IsoRectangle2(p::Point2, q::Point2, ::Integer)
 
 @doc raw"""
-    IsoRectangle(left::Point2, right::Point2, bottom::Point2, top::Point2)
+    IsoRectangle2(left::Point2, right::Point2, bottom::Point2, top::Point2)
 
 Introduces an iso-oriented rectangle `r` whose minimal ``x`` coordinate is the
 one of `left`, the maximal ``x`` coordinate is the one of `right`, the minimal
@@ -46,8 +46,8 @@ of ``top``.
 IsoRectangle2(left::Point2, right::Point2, bottom::Point2, top::Point2)
 
 """
-    IsoRectangle(min_hx::RT, min_hy::RT, max_hx::RT, max_hy::RT, hw::RT = RT(1))
-    IsoRectangle(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real = 1)
+    IsoRectangle2(min_hx::RT, min_hy::RT, max_hx::RT, max_hy::RT, hw::RT = RT(1))
+    IsoRectangle2(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real = 1)
 
 Introduces an iso-oriented rectangle `r` with diagonal opposite vertices
 `(min_hx/hw, min_hy/hw)` and `(max_hx/hw, max_hy/hw)`.

@@ -34,13 +34,6 @@ Returns 2.
 dimension(b::Bbox2)
 
 """
-    +(b::Bbox2, c::Bbox2)
-
-Returns a bounding box of `b` and `c`.
-"""
-+(b::Bbox2, c::Bbox2)
-
-"""
     min(b::Bbox2, i::Integer)
 
 Returns [`xmin(b)`](@ref) if `i == 0` or [`ymin(b)`](@ref) if `i == 1`.
@@ -62,6 +55,13 @@ Returns [`xmax(b)`](@ref) if `i == 0` or [`ymax(b)`](@ref) if `i == 1`.
     `i == 0` or `i == 1`.
 """
 max(b::Bbox2, i::Integer)
+
+"""
+    +(b::Bbox2, c::Bbox2)
+
+Returns a bounding box of `b` and `c`.
+"""
++(b::Bbox2, c::Bbox2)
 
 """
     dilate(b::Bbox2, dist::Integer)

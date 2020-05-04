@@ -36,7 +36,7 @@ Direction2(l::Line2)
 """
     Direction2(r::Ray2)
 
-Introduces the direction `d` of line `r`.
+Introduces the direction `d` of ray `r`.
 """
 Direction2(r::Ray2)
 

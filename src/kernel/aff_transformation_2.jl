@@ -151,8 +151,12 @@ Introduces a reflection by a line ``l``.
 AffTransformation2(::Reflection, l::Line2)
 
 @doc raw"""
-    AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₁₀::RT, m₁₁::RT, m₁₂::RT, hw::RT = RT(1))
-    AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₁₀::Real, m₁₁::Real, m₁₂::Real, hw::Real = 1)
+    AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT,
+                       m₁₀::RT, m₁₁::RT, m₁₂::RT,
+                                                  hw::RT = RT(1))
+    AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real,
+                       m₁₀::Real, m₁₁::Real, m₁₂::Real,
+                                                        hw::Real = 1)
 
 Introduces a general affine transformation in the ``3 × 3`` matrix form ``
 \small\left(\begin{array}{ccc}
@@ -172,14 +176,24 @@ contains the scaling and rotation information, the vector ``
 ``
 contains the translational part of the transformation.
 """
-AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₁₀::RT, m₁₁::RT, m₁₂::RT, hw::RT = RT(1))
+AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT,
+                   m₁₀::RT, m₁₁::RT, m₁₂::RT,
+                                              hw::RT = RT(1))
 
-AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₁₀::Real, m₁₁::Real, m₁₂::Real, hw::Real = 1) =
-    AffTransformation2(convert.(FT, (m₀₀, m₀₁, m₀₂, m₁₀, m₁₁, m₁₂, hw))...)
+AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real,
+                   m₁₀::Real, m₁₁::Real, m₁₂::Real,
+                                                    hw::Real = 1) =
+    AffTransformation2(convert.(FT, (m₀₀, m₀₁, m₀₂,
+                                     m₁₀, m₁₁, m₁₂,
+                                                    hw))...)
 
 @doc raw"""
-    AffTransformation2(m₀₀::RT, m₀₁::RT, m₁₀::RT, m₁₁::RT, hw::RT = RT(1))
-    AffTransformation2(m₀₀::Real, m₀₁::Real, m₁₀::Real, m₁₁::Real, hw::Real = 1)
+    AffTransformation2(m₀₀::RT, m₀₁::RT,
+                       m₁₀::RT, m₁₁::RT,
+                                         hw::RT = RT(1))
+    AffTransformation2(m₀₀::Real, m₀₁::Real,
+                       m₁₀::Real, m₁₁::Real,
+                                             hw::Real = 1)
 
 Introduces a general linear transformation ``
 \small\left(\begin{array}{ccc}
@@ -188,9 +202,13 @@ Introduces a general linear transformation ``
 ``,
 i.e. there is no translational part.
 """
-AffTransformation2(m₀₀::RT, m₀₁::RT, m₁₀::RT, m₁₁::RT, hw::RT = RT(1))
+AffTransformation2(m₀₀::RT, m₀₁::RT,
+                   m₁₀::RT, m₁₁::RT,
+                                     hw::RT = RT(1))
 
-AffTransformation2(m₀₀::Real, m₀₁::Real, m₁₀::Real, m₁₁::Real, hw::Real = 1) =
+AffTransformation2(m₀₀::Real, m₀₁::Real,
+                   m₁₀::Real, m₁₁::Real,
+                                         hw::Real = 1) =
     AffTransformation2(convert.(FT, (m₀₀, m₀₁, m₁₀, m₁₁, hw))...)
 
 """

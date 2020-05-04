@@ -9,12 +9,12 @@ See also: [`Point2`](@ref)
 WeightedPoint2
 
 """
-    WeightedPoint()
-    WeightedPoint(ORIGIN::Origin)
+    WeightedPoint2()
+    WeightedPoint2(ORIGIN::Origin)
 
 Introduces a weighted point with Cartesian coordinates `(0, 0)` and weight `0`.
 """
-WeightedPoint()
+WeightedPoint2()
 
 """
     WeightedPoint2(p::Point2)

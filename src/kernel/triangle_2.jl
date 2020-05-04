@@ -32,7 +32,7 @@ of `t`.
 """
     vertex(t::Triangle2, i::Integer)
 
-Returns the `i`ᵗʰ vertex module 3 of `t`.
+Returns the `i`ᵗʰ vertex modulo 3 of `t`.
 """
 vertex(t::Triangle2, i::Integer)
 

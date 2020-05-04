@@ -128,7 +128,7 @@ oriented_side(c::Circle2, p::Point2)
 
 Returns [`ON_BOUNDED_SIDE`](@ref), [`ON_BOUNDARY`](@ref), or
 [`ON_UNBOUNDED_SIDE`](@ref) iff p lies properly inside, on the boundary, or
-properly outside of c, resp.
+properly outside of `c`, resp.
 """
 bounded_side(c::Circle2, p::Point2)
 
