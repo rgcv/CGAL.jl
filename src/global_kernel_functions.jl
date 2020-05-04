@@ -47,6 +47,7 @@ export angle,
        orthogonal_vector,
        parallel,
        radical_line,
+       radical_plane,
        rational_rotation_approximation,
        right_turn,
        scalar_product,
@@ -64,8 +65,11 @@ export angle,
        z_equal,
        do_overlap
 
+const Bbox23 = Union{Bbox2,Bbox3}
+const Line23 = Union{Line2,Line3}
 const Point23  = Union{Point2,Point3}
 const Vector23 = Union{Vector2,Vector3}
+const Triangle23 = Union{Triangle2,Triangle3}
 
 # =====================================
 # = angle
@@ -375,10 +379,18 @@ centroid(p::Point23, q::Point23, r::Point23, s::Point23)
 
 """
     centroid(t::Triangle2)
+    centroid(t::Triangle3)
 
 Compute the centroid of the triangle `t`.
 """
-centroid(t::Triangle2)
+centroid(t::Triangle23)
+
+"""
+    centroid(t::Tetrahedron3)
+
+Compute the centroid of the tetrahedron `t`.
+"""
+centroid(t::Tetrahedron3)
 
 
 # =====================================
@@ -410,6 +422,7 @@ circumcenter(p::Point23, q::Point23, r::Point23)
 
 """
     circumcenter(t::Triangle2)
+    circumcenter(t::Triangle3)
 
 Compute the center of the circle passing through the vertices of `t`.
 
@@ -417,7 +430,14 @@ Compute the center of the circle passing through the vertices of `t`.
 
     `t` is not degenerate.
 """
-circumcenter(t::Triangle2)
+circumcenter(t::Triangle23)
+
+"""
+    circumcenter(t::Tetrahedron3)
+
+Compute the center of the sphere passing through the vertices of `t`.
+"""
+circumcenter(t::Tetrahedron3)
 
 
 # =====================================
@@ -1286,7 +1306,11 @@ following:
 
 - [`Point3`](@ref)
 - [`Plane3`](@ref)
+- [`Line3`](@ref)
+- [`Ray3`](@ref)
 - [`Segment3`](@ref)
+- [`Triangle3`](@ref)
+- [`Bbox3`](@ref)
 
 See also: [`intersection`](@ref).
 """
@@ -1555,10 +1579,25 @@ The following tables give the possible values for `Type1` and `Type2`.
 
 **3D Intersections**
 
-|          Type1          |          Type2          |            Return Type: T...            |
-|:------------------------|:------------------------|:----------------------------------------|
-| [`Plane3`](@ref)        | [`Plane3`](@ref)        | [`Segment3`](@ref)                      |
-| [`Plane3`](@ref)        | [`Segment3`](@ref)      | [`Point3`](@ref), or [`Segment3`](@ref) |
+|          Type1      |          Type2      |                                      Return Type: T...                                       |
+|:--------------------|:--------------------|:---------------------------------------------------------------------------------------------|
+| [`Line3`](@ref)     | [`Line3`](@ref)     | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
+| [`Line3`](@ref)     | [`Plane3`](@ref)    | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
+| [`Line3`](@ref)     | [`Ray3`](@ref)      | [`Point3`](@ref), or [`Ray3`](@ref)                                                          |
+| [`Line3`](@ref)     | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Line3`](@ref)     | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Plane3`](@ref)    | [`Plane3`](@ref)    | [`Line3`](@ref), or [`Segment3`](@ref)                                                       |
+| [`Plane3`](@ref)    | [`Ray3`](@ref)      | [`Point3`](@ref), or [`Ray3`](@ref)                                                          |
+| [`Plane3`](@ref)    | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Plane3`](@ref)    | [`Sphere3`](@ref)   | [`Point3`](@ref), or [`Circle3`](@ref)                                                       |
+| [`Plane3`](@ref)    | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref), or [`Triangle3`](@ref)                              |
+| [`Ray3`](@ref)      | [`Ray3`](@ref)      | [`Point3`](@ref), or [`Ray3`](@ref), or [`Segment3`](@ref)                                   |
+| [`Ray3`](@ref)      | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Ray3`](@ref)      | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Segment3`](@ref)  | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Segment3`](@ref)  | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Segment3`](@ref)  | [`Sphere3`](@ref)   | [`Point3`](@ref), or [`Circle3`](@ref), or [`Sphere3`](@ref)                                 |
+| [`Triangle3`](@ref) | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref), or [`Triangle3`](@ref), or [`Vector{Point3}`](@ref) |
 
 # Examples
 
@@ -1727,6 +1766,14 @@ rectangle `ir`.
 """
 max_vertex(ir::IsoRectangle2)
 
+"""
+    max_vertex(ic::IsoCuboid3)
+
+Computes the vertex with the lexicographically largest coordinates of the iso
+cuboid `ic`.
+"""
+max_vertex(ic::IsoCuboid3)
+
 
 # =====================================
 # = midpoint
@@ -1752,6 +1799,14 @@ Computes the vertex with the lexicographically smallest coordinates of the iso
 rectangle `ir`.
 """
 min_vertex(ir::IsoRectangle2)
+
+"""
+    min_vertex(ic::IsoCuboid3)
+
+Computes the vertex with the lexicographically smallest coordinates of the iso
+cuboid `ic`.
+"""
+min_vertex(ic::IsoCuboid3)
 
 
 # =====================================
@@ -1838,10 +1893,12 @@ orthogonal_vector(p::Point3, q::Point3, r::Point3)
 # =====================================
 
 for (T, t) ∈ ((Line2, :l),
-               (Ray2, :r),
-               (Segment2, :s),
-               (Segment3, :s),
-               (Plane3, :h))
+              (Line3, :l),
+              (Ray2, :r),
+              (Ray3, :r),
+              (Segment2, :s),
+              (Segment3, :s),
+              (Plane3, :h))
     a, b = string.(t, ("₁", "₂"))
     args = join(join.(([a, T], [b, T]), "::"), ", ")
     @eval begin
@@ -1870,6 +1927,22 @@ Returns the radical line of the two circles.
     `c₁` and `c₂` are not concentric.
 """
 radical_line(c₁::Circle2, c₂::Circle2)
+
+
+# =====================================
+# = radical_plane
+# =====================================
+
+"""
+    radical_plane(s₁::Sphere3, s₂::Sphere3)
+
+Returns the radical plane of the two spheres.
+
+!!! info "Precondition"
+
+    `s₁` and `s₂` are not concentric.
+"""
+radical_plane(s₁::Sphere3, s₂::Sphere3)
 
 
 # =====================================
@@ -2121,6 +2194,8 @@ In 2D, the types `Type2` and `Type2` can be any of the following:
 In 3D, the types `Type1` and `Type2` can be any of the following:
 
 - [`Point3`](@ref)
+- [`Line3`](@ref)
+- [`Ray3`](@ref)
 - [`Segment3`](@ref)
 - [`Plane3`](@ref).
 
@@ -2325,8 +2400,9 @@ end
 
 """
     do_overlap(bb₁::Bbox2, bb₂::Bbox2)
+    do_overlap(bb₁::Bbox3, bb₂::Bbox3)
 
 Returns `true` iff `bb₁` and `bb₂` overlap, i.e., iff their intersection is
 non-empty.
 """
-do_overlap(bb₁::Bbox2, bb₂::Bbox2)
+do_overlap(bb₁::Bbox23, bb₂::Bbox23)
