@@ -1825,14 +1825,6 @@ orientation(u::Vector3, v::Vector3, w::Vector3)
 # =====================================
 
 """
-    orthogonal_vector(p::Plane3)
-
-Computes an orthogonal vector of the plane `p`, which is directed to the
-positive side of this plane.
-"""
-orthogonal_vector(p::Plane3)
-
-"""
     orthogonal_vector(p::Point3, q::Point3, r::Point3)
 
 Computes an orthogonal vector of the plane defined by `p`, `q` and `r`,  which

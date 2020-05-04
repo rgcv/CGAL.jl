@@ -42,7 +42,6 @@ that `h` is degenerate if the points are collinear.
 """
 Plane3(p::Point3, q::Point3, r::Point3)
 
-
 """
     Plane3(p::Point3, v::Vector3)
 

@@ -101,6 +101,7 @@ export # Operations
        orientation,
        oriented_side,
        orthogonal_transform,
+       orthogonal_vector,
        # Access Functions
        cartesian,
        center,
