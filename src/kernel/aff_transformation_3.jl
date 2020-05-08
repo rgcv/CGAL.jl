@@ -126,8 +126,8 @@ AffTransformation3(m₀₀::Real, m₀₁::Real, m₀₂::Real,
     AffTransformation3(convert.(FT, (m₀₀, m₀₁, m₁₀, m₁₁, hw))...)
 
 """
-    transform(t::AffTransformation3, x::Union{Point3,Vector3,Direction2,Line2})
-    (::AffTransformation3)(x::Union{Point3,Vector3,Direction2,Line2})
+    transform(t::AffTransformation3, x::Union{Point3,Vector3,Direction3,Line3})
+    (::AffTransformation3)(x::Union{Point3,Vector3,Direction3,Line3})
 
 The main thing to do with transformations is to apply them on geometric objects.
 
