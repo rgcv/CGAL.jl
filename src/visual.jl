@@ -1,26 +1,9 @@
-for T ∈ (FieldType,
-        #RingType,
-         AffTransformation2,
-         Bbox2, Bbox3,
-         Circle2, Circle3,
-         Direction2, Direction3,
-         IsoRectangle2, IsoCuboid3,
-         Line2, Line3,
-         Plane3,
-         Point2, Point3,
-         Ray2, Ray3,
-         Segment2, Segment3,
-         Sphere3,
-         Tetrahedron3,
-         Triangle2, Triangle3,
-         Vector2, Vector3,
-         WeightedPoint2, WeightedPoint3
-        )
-    if T === FieldType === Float64
-        Base.show(io::IO, x::Ref{FT}) = show(io, x[])
-        continue
-    end
-    @eval @cxxdereference Base.show(io::IO, x::$T) = print(io, repr(x))
+if FieldType === Float64
+    Base.show(io::IO, x::Ref{FT}) = show(io, x[])
+end
+
+foreach(methods(CGAL.repr)) do r
+    @eval Base.show(io::IO, x::$(r.sig.parameters[2])) = print(io, repr(x))
 end
 
 # HACK: see https://github.com/CGAL/cgal/issues/4698

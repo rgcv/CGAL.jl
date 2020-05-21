@@ -32,9 +32,9 @@ are always zero and therefore do not appear in the constructors.
 # Examples
 ```julia-repl
 julia> for (A, T) ∈ ((:Transformation, AffTransformation2),
-                      (:Point, Point2),
-                      (:Vector, Vector2),
-                      (:Direction, Direction2))
+                     (:Point, Point2),
+                     (:Vector, Vector2),
+                     (:Direction, Direction2))
            @eval const $A = $T
        end
 
