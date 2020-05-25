@@ -1,42 +1,55 @@
-import CxxWrap: CxxRef
+export VoronoiDiagram2
 
-export VoronoiDiagram,
-       DelaunayTriangulation
-
-export all_edges,
+export bounded_faces,
+       bounded_halfedges,
+       ccb_halfedges,
+       ccb,
        degree,
+       down,
        dual,
-       edges,
+       face,
+       faces,
        finite_edges,
        halfedge,
+       halfedges,
        has_source,
        has_target,
+       incident_halfedges,
        incident_halfedges,
        is_bisector,
        is_halfedge_on_ccb,
        is_incident_edge,
        is_incident_face,
-       is_unbounded,
        is_ray,
        is_segment,
+       is_unbounded,
        is_valid,
+       is_valid,
+       left,
        locate,
        next,
+       number_of_connected_components,
        number_of_faces,
        number_of_halfedges,
        number_of_vertices,
-       point,
-       points,
+       opposite,
        previous,
-       segment,
+       right,
+       site,
        sites,
        source,
+       swap,
        target,
-       triangle,
+       twin,
+       unbounded_faces,
+       unbounded_halfedges,
+       up,
        vertices
 
-@cxxdereference Base.insert!(dt::DelaunayTriangulation, ps::Vector{<:Point2}) = insert!(dt, CxxRef.(ps))
-@cxxdereference Base.insert!(vd::VoronoiDiagram, ps::Vector{<:Point2}) = insert!(vd, CxxRef.(ps))
-# verbose is a boolean. weirdly, CxxWrap maps it to an Integer
-@cxxdereference is_valid(dt::DelaunayTriangulation, verbose::Integer = false, level::Integer = 0) =
-    is_valid(dt, verbose, level)
+VoronoiDiagram2(ps::Vector{<:Point2}) = VoronoiDiagram2(CxxRef.(ps))
+@cxxdereference Base.insert!(vd::VoronoiDiagram2, ps::Vector{<:Point2}) =
+    insert!(vd, CxxRef.(ps))
+@cxxdereference finite_edges(vd::VoronoiDiagram2) =
+    let dg = dual(vd)
+        dual.([dg], edges(dg))
+    end

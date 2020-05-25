@@ -16,6 +16,7 @@ include("enum.jl")
 include("kernel.jl")
 include("algebra.jl")
 include("global_kernel_functions.jl")
+include("triangulation_2.jl")
 include("voronoi_delaunay.jl")
 
 include("visual.jl")
