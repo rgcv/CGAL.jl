@@ -17,7 +17,7 @@ export all_edges,
        hidden_vertices,
        inexact_locate,
        insert_constraint,
-       is_valid
+       is_valid,
        line_walk,
        locate,
        mirror_edge,
