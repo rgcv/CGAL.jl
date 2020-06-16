@@ -11,10 +11,6 @@ const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
-iscxxtype(T::Type) = _iscxxtype(cpp_trait_type(T))
-_iscxxtype(::Type) = false
-_iscxxtype(::Type{IsCxxType}) = true
-
 if iscxxtype(FT) # define a couple more constructors, conversions, promotions
     # upscaling
     FT(x::AbstractFloat) = FT(Float64(x))

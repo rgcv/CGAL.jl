@@ -1,9 +1,9 @@
 module CGAL
+__precompile__(false)
 
 include("mappings.jl") # early jl/c++ mappings
 
 using CxxWrap
-import CxxWrap.CxxWrapCore: CxxBaseRef
 using libcgal_julia_jll
 libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
                       libcgal_julia_exact :
@@ -11,6 +11,12 @@ libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
 @wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia()))
 
 __init__() = @initcxx
+
+import CxxWrap.CxxWrapCore: CxxBaseRef, IsCxxType, cpp_trait_type
+
+iscxxtype(T::Type) = _iscxxtype(cpp_trait_type(T))
+_iscxxtype(::Type) = false
+_iscxxtype(::Type{IsCxxType}) = true
 
 include("origin.jl")
 include("enum.jl")
