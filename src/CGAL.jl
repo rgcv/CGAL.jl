@@ -23,6 +23,8 @@ include("enum.jl")
 include("kernel.jl")
 include("algebra.jl")
 include("global_kernel_functions.jl")
+include("principal_component_analysis.jl")
+include("polygon_2.jl")
 include("triangulation_2.jl")
 include("voronoi_delaunay.jl")
 
