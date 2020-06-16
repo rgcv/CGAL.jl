@@ -1,5 +1,4 @@
 module CGAL
-__precompile__(false)
 
 include("mappings.jl") # early jl/c++ mappings
 
