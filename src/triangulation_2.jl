@@ -61,7 +61,8 @@ for T ∈ (Triangulation2,
 end
 
 @cxxdereference insert_constraint(t::ConstrainedTriangulation2,
-                                  ps::Vector{<:Point2}) = insert_constraint(t, CxxRef.(ps))
+                                  ps::Vector{<:Point2}) =
+    insert_constraint(t, CxxRef.(ps))
 
 @cxxdereference Base.insert!(t::RegularTriangulation2, ps::Vector{<:Point2}) =
     insert!(t, WeightedPoint2.(ps, 1))

@@ -71,6 +71,19 @@ export AffTransformation2, AffTransformation3,
        Vector2, Vector3,
        WeightedPoint2, WeightedPoint3
 
+const AffTransformation23 = Union{AffTransformation2,AffTransformation3}
+const Bbox23 = Union{Bbox2,Bbox3}
+const Circle23 = Union{Circle2,Circle3}
+const Direction23 = Union{Direction2,Direction3}
+const IsoBox23 = Union{IsoRectangle2,IsoCuboid3}
+const Line23 = Union{Line2,Line3}
+const Point23  = Union{Point2,Point3}
+const Ray23 = Union{Ray2,Ray3}
+const Segment23 = Union{Segment2,Segment3}
+const Triangle23 = Union{Triangle2,Triangle3}
+const Vector23 = Union{Vector2,Vector3}
+const WeightedPoint23 = Union{WeightedPoint2,WeightedPoint3}
+
 # min and max specialize Base's respective functions
 export # Operations
        a, b, c, d,

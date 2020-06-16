@@ -65,12 +65,6 @@ export angle,
        z_equal,
        do_overlap
 
-const Bbox23 = Union{Bbox2,Bbox3}
-const Line23 = Union{Line2,Line3}
-const Point23  = Union{Point2,Point3}
-const Vector23 = Union{Vector2,Vector3}
-const Triangle23 = Union{Triangle2,Triangle3}
-
 # =====================================
 # = angle
 # =====================================
