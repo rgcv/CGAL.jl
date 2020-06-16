@@ -209,85 +209,85 @@ are_strictly_ordered_along_line(p::Point23, q::Point23, r::Point23)
 # =====================================
 
 """
-    barycenter(p1::Point2, w1::FT, p2::Point2)
-    barycenter(p1::Point2, w1::Real, p2::Point2)
-    barycenter(p1::Point3, w1::FT, p2::Point3)
-    barycenter(p1::Point3, w1::Real, p2::Point3)
+    barycenter(p₁::Point2, w₁::FT, p₂::Point2)
+    barycenter(p₁::Point2, w₁::Real, p₂::Point2)
+    barycenter(p₁::Point3, w₁::FT, p₂::Point3)
+    barycenter(p₁::Point3, w₁::Real, p₂::Point3)
 
-Compute the barycenter of the points `p1` and `p2` with corresponding weights
-`w1` and `1-w1`.
+Compute the barycenter of the points `p₁` and `p₂` with corresponding weights
+`w₁` and `1-w₁`.
 """
-barycenter(p1::Point23, w1, p2::Point23)
-
-"""
-    barycenter(p1::Point2, w1::FT, p2::Point2, w2::FT)
-    barycenter(p1::Point2, w1::Real, p2::Point2, w2::Real)
-    barycenter(p1::Point3, w1::FT, p2::Point3, w2::FT)
-    barycenter(p1::Point3, w1::Real, p2::Point3, w2::Real)
-
-Compute the barycenter of the points `p1` and `p2` with corresponding weights
-`w1` and `w2`.
-"""
-barycenter(p1::Point23, w1, p2::Point23, w2)
+barycenter(p₁::Point23, w₁, p₂::Point23)
 
 """
-    barycenter(p1::Point2, w1::FT, p2::Point2, w2::FT, p3::Point2)
-    barycenter(p1::Point2, w1::Real, p2::Point2, w2::Real, p3::Point2)
-    barycenter(p1::Point3, w1::FT, p2::Point3, w2::FT, p3::Point3)
-    barycenter(p1::Point3, w1::Real, p2::Point3, w2::Real, p3::Point3)
+    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT)
+    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real)
+    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT)
+    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real)
 
-Compute the barycenter of the points `p1`,`p2` and `p3` with corresponding weights
-`w1,w2` and `1-w1-w2`.
+Compute the barycenter of the points `p₁` and `p₂` with corresponding weights
+`w₁` and `w₂`.
 """
-barycenter(p1::Point23, w1, p2::Point23, w2, p3::Point23)
-
-"""
-    barycenter(p1::Point2, w1::FT, p2::Point2, w2::FT, p3::Point2, w3::FT)
-    barycenter(p1::Point2, w1::Real, p2::Point2, w2::Real, p3::Point2, w3::Real)
-    barycenter(p1::Point3, w1::FT, p2::Point3, w2::FT, p3::Point3, w3::FT)
-    barycenter(p1::Point3, w1::Real, p2::Point3, w2::Real, p3::Point3, w3::Real)
-
-Compute the barycenter of the points `p1`,`p2` and `p3` with corresponding weights
-`w1,w2` and `w3`.
-"""
-barycenter(p1::Point23, w1, p2::Point23, w2, p3::Point23, w3)
+barycenter(p₁::Point23, w₁, p₂::Point23, w₂)
 
 """
-    barycenter(p1::Point2, w1::FT, p2::Point2, w2::FT, p3::Point2, w3::FT, p4::Point2)
-    barycenter(p1::Point2, w1::Real, p2::Point2, w2::Real, p3::Point2, w3::Real, p4::Point2)
-    barycenter(p1::Point3, w1::FT, p2::Point3, w2::FT, p3::Point3, w3::FT, p4::Point3)
-    barycenter(p1::Point3, w1::Real, p2::Point3, w2::Real, p3::Point3, w3::Real, p4::Point3)
+    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2)
+    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2)
+    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3)
+    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3)
 
-Compute the barycenter of the points `p1`,`p2`, `p3` and `p4` with corresponding
-weights `w1,w2,w3` and `1-w1-w2-w3`.
+Compute the barycenter of the points `p₁`,`p₂` and `p₃` with corresponding weights
+`w₁,w₂` and `1-w₁-w₂`.
 """
-barycenter(p1::Point23, w1, p2::Point23, w2, p3::Point23, w3, p4::Point23)
+barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23)
 
 """
-    barycenter(p1::Point2, w1::FT, p2::Point2, w2::FT, p3::Point2, w3::FT, p4::Point2, w4::FT)
-    barycenter(p1::Point2, w1::Real, p2::Point2, w2::Real, p3::Point2, w3::Real, p4::Point2, w4::Real)
-    barycenter(p1::Point3, w1::FT, p2::Point3, w2::FT, p3::Point3, w3::FT, p4::Point3, w4::FT)
-    barycenter(p1::Point3, w1::Real, p2::Point3, w2::Real, p3::Point3, w3::Real, p4::Point3, w4::Real)
+    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2, w₃::FT)
+    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2, w₃::Real)
+    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3, w₃::FT)
+    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3, w₃::Real)
 
-Compute the barycenter of the points `p1`,`p2`, `p3` and `p4` with corresponding
-weights `w1,w2,w3` and `w4`.
+Compute the barycenter of the points `p₁`,`p₂` and `p₃` with corresponding weights
+`w₁,w₂` and `w₃`.
 """
-barycenter(p1::Point23, w1, p2::Point23, w2, p3::Point23, w3, p4::Point23, w4)
+barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23, w₃)
+
+"""
+    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2, w₃::FT, p₄::Point2)
+    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2, w₃::Real, p₄::Point2)
+    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3, w₃::FT, p₄::Point3)
+    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3, w₃::Real, p₄::Point3)
+
+Compute the barycenter of the points `p₁`,`p₂`, `p₃` and `p₄` with corresponding
+weights `w₁,w₂,w₃` and `1-w₁-w₂-w₃`.
+"""
+barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23, w₃, p₄::Point23)
+
+"""
+    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2, w₃::FT, p4::Point2, w4::FT)
+    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2, w₃::Real, p4::Point2, w4::Real)
+    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3, w₃::FT, p4::Point3, w4::FT)
+    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3, w₃::Real, p4::Point3, w4::Real)
+
+Compute the barycenter of the points `p₁`,`p₂`, `p₃` and `p₄` with corresponding
+weights `w₁,w₂,w₃` and `w₄`.
+"""
+barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23, w₃, p₄::Point23, w₄)
 
 for P ∈ (Point2, Point3)
     @eval begin
-        @cxxdereference barycenter(p1::$P, w1::Real, p2::$P) =
-            barycenter(p1, convert(FT, w1), p2)
-        @cxxdereference barycenter(p1::$P, w1::Real, p2::$P, w2::Real) =
-            barycenter(p1, convert(FT, w1), p2, convert(FT, w2))
-        @cxxdereference barycenter(p1::$P, w1::Real, p2::$P, w2::Real, p3::$P) =
-            barycenter(p1, convert(FT, w1), p2, convert(FT, w2), p3)
-        @cxxdereference barycenter(p1::$P, w1::Real, p2::$P, w2::Real, p3::$P, w3::Real) =
-            barycenter(p1, convert(FT, w1), p2, convert(FT, w2), p3, convert(FT, w3))
-        @cxxdereference barycenter(p1::$P, w1::Real, p2::$P, w2::Real, p3::$P, w3::Real, p4::$P) =
-            barycenter(p1, convert(FT, w1), p2, convert(FT, w2), p3, convert(FT, w3), p4)
-        @cxxdereference barycenter(p1::$P, w1::Real, p2::$P, w2::Real, p3::$P, w3::Real, p4::$P, w4::Real) =
-            barycenter(p1, convert(FT, w1), p2, convert(FT, w2), p3, convert(FT, w3), p4, convert(FT, w4))
+        @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P) =
+            barycenter(p₁, convert(FT, w₁), p₂)
+        @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P, w₂::Real) =
+            barycenter(p₁, convert(FT, w₁), p₂, convert(FT, w₂))
+        @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P, w₂::Real, p₃::$P) =
+            barycenter(p₁, convert(FT, w₁), p₂, convert(FT, w₂), p₃)
+        @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P, w₂::Real, p₃::$P, w₃::Real) =
+            barycenter(p₁, convert(FT, w₁), p₂, convert(FT, w₂), p₃, convert(FT, w₃))
+        @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P, w₂::Real, p₃::$P, w₃::Real, p₄::$P) =
+            barycenter(p₁, convert(FT, w₁), p₂, convert(FT, w₂), p₃, convert(FT, w₃), p₄)
+        @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P, w₂::Real, p₃::$P, w₃::Real, p₄::$P, w₄::Real) =
+            barycenter(p₁, convert(FT, w₁), p₂, convert(FT, w₂), p₃, convert(FT, w₃), p₄, convert(FT, w₄))
     end
 end
 
@@ -503,7 +503,8 @@ compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, c
     compare_dihedral_angle(a₁, b₁, c₁, d₁, convert(FT, cosine))
 
 @doc raw"""
-    compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, a₂::Point3, b₂::Point3, c₂::Point3, d₂::Point3)
+    compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3,
+                           a₂::Point3, b₂::Point3, c₂::Point3, d₂::Point3)
 
 Compares the dihedral angles ``θ_1`` and ``θ_2``, where ``θ_i`` is the dihedral
 angle in the tetrahedron `(aᵢ, bᵢ, cᵢ, dᵢ)` at the edge `(aᵢ, bᵢ)`.
@@ -516,7 +517,8 @@ These two angles are computed in ``[0, π]``.  The result is the same as
     For ``i ∈ {1, 2}``, `aᵢ`, `bᵢ`, `cᵢ` are not collinear, and `aᵢ`,
     `bᵢ`, `dᵢ` are not collinear.
 """
-compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, a₂::Point3, b₂::Point3, c₂::Point3, d₂::Point3)
+compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3,
+                       a₂::Point3, b₂::Point3, c₂::Point3, d₂::Point3)
 
 
 @doc raw"""
@@ -538,7 +540,8 @@ compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, cosine)
     compare_dihedral_angle(u₁, v₁, w₁, convert(FT, cosine))
 
 @doc raw"""
-    compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, u₂::Vector3, v₂::Vector3, w₂::Vector3)
+    compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3,
+                           u₂::Vector3, v₂::Vector3, w₂::Vector3)
 
 Compares the dihedral angles ``θ_1`` and ``θ_2``, where ``θ_i`` is the dihedral
 angle between the vectorial planes defined by `(uᵢ, vᵢ)` and `(uᵢ, wᵢ)`.
@@ -550,7 +553,8 @@ These two angles are computed in ``[0, π]``.
     For ``i ∈ {1, 2}``, `uᵢ` and `vᵢ` are not collinear, and `uᵢ` and `wᵢ` are
     not collinear.
 """
-compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, u₂::Vector3, v₂::Vector3, w₂::Vector3)
+compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3,
+                       u₂::Vector3, v₂::Vector3, w₂::Vector3)
 
 
 # =====================================
@@ -710,7 +714,7 @@ compare_slope(l₁::Line2, l₂::Line2)
     compare_slope(s₁::Segment2, s₂::Segment2)
 
 Compares the slopes of the segments `s₁` and `s₂`, where the slope is the
-variation of the ``y``-coordinate form the left to the right endpoint of the
+variation of the ``y``-coordinate from the left to the right endpoint of the
 segments.
 """
 compare_slope(s₁::Segment2, s₂::Segment2)
@@ -1886,13 +1890,13 @@ orthogonal_vector(p::Point3, q::Point3, r::Point3)
 # = parallel
 # =====================================
 
-for (T, t) ∈ ((Line2, :l),
-              (Line3, :l),
-              (Ray2, :r),
-              (Ray3, :r),
-              (Segment2, :s),
-              (Segment3, :s),
-              (Plane3, :h))
+for (T, t) ∈ ((Line2, :l)
+            , (Line3, :l)
+            , (Ray2, :r)
+            , (Ray3, :r)
+            , (Segment2, :s)
+            , (Segment3, :s)
+            , (Plane3, :h))
     a, b = string.(t, ("₁", "₂"))
     args = join(join.(([a, T], [b, T]), "::"), ", ")
     @eval begin
@@ -2018,7 +2022,7 @@ right_turn(p::Point2, q::Point2, r::Point2)
 
 """
     scalar_product(u::Vector2, v::Vector2)
-    scalar_product(u::Vector2, v::Vector2)
+    scalar_product(u::Vector3, v::Vector3)
 
 Returns the scalar product of `u` and `v`.
 """
@@ -2366,8 +2370,8 @@ Returns the point obtained by translating `p` by the vector -`v`.
 
 """
     *(v::Vector2, s::RT)
-    *(v::Vector3, s::RT)
     *(v::Vector2, s::Real)
+    *(v::Vector3, s::RT)
     *(v::Vector3, s::Real)
 
 Multiplication with a scalar from the right.

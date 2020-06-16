@@ -1,4 +1,4 @@
-if FieldType === Float64
+if !iscxxtype(FT)
     Base.show(io::IO, x::Ref{FT}) = show(io, x[])
 end
 

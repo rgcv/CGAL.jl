@@ -3,6 +3,7 @@ module CGAL
 include("mappings.jl") # early jl/c++ mappings
 
 using CxxWrap
+import CxxWrap.CxxWrapCore: CxxBaseRef
 using libcgal_julia_jll
 libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
                       libcgal_julia_exact :

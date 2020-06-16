@@ -1,4 +1,4 @@
-import CxxWrap: @cxxdereference
+import CxxWrap.CxxWrapCore: cpp_trait_type, IsCxxType
 
 export FT, RT, FieldType, RingType
 
@@ -11,21 +11,25 @@ const RingType = FieldType
 const FT = FieldType
 const RT = RingType
 
-if FT !== Float64 # define a couple more constructors, convertions, promotions
+iscxxtype(T::Type) = _iscxxtype(cpp_trait_type(T))
+_iscxxtype(::Type) = false
+_iscxxtype(::Type{IsCxxType}) = true
+
+if iscxxtype(FT) # define a couple more constructors, conversions, promotions
     # upscaling
     FT(x::AbstractFloat) = FT(Float64(x))
     FT(x::Integer) = FT(Int64(x))
     # have one for Rational
     function FT(x::Rational)
-        isinf(x) && return x*Inf # preserve sign
+        isinf(x) && return FT(x*Inf) # preserve sign
         convert(FT, x.num)/convert(FT, x.den)
     end
 
-    Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{<:Real}) = FT
-    Base.promote_rule(::Type{<:Union{FT,Ref{FT}}}, ::Type{Real}) = Real
+    Base.promote_rule(::Type{<:Union{FT,CxxBaseRef{FT}}}, ::Type{<:Real}) = FT
+    Base.promote_rule(::Type{<:Union{FT,CxxBaseRef{FT}}}, ::Type{Real}) = Real
 
-    Base.float(x::FT) = to_double(x)
-    (::Type{T})(x::FT) where {T<:Real} = T(float(x))
+    @cxxdereference Base.float(x::FT) = to_double(x)
+    @cxxdereference (::Type{T})(x::FT) where {T<:Real} = T(float(x))
 
     @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
     @cxxdereference Base.isinteger(x::FT) = isinteger(float(x))
