@@ -69,7 +69,7 @@ for D ∈ (Direction2, Direction3)
 end
 
 # circles
-eonvert(::Type{Circle2}, c::Union{Circle,SurfaceCircle,Khepri.CircularPath}) =
+convert(::Type{Circle2}, c::Union{Circle,SurfaceCircle,Khepri.CircularPath}) =
     Circle2(convert(Point2, c.center), c.radius^2)
 convert(::Type{Circle3}, c::Union{Circle,SurfaceCircle,Khepri.CircularPath}) =
     Circle3(convert(Point3, c.center), c.radius^2,
