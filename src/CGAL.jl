@@ -4,12 +4,18 @@ include("mappings.jl") # early jl/c++ mappings
 
 using CxxWrap
 using libcgal_julia_jll
+using Requires
+
 libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
                       libcgal_julia_exact :
                       libcgal_julia_inexact
 @wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia()))
 
-__init__() = @initcxx
+function __init__()
+   @initcxx
+   @require(Khepri="c487d830-b105-11e8-2c9d-150ba7e503f8",
+            include("glue/khepri.jl"))
+end
 
 import CxxWrap.CxxWrapCore: CxxBaseRef, IsCxxType, cpp_trait_type
 
