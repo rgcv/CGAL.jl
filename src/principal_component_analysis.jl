@@ -18,7 +18,7 @@ input values.
 """
 barycenter(ps::Vector{<:WeightedPoint23})
 
-@eval barycenter(wps::Vector{<:WeightedPoint23}) = barycenter(CxxRef.(wps))
+barycenter(wps::Vector{<:WeightedPoint23}) = barycenter(CxxRef.(wps))
 
 barycenter(ps::Vector{<:Point23}, ws::Vector{<:FT}) =
     barycenter(CxxRef.(ps), (iscxxtype(FT) ? CxxRef : identity).(ws))

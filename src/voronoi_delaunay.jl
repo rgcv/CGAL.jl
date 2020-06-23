@@ -46,7 +46,12 @@ export bounded_faces,
        up,
        vertices
 
+VoronoiDiagram2(ps::Vector) = isempty(ps) ?
+    VoronoiDiagram2() :
+    VoronoiDiagram2(CxxRef.(ps))
 VoronoiDiagram2(ps::Vector{<:Point2}) = VoronoiDiagram2(CxxRef.(ps))
+@cxxdereference VoronoiDiagram2(p::Point2, ps...) = VoronoiDiagram2([p, ps...])
+
 @cxxdereference Base.insert!(vd::VoronoiDiagram2, ps::Vector{<:Point2}) =
     insert!(vd, CxxRef.(ps))
 @cxxdereference finite_edges(vd::VoronoiDiagram2) =

@@ -39,7 +39,12 @@ for T ∈ (Triangulation2,
          DelaunayTriangulation2,
          RegularTriangulation2)
     F = nameof(T)
-    @eval $F(ps::Vector{<:$(_triangulation_point(T))}) = $F(CxxRef.(ps))
+    @eval begin
+        local P = _triangulation_point($T)
+        $F(ps::Vector) = isempty(ps) ? $F() : $F(CxxRef.(ps))
+        $F(ps::Vector{<:P}) = $F(CxxRef.(ps))
+        $F(p::P, ps...) = $F([p, ps...])
+    end
 end
 
 RegularTriangulation2(ps::Vector{<:Point2}) =
