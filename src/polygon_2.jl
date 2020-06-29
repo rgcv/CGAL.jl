@@ -52,10 +52,10 @@ Polygon2(polygon::Polygon2)
 
 Creates a polygon with vertices from the sequence defined by the vector `ps`.
 """
-Polygon2(ps::Vector{<:Point2}) = Polygon2(CxxRef.(ps))
+Polygon2(ps::Vector{Point2})
 
 Polygon2(ps::Vector) = isempty(ps) ? Polygon2() : Polygon2(CxxRef.(ps))
-@cxxdereference Polygon2(p::Point2, ps...) = Polygon2([p, ps...])
+Polygon2(ps::reference_type_union(Point2)...) = Polygon2(collect(ps))
 
 """
     ==(p₁::Polygon2, p₂::Polygon2)
@@ -279,21 +279,21 @@ Constructor from a polygon.
 PolygonWithHoles2(pgn_boundary::Polygon2)
 
 """
-    PolygonWithHoles2(pgn_boundary::Polygon2, ps::Vector{Polygon2})
-    PolygonWithHoles2(pgn_boundary::Polygon2, ps::Polygon2...)
+    PolygonWithHoles2(pgn_boundary::Polygon2, holes::Vector{Polygon2})
+    PolygonWithHoles2(pgn_boundary::Polygon2, holes::Polygon2...)
 
 Constructor from a polygon (outer boundary) and hole polygons.
 """
-PolygonWithHoles2(pgn_boundary::Polygon2, ps::Vector{<:Polygon2})
+PolygonWithHoles2(pgn_boundary::Polygon2, holes::Vector{Polygon2}),
+PolygonWithHoles2(pgn_boundary::Polygon2, holes::Polygon2...)
 
-@cxxdereference PolygonWithHoles2(p::Polygon2, ps::Vector) =
-    isempty(ps) ?
+@cxxdereference PolygonWithHoles2(p::Polygon2, holes::Vector) =
+    isempty(holes) ?
         PolygonWithHoles2(p) :
-        PolygonWithHoles2(p, CxxRef.(ps))
-@cxxdereference PolygonWithHoles2(p::Polygon2, ps::Vector{<:Polygon2}) =
-    PolygonWithHoles2(p, CxxRef.(ps))
-@cxxdereference PolygonWithHoles2(p::Polygon2, hole::Polygon2, ps...) =
-    PolygonWithHoles2(p, [hole, ps...])
+        PolygonWithHoles2(p, CxxRef.(holes))
+@cxxdereference PolygonWithHoles2(p::Polygon2,
+                                  holes::reference_type_union(Polygon2)...) =
+    PolygonWithHoles2(p, collect(holes))
 
 """
     is_unbounded(p::PolygonWithHoles2)

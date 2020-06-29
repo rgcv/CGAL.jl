@@ -17,7 +17,8 @@ function __init__()
             include("glue/khepri.jl"))
 end
 
-import CxxWrap.CxxWrapCore: CxxBaseRef, IsCxxType, cpp_trait_type
+import CxxWrap.CxxWrapCore:
+    CxxBaseRef, IsCxxType, cpp_trait_type, reference_type_union
 
 iscxxtype(T::Type) = _iscxxtype(Base.invokelatest(cpp_trait_type, T))
 _iscxxtype(::Type) = false

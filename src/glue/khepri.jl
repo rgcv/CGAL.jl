@@ -18,7 +18,6 @@ import .Khepri:
     in_world, loc_from_o_vz, subtraction
 
 import Base: convert
-import CxxWrap.CxxWrapCore: reference_type_union
 
 include("khepri/kernel.jl")
 include("khepri/polygon_2.jl")
