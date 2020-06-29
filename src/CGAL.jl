@@ -19,7 +19,7 @@ end
 
 import CxxWrap.CxxWrapCore: CxxBaseRef, IsCxxType, cpp_trait_type
 
-iscxxtype(T::Type) = _iscxxtype(cpp_trait_type(T))
+iscxxtype(T::Type) = _iscxxtype(Base.invokelatest(cpp_trait_type, T))
 _iscxxtype(::Type) = false
 _iscxxtype(::Type{IsCxxType}) = true
 
