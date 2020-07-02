@@ -3,9 +3,11 @@ export barycenter,
        bounding_box
 
 """
-    barycenter(ps::Vector{<:WeightedPoint23})
+    barycenter(wps::Vector{<:WeightedPoint23})
+    barycenter(wp₁::WeightedPoint23, wp₂::WeightedPoint23, wps::WeightedPoint23...)
     barycenter(ps::Vector{<:Point23}, ws::Vector{<:FT})
     barycenter(ps::Vector{<:Point23}, ws::Vector{<:Real})
+    barycenter(p₁::Point23, p₂::Point23, ps::Point23...)
 
 Computes the barycenter of a non-empty set of 2D or 3D weighted points.
 
@@ -16,8 +18,7 @@ input values.
 
     `length(ps) > 1`, and the sum of the weights is non-zero.
 """
-barycenter(wps::Vector{WeightedPoint23}),
-barycenter(ps::Vector{Point23}, ws::Vector{Real})
+barycenter(wps::Vector{WeightedPoint23})
 
 barycenter(ps::Vector) =
     length(ps) > 1 ?
@@ -45,6 +46,7 @@ barycenter(ps::Vector, ws::Vector{<:Real}) =
 
 """
     bounding_box(ps::Vector{<:Point23})
+    bounding_box(p::Point23, q::Point23, ps::Point23...)
 
 Computes the bounding box of a non-empty set of 2D or 3D points.
 
@@ -65,13 +67,21 @@ for P ∈ (Point2, Point3)
     @eval begin
         local UP = reference_type_union($P)
         bounding_box(ps::Vector{<:UP}) = bounding_box(CxxRef.(ps))
-        @cxxdereference bounding_box(p₁::$P, p₂::$P, ps::UP...) =
-            bounding_box([p₁, p₂, ps...])
+        @cxxdereference bounding_box(p::$P, q::$P, ps::UP...) =
+            bounding_box([p, q, ps...])
      end
 end
 
+const _centroid_T = Union{Point23
+                        , Segment23
+                        , Triangle23
+                        , IsoBox23
+                        , Tetrahedron3
+                        , Circle2
+                        , Sphere3}
 """
     centroid(xs::Vector{T})
+    centroid(x::T, y::T, xs::T...)
 
 Computes the centroid of a non-empty set of 2D or 3D objects.
 
@@ -90,8 +100,7 @@ For three dimensional inputs, `T` must be either [`Point3`](@ref),
 
     `length(xs) > 1`
 """
-centroid(xs::Vector{Union{Point23,Segment23,Triangle23,IsoBox23,Tetrahedron3,
-                         Circle2,Sphere3}})
+centroid(xs::Vector{_centroid_T})
 
 centroid(xs::Vector) =
     length(xs) > 1 ?
@@ -103,7 +112,7 @@ for T ∈ (Point2, Point3
        , IsoRectangle2, IsoCuboid3
        , Circle2, Sphere3
        , Tetrahedron3)
-    @eval @cxxdereference centroid(x₁::$T, x₂::$T,
+    @eval @cxxdereference centroid(x::$T, y::$T,
                                    xs::reference_type_union($T)...) =
-        centroid([x₁, x₂, xs...])
+        centroid([x, y, xs...])
 end

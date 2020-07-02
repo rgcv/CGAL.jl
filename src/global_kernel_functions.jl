@@ -1890,13 +1890,10 @@ orthogonal_vector(p::Point3, q::Point3, r::Point3)
 # = parallel
 # =====================================
 
-for (T, t) ∈ ((Line2, :l)
-            , (Line3, :l)
-            , (Ray2, :r)
-            , (Ray3, :r)
-            , (Segment2, :s)
-            , (Segment3, :s)
-            , (Plane3, :h))
+for (T, t) ∈ ((:Line23, :l)
+            , (:Ray23, :r)
+            , (:Segment23, :s)
+            , (:Plane3, :h))
     a, b = string.(t, ("₁", "₂"))
     args = join(join.(([a, T], [b, T]), "::"), ", ")
     @eval begin

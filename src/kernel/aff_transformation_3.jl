@@ -135,8 +135,7 @@ The transformations classes provide a [`transform`](@ref) function has methods
 for points, vectors, directions, and planes. The same functionality is available
 through the invocation of [`AffTransformation3`](@ref) instances.
 """
-transform(t::AffTransformation3, p::Union{Point3,Vector3,Direction3,Plane3}),
-(::AffTransformation3)(p::Union{Point3,Vector3,Direction3,Plane3})
+transform(t::AffTransformation3, p::Union{Point3,Vector3,Direction3,Plane3})
 
 """
     *(t::AffTransformation3, s::AffTransformation3)
