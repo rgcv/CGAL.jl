@@ -67,7 +67,5 @@ end
 @cxxdereference insert_constraint(t::ConstrainedTriangulation2, ps::Vector) =
     isempty(ps) ? nothing : insert_constraint(t, CxxRef.(ps))
 
-@cxxdereference Base.insert!(t::RegularTriangulation2, ps::Vector) =
-    isempty(ps) ? t : insert!(t, CxxRef.(ps))
 @cxxdereference Base.push!(t::RegularTriangulation2, p::Point2) =
     push!(t, WeightedPoint2(p, 1))
