@@ -20,7 +20,7 @@ input values.
 """
 barycenter(wps::Vector{WeightedPoint23})
 
-barycenter(ps::Vector) =
+barycenter(ps::AbstractVector) =
     length(ps) > 1 ?
         barycenter(CxxRef.(ps)) :
         error("length(ps) ≯ 1")
@@ -31,14 +31,14 @@ for D ∈ 2:3
     @eval begin
         @cxxdereference barycenter(wp₁::$WP, wp₂::$WP,
                                    wps::reference_type_union($WP)...) =
-            barycenter([wp₁, wp₂, wps...])
+            barycenter(CxxRef.([wp₁, wp₂, wps...]))
         @cxxdereference barycenter(p₁::$P, p₂::$P,
                                    ps::reference_type_union($P)...) =
-            barycenter($WP.([p₁, p₂, ps...], 1))
+            barycenter(CxxRef.($WP.([p₁, p₂, ps...], 1)))
     end
 end
 
-barycenter(ps::Vector, ws::Vector{<:Real}) =
+barycenter(ps::AbstractVector, ws::AbstractVector{<:Real}) =
     length(ws) > 1 && length(ps) > 1 ?
         let f = iscxxtype(FT) ? CxxRef : identity
             barycenter(CxxRef.(ps), f.(convert.(FT, ws)))
@@ -59,17 +59,15 @@ dimension of the input values.
 """
 bounding_box(ps::Vector{Point23})
 
-bounding_box(ps::Vector) = length(ps) > 1 ?
-    bounding_box(CxxRef.(ps)) :
-    error("length(ps) ≯ 1")
+bounding_box(ps::AbstractVector) =
+    length(ps) > 1 ?
+        bounding_box(CxxRef.(ps)) :
+        error("length(ps) ≯ 1")
 
 for P ∈ (Point2, Point3)
-    @eval begin
-        local UP = reference_type_union($P)
-        bounding_box(ps::Vector{<:UP}) = bounding_box(CxxRef.(ps))
-        @cxxdereference bounding_box(p::$P, q::$P, ps::UP...) =
-            bounding_box([p, q, ps...])
-     end
+    @eval @cxxdereference bounding_box(p::$P, q::$P,
+                                       ps::reference_type_union($P)...) =
+        bounding_box(CxxRef.([p, q, ps...]))
 end
 
 const _centroid_T = Union{Point23
@@ -98,21 +96,21 @@ For three dimensional inputs, `T` must be either [`Point3`](@ref),
 
 !!! info "Precondition"
 
-    `length(xs) > 1`
+    `!isempty(xs)`
 """
 centroid(xs::Vector{_centroid_T})
 
-centroid(xs::Vector) =
-    length(xs) > 1 ?
+centroid(xs::AbstractVector) =
+    !isempty(xs) ?
         centroid(CxxRef.(xs)) :
-        error("length(xs) ≯ 1")
+        error("isempty(xs)")
 for T ∈ (Point2, Point3
        , Segment2, Segment3
        , Triangle2, Triangle3
        , IsoRectangle2, IsoCuboid3
        , Circle2, Sphere3
        , Tetrahedron3)
-    @eval @cxxdereference centroid(x::$T, y::$T,
+    @eval @cxxdereference centroid(x::$T,
                                    xs::reference_type_union($T)...) =
-        centroid([x, y, xs...])
+        centroid(CxxRef.([x, xs...]))
 end

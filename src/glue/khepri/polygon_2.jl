@@ -19,7 +19,7 @@ convert(::Type{Polygon2}, sp::SurfacePath) = convert(Polygon2, sp.path)
     surface_path(convert(Path, poly))
 
 convert(::Type{PolygonWithHoles2},
-        v::Vector{<:Union{ClosedLine,Line,Polygon}}) =
+        v::AbstractVector{<:Union{ClosedLine,Line,Polygon}}) =
     length(v) > 1 ?
         PolygonWithHoles2(convert(Polygon2, first(v)),
                           convert.(Polygon2, v[2:end])) :

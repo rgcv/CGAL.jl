@@ -35,14 +35,13 @@ export all_edges,
 _triangulation_point(::Type) = Point2
 _triangulation_point(::Type{RegularTriangulation2}) = WeightedPoint2
 
-for T ∈ (Triangulation2,
-         DelaunayTriangulation2,
-         RegularTriangulation2)
-    F = nameof(T)
+for T ∈ (:Triangulation2
+       , :DelaunayTriangulation2
+       , :RegularTriangulation2)
     @eval begin
         local P = _triangulation_point($T)
-        $F(ps::Vector) = isempty(ps) ? $F() : $F(CxxRef.(ps))
-        $F(ps::reference_type_union(P)...) = $F(collect(ps))
+        $T(ps::AbstractVector) = $T(collect(CxxRef{P}, CxxRef.(ps)))
+        $T(ps::reference_type_union(P)...) = $T(collect(CxxRef.(ps)))
     end
 end
 
@@ -50,13 +49,13 @@ RegularTriangulation2(ps::reference_type_union(Point2)...) =
     RegularTriangulation2(collect(WeightedPoint2.(ps, 1)))
 
 # DelaunayTriangulation2's are subtypes of respective Triangulation2's
-for T ∈ (Triangulation2,
-         ConstrainedTriangulation2,
-         RegularTriangulation2)
+for T ∈ (Triangulation2
+       , ConstrainedTriangulation2
+       , RegularTriangulation2)
     @eval begin
         local P = _triangulation_point($T)
-        @cxxdereference Base.insert!(t::$T, ps::Vector) =
-            isempty(ps) ? t : insert!(t, CxxRef.(ps))
+        @cxxdereference Base.insert!(t::$T, ps::AbstractVector) =
+            insert!(t, collect(CxxRef{P}, CxxRef.(ps)))
         @cxxdereference is_valid(dt::$T,
                                  verbose::Bool = false,
                                  level::Integer = 0) =
@@ -64,8 +63,9 @@ for T ∈ (Triangulation2,
     end
 end
 
-@cxxdereference insert_constraint(t::ConstrainedTriangulation2, ps::Vector) =
-    isempty(ps) ? nothing : insert_constraint(t, CxxRef.(ps))
+@cxxdereference insert_constraint(t::ConstrainedTriangulation2,
+                                  ps::AbstractVector) =
+    insert_constraint(t, collect(CxxRef{Point2}, CxxRef.(ps)))
 
 @cxxdereference Base.push!(t::RegularTriangulation2, p::Point2) =
     push!(t, WeightedPoint2(p, 1))

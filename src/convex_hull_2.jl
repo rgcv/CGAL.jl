@@ -276,8 +276,8 @@ is_cw_strongly_convex_2(ps::Vector{Point2})
 
 for F ∈ (:is_ccw_strongly_convex_2, :is_cw_strongly_convex_2)
     @eval begin
-        $F(ps::Vector) = isempty(ps) ? true : $F(CxxRef.(ps))
-        $F(ps::reference_type_union(Point2)...) = $F(collect(ps))
+        $F(ps::AbstractVector) = $F(collect(CxxRef{Point2}, CxxRef.(ps)))
+        $F(ps::reference_type_union(Point2)...) = $F(collect(CxxRef.(ps)))
     end
 end
 
@@ -314,13 +314,11 @@ See also: [`ch_graham_andrew()`](@ref), [`lower_hull_points_2()`](@ref),
 """
 ch_graham_andrew_scan(ps::Vector{Point2})
 
-@cxxdereference ch_graham_andrew_scan(ps::Vector) =
-    length(ps) > 1 ?
-        ch_graham_andrew_scan(CxxRef.(ps)) :
-        error("at least 2 different points required")
+@cxxdereference ch_graham_andrew_scan(ps::AbstractVector) =
+    ch_graham_andrew_scan(collect(CxxRef{Point2}, CxxRef.(ps)))
 @cxxdereference ch_graham_andrew_scan(p::Point2, q::Point2,
                                       ps::reference_type_union(Point2)...) =
-    ch_graham_andrew_scan([p, q, ps...])
+    ch_graham_andrew_scan(CxxRef.([p, q, ps...]))
 
 """
     ch_jarvis_march(ps::Vector{Point2}, p::Point2, q::Point2)
@@ -350,10 +348,8 @@ See also: [`ch_jarvis()`](@ref), [`lower_hull_points_2()`](@ref),
 """
 ch_jarvis_march(ps::Vector{Point2}, p::Point2, q::Point2)
 
-@cxxdereference ch_jarvis_march(ps::Vector, p::Point2, q::Point2) =
-    !isempty(ps) ?
-        ch_jarvis_march(CxxRef.(ps), p, q) :
-        error("`ps` must contain at least one element (=`q`)")
+@cxxdereference ch_jarvis_march(ps::AbstractVector, p::Point2, q::Point2) =
+    ch_jarvis_march(collect(CxxRef{Point2}, CxxRef.(ps)), p, q)
 @cxxdereference ch_jarvis_march(p::Point2, q::Point2, ps::Point2...) =
     ch_jarvis_march(collect(ps), p, q)
 
@@ -431,8 +427,8 @@ for F ∈ (:ch_akl_toussaint
        , :lower_hull_points_2
        , :upper_hull_points_2)
     @eval begin
-        $F(ps::Vector) = isempty(ps) ? Point2[] : $F(CxxRef.(ps))
-        $F(ps::reference_type_union(Point2)...) = $F(collect(ps))
+        $F(ps::AbstractVector) = $F(collect(CxxRef{Point2}, CxxRef.(ps)))
+        $F(ps::reference_type_union(Point2)...) = $F(collect(CxxRef.(ps)))
     end
 end
 
@@ -562,7 +558,7 @@ for S ∈ (:e, :n, :ns, :nswe, :s, :w, :we)
     N = length(string(S))
     R = N == 1 ? :(Point2()) : :(tuple((Point2() for _ ∈ 1:$N)...))
     @eval begin
-        $F(ps::Vector) = isempty(ps) ? $R : $F(CxxRef.(ps))
-        $F(ps::reference_type_union(Point2)...) = $F(collect(ps))
+        $F(ps::AbstractVector) = isempty(ps) ? $R : $F(CxxRef.(ps))
+        $F(ps::reference_type_union(Point2)...) = $F(collect(CxxRef.(ps)))
     end
 end
