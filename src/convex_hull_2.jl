@@ -39,13 +39,11 @@ into a linear sequence.
 
 ### Implementation
 
-This function uses the algorithm of Akl and Toussaint [1] that requires ``O(n
-\log n)`` time for ``n`` input points.
+This function uses the algorithm of Akl and Toussaint [^sga78] that requires
+``O(n \log n)`` time for ``n`` input points.
 
-### References
-
-[1] S. G. Akl and G. T. Toussaint. A fast convex hull algorithm. *Inform.
-    Process. Lett.*, 7(5):219--222, 1978.
+[^sga78]: S. G. Akl and G. T. Toussaint. A fast convex hull algorithm. *Inform.
+          Process. Lett.*, 7(5):219--222, 1978.
 
 See also: [`ch_bykat()`](@ref), [`ch_eddy()`](@ref),
 [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref), [`ch_melkman()`](@ref),
@@ -70,14 +68,12 @@ into a linear sequence.
 ### Implementation
 
 This function implements the non-recursive variation of Eddy's algorithm (see
-[`ch_eddy()`](@ref)) described in [1].  This algorithm requires ``O(nh)`` time
-in the worst case for ``n`` input points with ``h`` extreme points.
+[`ch_eddy()`](@ref)) described in [^kra78]. This algorithm requires ``O(nh)``
+time in the worst case for ``n`` input points with ``h`` extreme points.
 
-### References
-
-[1] K. R. Anderson. A reevaluation of an efficient algorithm for determining the
-    convex hull of a finite planar set. *Inform. Process. Lett.*,
-    7(1):53--55, 1978.
+[^kra78]: K. R. Anderson. A reevaluation of an efficient algorithm for determining
+          the convex hull of a finite planar set. *Inform. Process. Lett.*,
+          7(1):53--55, 1978.
 
 See also: [`ch_akl_toussaint()`](@ref), [`ch_eddy()`](@ref),
 [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref), [`ch_melkman()`](@ref),
@@ -101,20 +97,18 @@ into a linear sequence.
 
 ### Implementation
 
-The function implements Eddy's algorithm [1], which is the two-dimensional
-version of the quickhull algorithm [2].
+The function implements Eddy's algorithm [^wfe77], which is the two-dimensional
+version of the quickhull algorithm [^cbb77].
 
 This algorithm requires ``O(nh)`` time in the worst case for ``n`` input points
 with ``h`` extreme points.
 
-### References
+[^wfe77]: W. F. Eddy. A new convex hull algorithm for planar sets. *ACM Trans.
+          Math. Softw.*, 3:398--403 and 411--412, 1977.
 
-[1] W. F. Eddy. A new convex hull algorithm for planar sets. *ACM Trans. Math.
-    Softw.*, 3:398--403 and 411--412, 1977.
-
-[2] C. Bradford Barber, David P. Dobkin, and Hannu Huhdanpaa. The Quickhull
-    algorithm for convex hulls. *ACM Trans. Math. Softw.*, 22(4):469--483,
-    December 1996.
+[^cbb96]: C. Bradford Barber, David P. Dobkin, and Hannu Huhdanpaa. The
+          Quickhull algorithm for convex hulls. *ACM Trans. Math. Softw.*,
+          22(4):469--483, December 1996.
 
 See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref), [`ch_melkman()`](@ref),
@@ -138,18 +132,17 @@ into a linear sequence.
 
 ### Implementation
 
-This function implements Andrew's variant of the Graham scan algorithm [1] and
-follows the presentation of Mehlhorn [2].  This algorithm requires ``O(n \log
-n)`` time in the worst case for ``n`` input points.
+This function implements Andrew's variant of the Graham scan algorithm
+[^ama79] and follows the presentation of Mehlhorn [^km84]. This algorithm
+requires ``O(n \log n)`` time in the worst case for ``n`` input points.
 
-### References
-
-[1] A. M. Andrew. Another efficient algorithm for convex hulls in two
+[^ama79]: A. M. Andrew. Another efficient algorithm for convex hulls in two
     dimensions. *Inform. Process. Lett.*, 9(5):216--219, 1979.
 
-[2] Kurt Mehlhorn. *Data Structures and Algorithms 3: Multi-dimensional
-    Searching and Computational Geometry*, volume 3 of *EATCS Monographs on
-    Theoretical Computer Science*. Springer-Verlag, Heidelberg, Germany, 1984.
+[^km84]: Kurt Mehlhorn. *Data Structures and Algorithms 3: Multi-dimensional
+         Searching and Computational Geometry*, volume 3 of *EATCS Monographs
+         on Theoretical Computer Science*. Springer-Verlag, Heidelberg,
+         Germany, 1984.
 
 See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew_scan()`](@ref), [`ch_jarvis()`](@ref),
@@ -174,14 +167,12 @@ into a linear sequence.
 
 ### Implementation
 
-This functions uses the Jarvis march (gift-wrapping) algorithm [1]. This
+This functions uses the Jarvis march (gift-wrapping) algorithm [^raj73]. This
 algorithm requires ``O(nh)`` time in the worst case for ``n`` input points with
 ``h`` extreme points.
 
-### References
-
-[1] R. A. Jarvis. On the identification of the convex hull of a finite set of
-    points in the plane. *Inform. Process. Lett.*, 2:18--21, 1973.
+[^raj73]: R. A. Jarvis. On the identification of the convex hull of a finite
+          set of points in the plane. *Inform. Process. Lett.*, 2:18--21, 1973.
 
 See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew()`](@ref), [`ch_jarvis_march()`](@ref),
@@ -205,13 +196,11 @@ into a linear sequence.
 
 ### Implementation
 
-It uses an implementation of Melkman's algorithm [1]. Running time of this is
-linear.
+It uses an implementation of Melkman's algorithm [^am87]. Running time of
+this is linear.
 
-### References
-
-[1] A. Melkman. On-line construction of the convex hull of a simple polyline.
-    *Inform. Process. Lett.*, 25:11--12, 1987.
+[^am87] A. Melkman. On-line construction of the convex hull of a simple
+        polyline. *Inform. Process. Lett.*, 25:11--12, 1987.
 
 See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref),
@@ -235,12 +224,7 @@ into a linear sequence.
 
 ### Implementation
 
-The ``O(n \log n)`` Akl and Toussaint [1] algorithm is used.
-
-### References
-
-[1] S. G. Akl and G. T. Toussaint. A fast convex hull algorithm. *Inform.
-    Process. Lett.*, 7(5):219--222, 1978.
+The ``O(n \log n)`` Akl and Toussaint [^sga78] algorithm is used.
 
 See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref),
@@ -290,11 +274,10 @@ See also: [`is_ccw_strongly_convex_2()`](@ref)
 """
 is_cw_strongly_convex_2(ps::Vector{Point2})
 
-for F ∈ (is_ccw_strongly_convex_2, is_cw_strongly_convex_2)
-    f = nameof(F)
+for F ∈ (:is_ccw_strongly_convex_2, :is_cw_strongly_convex_2)
     @eval begin
-        $f(ps::Vector) = isempty(ps) ? true : $f(CxxRef.(ps))
-        $f(ps::reference_type_union(Point2)...) = $f(collect(ps))
+        $F(ps::Vector) = isempty(ps) ? true : $F(CxxRef.(ps))
+        $F(ps::reference_type_union(Point2)...) = $F(collect(ps))
     end
 end
 
@@ -316,16 +299,15 @@ sequence is returned starting with ``p``; point ``q`` is omitted.
 
     `ps` contains at least two different points.  The points in `ps` are sorted
     with respect to ``pq``, *i.e.*, the sequence of points in `ps` defines a
-    counterclockwise polygon, for which the Graham-Sklansky-procedure [1] works.
+    counterclockwise polygon, for which the Graham-Sklansky-procedure [^js72]
+    works.
 
 ### Implementation
 
 This algorithm requires ``O(n)`` time in the worst case for ``n`` input points.
 
-### References
-
-[1] J. Sklansky. Measuring concavity on rectangular mosaic. *IEEE Trans.
-    Comput.*, C-21:1355--1364, 1972.
+[^js72]: J. Sklansky. Measuring concavity on rectangular mosaic. *IEEE Trans.
+         Comput.*, C-21:1355--1364, 1972.
 
 See also: [`ch_graham_andrew()`](@ref), [`lower_hull_points_2()`](@ref),
 [`upper_hull_points_2()`](@ref)
@@ -359,14 +341,9 @@ counterclockwise order of extreme points.
 
 ### Implementation
 
-The functions uses the Jarvis march (gift-wrapping) algorithm [1]. This
+The functions uses the Jarvis march (gift-wrapping) algorithm [^raj73]. This
 algorithm requires ``O(nh)`` time in the worst case for ``n`` input points with
 ``h`` extreme points.
-
-### References:
-
-[1] R. A. Jarvis. On the identification of the convex hull of a finite set of
-    points in the plane. *Inform. Process. Lett.*, 2:18--21, 1973.
 
 See also: [`ch_jarvis()`](@ref), [`lower_hull_points_2()`](@ref),
 [`upper_hull_points_2()`](@ref)
@@ -403,17 +380,9 @@ the sequence of extreme points.
 
 ### Implementation
 
-This function uses Andrew's variant of Graham's scan algorithm [1], [2]. The
-algorithm has worst-case running time of ``O(n \log n)`` for ``n`` input points.
-
-### References
-
-[1] A. M. Andrew. Another efficient algorithm for convex hulls in two
-    dimensions. *Inform. Process. Lett.*, 9(5):216--219, 1979.
-
-[2] Kurt Mehlhorn. *Data Structures and Algorithms 3: Multi-dimensional
-    Searching and Computational Geometry*, volume 3 of *EATCS Monographs on
-    Theoretical Computer Science*. Springer-Verlag, Heidelberg, Germany, 1984.
+This function uses Andrew's variant of Graham's scan algorithm [^ama79],
+[^km84]. The algorithm has worst-case running time of ``O(n \log n)`` for
+``n`` input points.
 
 See also: [`ch_graham_andrew()`](@ref), [`ch_graham_andrew_scan()`](@ref),
 [`upper_hull_points_2()`](@ref)
@@ -443,22 +412,30 @@ the sequence of extreme points.
 
 ### Implementation
 
-This function uses Andrew's variant of Graham's scan algorithm [1], [2]. The
-algorithm has worst-case running time of ``O(n \log n)`` for ``n`` input points.
-
-### References
-
-[1] A. M. Andrew. Another efficient algorithm for convex hulls in two
-    dimensions. *Inform. Process. Lett.*, 9(5):216--219, 1979.
-
-[2] Kurt Mehlhorn. *Data Structures and Algorithms 3: Multi-dimensional
-    Searching and Computational Geometry*, volume 3 of *EATCS Monographs on
-    Theoretical Computer Science*. Springer-Verlag, Heidelberg, Germany, 1984.
+This function uses Andrew's variant of Graham's scan algorithm [^ama79],
+[^km84]. The algorithm has worst-case running time of ``O(n \log n)`` for
+``n`` input points.
 
 See also: [`ch_graham_andrew()`](@ref), [`ch_graham_andrew_scan()`](@ref),
 [`lower_hull_points_2()`](@ref)
 """
 upper_hull_points_2(ps::Vector{Point2})
+
+for F ∈ (:ch_akl_toussaint
+       , :ch_bykat
+       , :ch_eddy
+       , :ch_graham_andrew
+       , :ch_jarvis
+       , :ch_melkman
+       , :convex_hull_2
+       , :lower_hull_points_2
+       , :upper_hull_points_2)
+    @eval begin
+        $F(ps::Vector) = isempty(ps) ? Point2[] : $F(CxxRef.(ps))
+        $F(ps::reference_type_union(Point2)...) = $F(collect(ps))
+    end
+end
+
 
 @doc raw"""
     ch_e_point(ps::Vector{Point2})
@@ -580,25 +557,12 @@ See also: [`ch_e_point()`](@ref), [`ch_nswe_point()`](@ref),
 """
 ch_we_point(ps::Vector{Point2})
 
-for F ∈ (ch_akl_toussaint
-       , ch_bykat
-       , ch_eddy
-       , ch_graham_andrew
-       , ch_jarvis
-       , ch_melkman
-       , convex_hull_2
-       , lower_hull_points_2
-       , upper_hull_points_2
-       , ch_e_point
-       , ch_n_point
-       , ch_ns_point
-       , ch_nswe_point
-       , ch_s_point
-       , ch_we_point
-       , ch_w_point)
-    f = nameof(F)
+for S ∈ (:e, :n, :ns, :nswe, :s, :w, :we)
+    F = Symbol(:ch_, S, :_point)
+    N = length(string(S))
+    R = N == 1 ? :(Point2()) : :(tuple((Point2() for _ ∈ 1:$N)...))
     @eval begin
-        $f(ps::Vector) = isempty(ps) ? Point2[] : $f(CxxRef.(ps))
-        $f(ps::reference_type_union(Point2)...) = $f(collect(ps))
+        $F(ps::Vector) = isempty(ps) ? $R : $F(CxxRef.(ps))
+        $F(ps::reference_type_union(Point2)...) = $F(collect(ps))
     end
 end
