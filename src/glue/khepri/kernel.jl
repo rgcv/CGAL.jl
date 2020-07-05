@@ -58,11 +58,11 @@ convert(T::Type{<:Union{Direction3,Vector3}}, u::Vec) =
         T(cx(v), cy(v), cz(v))
     end
 
-convert(::Type{Vec}, ::NullVector) = vxy(0, 0)
+convert(::Type{Vec}, ::NullVector) = vxy(0, 0, world_cs)
 @cxxdereference convert(::Type{Vec}, u::Vector2) =
-    vxy(float(x(u)), float(y(u)))
+    vxy(float(x(u)), float(y(u)), world_cs)
 @cxxdereference convert(::Type{Vec}, u::Vector3) =
-    vxyz(float(x(u)), float(y(u)), float(z(u)))
+    vxyz(float(x(u)), float(y(u)), float(z(u)), world_cs)
 for D ∈ (Direction2, Direction3)
     @eval @cxxdereference convert(::Type{Vec}, d::$D) =
         convert(Vec, vector(d))
