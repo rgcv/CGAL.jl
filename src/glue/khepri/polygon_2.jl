@@ -22,7 +22,7 @@ convert(::Type{PolygonWithHoles2},
         v::Vector{<:Union{ClosedLine,Line,Polygon}}) =
     length(v) > 1 ?
         PolygonWithHoles2(convert(Polygon2, first(v)),
-                          convert.(Polygon2, vs[2:end])) :
+                          convert.(Polygon2, v[2:end])) :
         PolygonWithHoles2(convert(Polygon2, first(v)))
 
 @cxxdereference convert(P::Type{<:Union{ClosedLine,Line,Path,Polygon}},
