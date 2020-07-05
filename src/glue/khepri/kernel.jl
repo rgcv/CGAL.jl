@@ -28,11 +28,11 @@ convert(::Type{Point3}, p::Loc) =
         Point3(cx(q), cy(q), cz(q))
     end
 
-convert(::Type{Loc}, ::Origin) = u0()
+convert(::Type{Loc}, ::Origin) = u0(world_cs)
 @cxxdereference convert(::Type{Loc}, p::Point2) =
-    xy(float(x(p)), float(y(p)))
+    xy(float(x(p)), float(y(p)), world_cs)
 @cxxdereference convert(::Type{Loc}, p::Point3) =
-    xyz(float(x(p)), float(y(p)), float(z(p)))
+    xyz(float(x(p)), float(y(p)), float(z(p)), world_cs)
 for WP ∈ (WeightedPoint2, WeightedPoint3)
     # lossy conversion
     @eval @cxxdereference convert(::Type{Loc}, wp::$WP) =
