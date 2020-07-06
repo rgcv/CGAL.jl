@@ -48,12 +48,12 @@ Copy constructor.
 Polygon2(polygon::Polygon2)
 
 """
-    Polygon2(ps::Vector{Point2})
+    Polygon2(ps::AbstractVector{Point2})
     Polygon2(ps::Point2...)
 
 Creates a polygon with vertices from the sequence defined by the vector `ps`.
 """
-Polygon2(ps::Vector{Point2})
+Polygon2(ps::AbstractVector{Point2})
 
 Polygon2(ps::AbstractVector) = Polygon2(collect(CxxRef{Point2}, CxxRef.(ps)))
 Polygon2(ps::reference_type_union(Point2)...) = Polygon2(collect(CxxRef.(ps)))
@@ -280,12 +280,12 @@ Constructor from a polygon.
 PolygonWithHoles2(pgn_boundary::Polygon2)
 
 """
-    PolygonWithHoles2(pgn_boundary::Polygon2, holes::Vector{Polygon2})
+    PolygonWithHoles2(pgn_boundary::Polygon2, holes::AbstractVector{Polygon2})
     PolygonWithHoles2(pgn_boundary::Polygon2, holes::Polygon2...)
 
 Constructor from a polygon (outer boundary) and hole polygons.
 """
-PolygonWithHoles2(pgn_boundary::Polygon2, holes::Vector{Polygon2})
+PolygonWithHoles2(pgn_boundary::Polygon2, holes::AbstractVector{Polygon2})
 
 @cxxdereference PolygonWithHoles2(p::Polygon2, holes::AbstractVector) =
     PolygonWithHoles2(p, collect(CxxRef{Polygon2}, CxxRef.(holes)))

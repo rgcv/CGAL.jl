@@ -24,7 +24,7 @@ export # Convex Hull Functions
        ch_w_point
 
 @doc raw"""
-    ch_akl_toussaint(ps::Vector{Point2})
+    ch_akl_toussaint(ps::AbstractVector{Point2})
     ch_akl_toussaint(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -49,10 +49,10 @@ See also: [`ch_bykat()`](@ref), [`ch_eddy()`](@ref),
 [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref), [`ch_melkman()`](@ref),
 [`convex_hull_2()`](@ref)
 """
-ch_akl_toussaint(ps::Vector{Point2})
+ch_akl_toussaint(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_bykat(ps::Vector{Point2})
+    ch_bykat(ps::AbstractVector{Point2})
     ch_bykat(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -79,10 +79,10 @@ See also: [`ch_akl_toussaint()`](@ref), [`ch_eddy()`](@ref),
 [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref), [`ch_melkman()`](@ref),
 [`convex_hull_2()`](@ref)
 """
-ch_bykat(ps::Vector{Point2})
+ch_bykat(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_eddy(ps::Vector{Point2})
+    ch_eddy(ps::AbstractVector{Point2})
     ch_eddy(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -114,10 +114,10 @@ See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref), [`ch_melkman()`](@ref),
 [`convex_hull_2()`](@ref)
 """
-ch_eddy(ps::Vector{Point2})
+ch_eddy(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_graham_andrew(ps::Vector{Point2})
+    ch_graham_andrew(ps::AbstractVector{Point2})
     ch_graham_andrew(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -149,10 +149,10 @@ See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_melkman()`](@ref), [`convex_hull_2()`](@ref),
 [`lower_hull_points_2`](@ref), [`upper_hull_points_2`](@ref)
 """
-ch_graham_andrew(ps::Vector{Point2})
+ch_graham_andrew(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_jarvis(ps::Vector{Point2})
+    ch_jarvis(ps::AbstractVector{Point2})
     ch_jarvis(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -178,10 +178,10 @@ See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew()`](@ref), [`ch_jarvis_march()`](@ref),
 [`ch_melkman()`](@ref), [`convex_hull_2()`](@ref)
 """
-ch_jarvis(ps::Vector{Point2})
+ch_jarvis(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_melkman(ps::Vector{Point2})
+    ch_melkman(ps::AbstractVector{Point2})
     ch_melkman(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -206,10 +206,10 @@ See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref),
 [`convex_hull_2()`](@ref)
 """
-ch_melkman(ps::Vector{Point2})
+ch_melkman(ps::AbstractVector{Point2})
 
 @doc raw"""
-    convex_hull_2(ps::Vector{Point2})
+    convex_hull_2(ps::AbstractVector{Point2})
     convex_hull_2(ps::Point2...)
 
 Returns the counterclockwise sequence of extreme points of points in the vector
@@ -230,10 +230,10 @@ See also: [`ch_akl_toussaint()`](@ref), [`ch_bykat()`](@ref),
 [`ch_eddy()`](@ref), [`ch_graham_andrew()`](@ref), [`ch_jarvis()`](@ref),
 [`ch_melkman()`](@ref)
 """
-convex_hull_2(ps::Vector{Point2})
+convex_hull_2(ps::AbstractVector{Point2})
 
 """
-    is_ccw_strongly_convex_2(ps::Vector{Point2})
+    is_ccw_strongly_convex_2(ps::AbstractVector{Point2})
     is_ccw_strongly_convex_2(ps::Point2...)
 
 The function [`is_ccw_strongly_convex_2()`](@ref) determines if a given
@@ -251,10 +251,10 @@ The algorithm requires ``O(n)`` time for a set of ``n`` input points.
 
 See also: [`is_cw_strongly_convex_2()`](@ref)
 """
-is_ccw_strongly_convex_2(ps::Vector{Point2})
+is_ccw_strongly_convex_2(ps::AbstractVector{Point2})
 
 """
-    is_cw_strongly_convex_2(ps::Vector{Point2})
+    is_cw_strongly_convex_2(ps::AbstractVector{Point2})
     is_cw_strongly_convex_2(ps::Point2...)
 
 The function [`is_cw_strongly_convex_2()`](@ref) determines if a given sequence
@@ -272,7 +272,7 @@ The algorithm requires ``O(n)`` time for a set of ``n`` input points.
 
 See also: [`is_ccw_strongly_convex_2()`](@ref)
 """
-is_cw_strongly_convex_2(ps::Vector{Point2})
+is_cw_strongly_convex_2(ps::AbstractVector{Point2})
 
 for F ∈ (:is_ccw_strongly_convex_2, :is_cw_strongly_convex_2)
     @eval begin
@@ -282,7 +282,7 @@ for F ∈ (:is_ccw_strongly_convex_2, :is_cw_strongly_convex_2)
 end
 
 """
-    ch_graham_andrew_scan(ps::Vector{Point2})
+    ch_graham_andrew_scan(ps::AbstractVector{Point2})
     ch_graham_andrew_scan(p::Point2, q::Point2, ps::Point2...)
 
 Generates the counterclockwise sequence of extreme points from a given
@@ -312,7 +312,7 @@ This algorithm requires ``O(n)`` time in the worst case for ``n`` input points.
 See also: [`ch_graham_andrew()`](@ref), [`lower_hull_points_2()`](@ref),
 [`upper_hull_points_2()`](@ref)
 """
-ch_graham_andrew_scan(ps::Vector{Point2})
+ch_graham_andrew_scan(ps::AbstractVector{Point2})
 
 @cxxdereference ch_graham_andrew_scan(ps::AbstractVector) =
     ch_graham_andrew_scan(collect(CxxRef{Point2}, CxxRef.(ps)))
@@ -321,7 +321,7 @@ ch_graham_andrew_scan(ps::Vector{Point2})
     ch_graham_andrew_scan(CxxRef.([p, q, ps...]))
 
 """
-    ch_jarvis_march(ps::Vector{Point2}, p::Point2, q::Point2)
+    ch_jarvis_march(ps::AbstractVector{Point2}, p::Point2, q::Point2)
     ch_jarvis_march(p::Point2, q::Point2, ps::Point2...)
 
 Generates the counterclockwise sequence of extreme points from a given set of
@@ -346,7 +346,7 @@ algorithm requires ``O(nh)`` time in the worst case for ``n`` input points with
 See also: [`ch_jarvis()`](@ref), [`lower_hull_points_2()`](@ref),
 [`upper_hull_points_2()`](@ref)
 """
-ch_jarvis_march(ps::Vector{Point2}, p::Point2, q::Point2)
+ch_jarvis_march(ps::AbstractVector{Point2}, p::Point2, q::Point2)
 
 @cxxdereference ch_jarvis_march(ps::AbstractVector, p::Point2, q::Point2) =
     ch_jarvis_march(collect(CxxRef{Point2}, CxxRef.(ps)), p, q)
@@ -354,7 +354,7 @@ ch_jarvis_march(ps::Vector{Point2}, p::Point2, q::Point2)
     ch_jarvis_march(collect(ps), p, q)
 
 @doc raw"""
-    lower_hull_points_2(ps::Vector{Point2})
+    lower_hull_points_2(ps::AbstractVector{Point2})
     lower_hull_points_2(ps::Point2...)
 
 Generates the counterclockwise sequence of extreme points on the lower hull of a
@@ -383,10 +383,10 @@ This function uses Andrew's variant of Graham's scan algorithm [^ama79],
 See also: [`ch_graham_andrew()`](@ref), [`ch_graham_andrew_scan()`](@ref),
 [`upper_hull_points_2()`](@ref)
 """
-lower_hull_points_2(ps::Vector{Point2})
+lower_hull_points_2(ps::AbstractVector{Point2})
 
 @doc raw"""
-    upper_hull_points_2(ps::Vector{Point2})
+    upper_hull_points_2(ps::AbstractVector{Point2})
     upper_hull_points_2(ps::Point2...)
 
 Generates the counterclockwise sequence of extreme points on the upper hull of a
@@ -415,7 +415,7 @@ This function uses Andrew's variant of Graham's scan algorithm [^ama79],
 See also: [`ch_graham_andrew()`](@ref), [`ch_graham_andrew_scan()`](@ref),
 [`lower_hull_points_2()`](@ref)
 """
-upper_hull_points_2(ps::Vector{Point2})
+upper_hull_points_2(ps::AbstractVector{Point2})
 
 for F ∈ (:ch_akl_toussaint
        , :ch_bykat
@@ -434,7 +434,7 @@ end
 
 
 @doc raw"""
-    ch_e_point(ps::Vector{Point2})
+    ch_e_point(ps::AbstractVector{Point2})
     ch_e_point(ps::Point2...)
 
 The function [`ch_e_point()`](@ref) finds a point of a given set of input points
@@ -447,10 +447,10 @@ See also: [`ch_n_point()`](@ref), [`ch_nswe_point()`](@ref),
 [`ch_ns_point()`](@ref), [`ch_s_point()`](@ref), [`ch_w_point()`](@ref),
 [`ch_we_point()`](@ref)
 """
-ch_e_point(ps::Vector{Point2})
+ch_e_point(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_n_point(ps::Vector{Point2})
+    ch_n_point(ps::AbstractVector{Point2})
     ch_n_point(ps::Point2...)
 
 The function [`ch_n_point()`](@ref) finds a point of a given set of input points
@@ -463,10 +463,10 @@ See also: [`ch_e_point()`](@ref), [`ch_nswe_point()`](@ref),
 [`ch_ns_point()`](@ref), [`ch_s_point()`](@ref), [`ch_w_point()`](@ref),
 [`ch_we_point()`](@ref)
 """
-ch_n_point(ps::Vector{Point2})
+ch_n_point(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_ns_point(ps::Vector{Point2})
+    ch_ns_point(ps::AbstractVector{Point2})
     ch_ns_point(ps::Point2...)
 
 The function [`ch_ns_point()`](@ref) finds two points of a given set of input
@@ -480,10 +480,10 @@ See also: [`ch_e_point()`](@ref), [`ch_nswe_point()`](@ref),
 [`ch_n_point()`](@ref), [`ch_s_point()`](@ref), [`ch_w_point()`](@ref),
 [`ch_we_point()`](@ref)
 """
-ch_ns_point(ps::Vector{Point2})
+ch_ns_point(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_nswe_point(ps::Vector{Point2})
+    ch_nswe_point(ps::AbstractVector{Point2})
     ch_nswe_point(ps::Point2...)
 
 The function [`ch_nswe_point()`](@ref) finds the four extreme points of a given
@@ -502,10 +502,10 @@ See also: [`ch_e_point()`](@ref), [`ch_n_point()`](@ref),
 [`ch_ns_point()`](@ref), [`ch_s_point()`](@ref), [`ch_w_point()`](@ref),
 [`ch_we_point()`](@ref)
 """
-ch_nswe_point(ps::Vector{Point2})
+ch_nswe_point(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_s_point(ps::Vector{Point2})
+    ch_s_point(ps::AbstractVector{Point2})
     ch_s_point(ps::Point2...)
 
 The function [`ch_s_point()`](@ref) finds a point of a given set of input points
@@ -518,10 +518,10 @@ See also: [`ch_e_point()`](@ref), [`ch_nswe_point()`](@ref),
 [`ch_n_point()`](@ref), [`ch_ns_point()`](@ref), [`ch_w_point()`](@ref),
 [`ch_we_point()`](@ref)
 """
-ch_s_point(ps::Vector{Point2})
+ch_s_point(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_w_point(ps::Vector{Point2})
+    ch_w_point(ps::AbstractVector{Point2})
     ch_w_point(ps::Point2...)
 
 The function [`ch_w_point()`](@ref) finds a point of a given set of input points
@@ -534,10 +534,10 @@ See also: [`ch_e_point()`](@ref), [`ch_nswe_point()`](@ref),
 [`ch_n_point()`](@ref), [`ch_ns_point()`](@ref), [`ch_s_point()`](@ref),
 [`ch_we_point()`](@ref)
 """
-ch_w_point(ps::Vector{Point2})
+ch_w_point(ps::AbstractVector{Point2})
 
 @doc raw"""
-    ch_we_point(ps::Vector{Point2})
+    ch_we_point(ps::AbstractVector{Point2})
     ch_we_point(ps::Point2...)
 
 The function [`ch_we_point()`](@ref) finds two points of a given set of input
@@ -551,7 +551,7 @@ See also: [`ch_e_point()`](@ref), [`ch_nswe_point()`](@ref),
 [`ch_n_point()`](@ref), [`ch_ns_point()`](@ref), [`ch_s_point()`](@ref),
 [`ch_w_point()`](@ref)
 """
-ch_we_point(ps::Vector{Point2})
+ch_we_point(ps::AbstractVector{Point2})
 
 for S ∈ (:e, :n, :ns, :nswe, :s, :w, :we)
     F = Symbol(:ch_, S, :_point)

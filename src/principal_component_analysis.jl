@@ -3,10 +3,10 @@ export barycenter,
        bounding_box
 
 """
-    barycenter(wps::Vector{<:WeightedPoint23})
+    barycenter(wps::AbstractVector{<:WeightedPoint23})
     barycenter(wp₁::WeightedPoint23, wp₂::WeightedPoint23, wps::WeightedPoint23...)
-    barycenter(ps::Vector{<:Point23}, ws::Vector{<:FT})
-    barycenter(ps::Vector{<:Point23}, ws::Vector{<:Real})
+    barycenter(ps::AbstractVector{<:Point23}, ws::AbstractVector{<:FT})
+    barycenter(ps::AbstractVector{<:Point23}, ws::AbstractVector{<:Real})
     barycenter(p₁::Point23, p₂::Point23, ps::Point23...)
 
 Computes the barycenter of a non-empty set of 2D or 3D weighted points.
@@ -18,7 +18,7 @@ input values.
 
     `length(ps) > 1`, and the sum of the weights is non-zero.
 """
-barycenter(wps::Vector{WeightedPoint23})
+barycenter(wps::AbstractVector{<:WeightedPoint23})
 
 barycenter(ps::AbstractVector) =
     length(ps) > 1 ?
@@ -45,7 +45,7 @@ barycenter(ps::AbstractVector, ws::AbstractVector{<:Real}) =
         end : barycenter(ps)
 
 """
-    bounding_box(ps::Vector{<:Point23})
+    bounding_box(ps::AbstractVector{<:Point23})
     bounding_box(p::Point23, q::Point23, ps::Point23...)
 
 Computes the bounding box of a non-empty set of 2D or 3D points.
@@ -57,7 +57,7 @@ dimension of the input values.
 
     `length(ps) > 1`
 """
-bounding_box(ps::Vector{Point23})
+bounding_box(ps::AbstractVector{<:Point23})
 
 bounding_box(ps::AbstractVector) =
     length(ps) > 1 ?
@@ -78,8 +78,8 @@ const _centroid_T = Union{Point23
                         , Circle2
                         , Sphere3}
 """
-    centroid(xs::Vector{T})
-    centroid(x::T, y::T, xs::T...)
+    centroid(xs::AbstractVector{T})
+    centroid(x::T, xs::T...)
 
 Computes the centroid of a non-empty set of 2D or 3D objects.
 
@@ -98,7 +98,7 @@ For three dimensional inputs, `T` must be either [`Point3`](@ref),
 
     `!isempty(xs)`
 """
-centroid(xs::Vector{_centroid_T})
+centroid(xs::AbstractVector{<:_centroid_T})
 
 centroid(xs::AbstractVector) =
     !isempty(xs) ?
