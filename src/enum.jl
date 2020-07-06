@@ -126,6 +126,15 @@ See also: [`ON_NEGATIVE_SIDE`](@ref)
 """
 ON_POSITIVE_SIDE
 
+"""
+    opposite(o::OrientedSide)
+
+Returns the opposite side (for example [`ON_POSITIVE_SIDE`](@ref) if `o ==
+[ON_NEGATIVE_SIDE](@ref)`, or `[ON_ORIENTED_BOUNDARY](@ref) if o ==
+[ON_ORIENTED_BOUNDARY](@ref)`)
+"""
+opposite(o::OrientedSide)
+
 
 """
     ComparisonResult
@@ -158,7 +167,6 @@ EQUAL
 See also: [`SMALLER`](@ref)
 """
 LARGER
-
 
 
 """
@@ -195,6 +203,15 @@ See also: [`ON_UNBOUNDED_SIDE`](@ref)
 """
 ON_BOUNDED_SIDE
 
+"""
+    opposite(o::BoundedSide)
+
+Returns the opposite side (for example [`ON_BOUNDED_SIDE`](@ref) if `o ==
+[ON_UNBOUNDED_SIDE](@ref)`, or `[ON_BOUNDARY](@ref) if o ==
+[ON_BOUNDARY](@ref)`)
+"""
+opposite(o::BoundedSide)
+
 
 """
     Angle
@@ -224,24 +241,6 @@ Angle
 """
 BoxParameterSpace2
 
-
-"""
-    opposite(o::OrientedSide)
-
-Returns the opposite side (for example [`ON_POSITIVE_SIDE`](@ref) if `o ==
-[ON_NEGATIVE_SIDE](@ref)`, or `[ON_ORIENTED_BOUNDARY](@ref) if o ==
-[ON_ORIENTED_BOUNDARY](@ref)`)
-"""
-opposite(o::OrientedSide)
-
-"""
-    opposite(o::BoundedSide)
-
-Returns the opposite side (for example [`ON_BOUNDED_SIDE`](@ref) if `o ==
-[ON_UNBOUNDED_SIDE](@ref)`, or `[ON_BOUNDARY](@ref) if o ==
-[ON_BOUNDARY](@ref)`)
-"""
-opposite(o::BoundedSide)
 
 for E ∈ (Angle, BoundedSide, BoxParameterSpace2, Sign)
     for op ∈ (:(==), :<, :>, :<=, :>=, :+, :-, :*, :/)
