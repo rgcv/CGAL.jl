@@ -49,12 +49,6 @@ Base.float(x::Ref{FT}) = float(x[])
 FT(x::Ref{FT}) = FT(x[])
 Base.isnan(x::Ref{FT}) = isnan(x[])
 
-export IDENTITY,
-       REFLECTION,
-       ROTATION,
-       SCALING,
-       TRANSLATION
-
 export AffTransformation2, AffTransformation3,
        Bbox2, Bbox3,
        Circle2, Circle3,

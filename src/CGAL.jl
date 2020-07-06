@@ -1,15 +1,11 @@
 module CGAL
 
-include("mappings.jl") # early jl/c++ mappings
-
 using CxxWrap
 using libcgal_julia_jll
 using Requires
 
-libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
-                      libcgal_julia_exact :
-                      libcgal_julia_inexact
-@wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia()))
+import CxxWrap.CxxWrapCore:
+    CxxBaseRef, IsCxxType, cpp_trait_type, reference_type_union
 
 function __init__()
    @initcxx
@@ -17,12 +13,39 @@ function __init__()
             include("glue/khepri.jl"))
 end
 
-import CxxWrap.CxxWrapCore:
-    CxxBaseRef, IsCxxType, cpp_trait_type, reference_type_union
+libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
+                      libcgal_julia_exact :
+                      libcgal_julia_inexact
 
 iscxxtype(T::Type) = _iscxxtype(Base.invokelatest(cpp_trait_type, T))
 _iscxxtype(::Type) = false
 _iscxxtype(::Type{IsCxxType}) = true
+
+macro singleton(name::Symbol, cname::Union{Symbol,Nothing}=nothing)
+    if isnothing(cname)
+        cname = Symbol(uppercase(replace(string(name), r"(?<!)(?=[A-Z])" => "_")))
+    end
+
+    quote
+        struct $name end
+        const $cname = $name()
+        $name() = $cname
+        export $cname
+    end |> esc
+end
+
+# Origin constants
+@singleton Origin
+@singleton NullVector
+
+# Transformation tags
+@singleton IdentityTransformation IDENTITY
+@singleton Reflection
+@singleton Rotation
+@singleton Scaling
+@singleton Translation
+
+@wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia()))
 
 include("origin.jl")
 include("enum.jl")
