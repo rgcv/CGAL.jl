@@ -29,7 +29,6 @@ macro singleton(name::Symbol, cname::Union{Symbol,Nothing}=nothing)
     quote
         struct $name end
         const $cname = $name()
-        $name() = $cname
         export $cname
     end |> esc
 end
