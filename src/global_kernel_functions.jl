@@ -65,10 +65,6 @@ export angle,
        z_equal,
        do_overlap
 
-# =====================================
-# = angle
-# =====================================
-
 """
     angle(u::Vector2, v::Vector2)
     angle(u::Vector3, v::Vector3)
@@ -110,10 +106,6 @@ angle formed by the normal of the triangle `pqr` and the vector `v`.
 angle(p::Point3, q::Point3, r::Point3, v::Vector3)
 
 
-# =====================================
-# = approximate_angle
-# =====================================
-
 """
     approximate_angle(p::Point3, q::Point3, r::Point3)
 
@@ -141,10 +133,6 @@ The angle is given in degrees.
 approximate_angle(u::Vector3, v::Vector3)
 
 
-# =====================================
-# = approximate_dihedral_angle
-# =====================================
-
 """
     approximate_dihedral_angle(p::Point3, q::Point3, r::Point3, s::Point3)
 
@@ -160,10 +148,6 @@ otherwise.  The angle is given in degrees.
 approximate_dihedral_angle(p::Point3, q::Point3, r::Point3, s::Point3)
 
 
-# =====================================
-# = area
-# =====================================
-
 """
     area(p::Point2, q::Point2, r::Point2)
 
@@ -171,10 +155,6 @@ Returns the signed area of the triangle defined by the points `p`, `q` and `r`.
 """
 area(p::Point2, q::Point2, r::Point2)
 
-
-# =====================================
-# = are_ordered_along_line
-# =====================================
 
 """
     are_ordered_along_line(p::Point2, q::Point2, r::Point2)
@@ -188,10 +168,6 @@ Note that `true` is returned, if `q==p` or `q==r`.
 are_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 
-# =====================================
-# = are_strictly_ordered_along_line
-# =====================================
-
 """
     are_strictly_ordered_along_line(p::Point2, q::Point2, r::Point2)
     are_strictly_ordered_along_line(p::Point3, q::Point3, r::Point3)
@@ -203,10 +179,6 @@ Note that `false` is returned, if `q==p` or `q==r`.
 """
 are_strictly_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
-
-# =====================================
-# = barycenter
-# =====================================
 
 """
     barycenter(p₁::Point2, w₁::FT, p₂::Point2)
@@ -292,10 +264,6 @@ for P ∈ (Point2, Point3)
 end
 
 
-# =====================================
-# = bisector
-# =====================================
-
 """
     bisector(p::Point2, q::Point2)
 
@@ -351,10 +319,6 @@ function requires that [`RT`](@ref) supports the [`sqrt()`](@ref) operation.
 bisector(h₁::Plane3, h₂::Plane3)
 
 
-# =====================================
-# = centroid
-# =====================================
-
 """
     centroid(p::Point2, q::Point2, r::Point2)
     centroid(p::Point3, q::Point3, r::Point3)
@@ -386,10 +350,6 @@ Compute the centroid of the tetrahedron `t`.
 """
 centroid(t::Tetrahedron3)
 
-
-# =====================================
-# = circumcenter
-# =====================================
 
 """
     circumcenter(p::Point2, q::Point2)
@@ -434,10 +394,6 @@ Compute the center of the sphere passing through the vertices of `t`.
 circumcenter(t::Tetrahedron3)
 
 
-# =====================================
-# = collinear_are_ordered_along_line
-# =====================================
-
 """
     collinear_are_ordered_along_line(p::Point2, q::Point2, r::Point2)
     collinear_are_ordered_along_line(p::Point3, q::Point3, r::Point3)
@@ -450,10 +406,6 @@ Returns `true`, iff `q` lies between `p` and `r`.
 """
 collinear_are_ordered_along_line(p::Point23, q::Point23)
 
-
-# =====================================
-# = collinear_are_strictly_ordered_along_line
-# =====================================
 
 """
     collinear_are_strictly_ordered_along_line(p::Point2, q::Point2, r::Point2)
@@ -468,10 +420,6 @@ Returns `true`, iff `q` lies strictly between `p` and `r`.
 collinear_are_strictly_ordered_along_line(p::Point23, q::Point23)
 
 
-# =====================================
-# = collinear
-# =====================================
-
 """
     collinear(p::Point2, q::Point2, r::Point2)
     collinear(p::Point3, q::Point3, r::Point3)
@@ -480,10 +428,6 @@ Returns `true`, iff `p`, `q`, and `r` are collinear.
 """
 collinear(p::Point23, q::Point23, r::Point23)
 
-
-# =====================================
-# = compare_dihedral_angle
-# =====================================
 
 @doc raw"""
     compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, cosine::FT)
@@ -557,10 +501,6 @@ compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3,
                        u₂::Vector3, v₂::Vector3, w₂::Vector3)
 
 
-# =====================================
-# = compare_distance_to_point
-# =====================================
-
 """
     compare_distance_to_point(p::Point2, q::Point2, r::Point2)
     compare_distance_to_point(p::Point3, q::Point3, r::Point3)
@@ -582,10 +522,6 @@ See also: [`compare_squared_distance()`](@ref),
 """
 compare_distance_to_point(p::Point23, q::Point23, r::Point23)
 
-
-# =====================================
-# = compare_lexicographically
-# =====================================
 
 """
     compare_lexicographically(p::Point2, q::Point2)
@@ -610,10 +546,6 @@ This is the same function as `compare_xyz`.
 """
 compare_lexicographically(p::Point3, q::Point3)
 
-
-# =====================================
-# = compare_signed_distance_to_line
-# =====================================
 
 """
     compare_signed_distance_to_line(l::Line2, p::Point2, q::Point2)
@@ -655,10 +587,6 @@ See also: [`compare_squared_distance()`](@ref),
 compare_signed_distance_to_line(p::Point2, q::Point2, r::Point2, s::Point2)
 
 
-# =====================================
-# = compare_signed_distance_to_plane
-# =====================================
-
 """
     compare_signed_distance_to_plane(h::Plane3, p::Point3, q::Point3)
 
@@ -699,10 +627,6 @@ See also: [`compare_squared_distance()`](@ref),
 compare_signed_distance_to_plane(p::Point3, q::Point3, r::Point3, s::Point3, t::Point3)
 
 
-# =====================================
-# = compare_slope
-# =====================================
-
 """
     compare_slope(l₁::Line2, l₂::Line2)
 
@@ -729,10 +653,6 @@ segment divided by the length of the segment.
 compare_slope(p::Point3, q::Point3, r::Point3, s::Point3)
 
 
-# =====================================
-# = compare_squared_distance
-# =====================================
-
 """
     compare_squared_distance(p::Point2, q::Point2, d²::FT)
     compare_squared_distance(p::Point2, q::Point2, d²::Real)
@@ -758,10 +678,6 @@ for P ∈ (Point2, Point3)
         compare_squared_distance(p, q, convert(FT, d²))
 end
 
-
-# =====================================
-# = compare_squared_radius
-# =====================================
 
 """
     compare_squared_radius(p::Point3, r²::FT)
@@ -809,10 +725,6 @@ compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²)
 @cxxdereference compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²::Real) =
     compare_squared_radius(p, q, r, s, convert(FT, r²))
 
-
-# =====================================
-# = compare_x
-# =====================================
 
 """
     compare_x(p::Point2, q::Point2)
@@ -863,10 +775,6 @@ See also: [`compare_xy()`](@ref), [`compare_xyz()`](@ref),
 compare_x(l₁::Line2, l₂::Line2, h₁::Line2, h₂::Line2)
 
 
-# =====================================
-# = compare_xy
-# =====================================
-
 """
     compare_xy(p::Point2, q::Point2)
     compare_xy(p::Point3, q::Point3)
@@ -881,10 +789,6 @@ See also: [`compare_x()`](@ref), [`compare_xyz()`](@ref),
 """
 compare_xy(p::Point23, q::Point23)
 
-
-# =====================================
-# = compare_x_at_y
-# =====================================
 
 """
     compare_x_at_y(p::Point2, h::Line2)
@@ -956,10 +860,6 @@ See also: [`compare_x()`](@ref), [`compare_xy()`](@ref),
 """
 compare_x_at_y(l₁::Line2, l₂::Line2, h₁::Line2, h₂::Line2)
 
-
-# =====================================
-# = compare_y_at_x
-# =====================================
 
 """
     compare_y_at_x(p::Point2, h::Line2)
@@ -1068,10 +968,6 @@ See also: [`compare_x()`](@ref), [`compare_xy()`](@ref),
 compare_y_at_x(p::Point2, s₁::Segment2, s₂::Segment2)
 
 
-# =====================================
-# = compare_y
-# =====================================
-
 """
     compare_y(p::Point2, q::Point2)
     compare_y(p::Point3, q::Point3)
@@ -1121,11 +1017,6 @@ See also: [`compare_x()`](@ref), [`compare_xy()`](@ref),
 compare_y(l₁::Line2, l₂::Line2, h₁::Line2, h₂::Line2)
 
 
-
-# =====================================
-# = compare_xyz
-# =====================================
-
 """
     compare_xyz(p::Point3, q::Point3)
 
@@ -1141,10 +1032,6 @@ See also: [`compare_x()`](@ref), [`compare_xy()`](@ref),
 compare_xyz(p::Point3, q::Point3)
 
 
-# =====================================
-# = compare_z
-# =====================================
-
 """
     compare_z(p::Point3, q::Point3)
 
@@ -1156,10 +1043,6 @@ See also: [`compare_x()`](@ref), [`compare_xy()`](@ref),
 """
 compare_z(p::Point3, q::Point3)
 
-
-# =====================================
-# = compare_yx
-# =====================================
 
 """
     compare_yx(p::Point2, q::Point2)
@@ -1175,10 +1058,6 @@ See also: [`compare_x()`](@ref), [`compare_xy()`](@ref),
 compare_yx(p::Point2, q::Point2)
 
 
-# =====================================
-# = coplanar
-# =====================================
-
 """
     coplanar(p::Point3, q::Point3, r::Point3, s::Point3)
 
@@ -1186,10 +1065,6 @@ Returns `true`, if `p`, `q`, `r`, and `s` are coplanar.
 """
 coplanar(p::Point3, q::Point3, r::Point3, s::Point3)
 
-
-# =====================================
-# = coplanar_orientation
-# =====================================
 
 """
     coplanar_orientation(p::Point3, q::Point3, r::Point3, s::Point3)
@@ -1221,10 +1096,6 @@ in `P` will return a coherent orientation if considered a 2D orientation in `P`.
 coplanar_orientation(p::Point3, q::Point3, r::Point3)
 
 
-# =====================================
-# = coplanar_side_of_bounded_circle
-# =====================================
-
 """
     coplanar_side_of_bounded_circle(p::Point3, q::Point3, r::Point3, s::Point3)
 
@@ -1239,10 +1110,6 @@ lies.
 coplanar_side_of_bounded_circle(p::Point3, q::Point3, r::Point3, s::Point3)
 
 
-# =====================================
-# = cross_product
-# =====================================
-
 """
     cross_product(v::Vector3, u::Vector3)
 
@@ -1250,10 +1117,6 @@ Returns the cross product of `u` and `v`.
 """
 cross_product(v::Vector3, u::Vector3)
 
-
-# =====================================
-# = determinant
-# =====================================
 
 """
     determinant(v::Vector2, w::Vector2)
@@ -1269,10 +1132,6 @@ Returns the determinant of `u`, `v`, and `w`.
 """
 determinant(u::Vector3, v::Vector3, w::Vector3)
 
-
-# =====================================
-# = do_intersect
-# =====================================
 
 """
     do_intersect(obj₁::Type1, obj₂::Type2)
@@ -1315,10 +1174,6 @@ See also: [`intersection`](@ref).
 do_intersect(obj₁, obj₂)
 
 
-# =====================================
-# = has_larger_distance_to_point
-# =====================================
-
 """
     has_larger_distance_to_point(p::Point2, q::Point2, r::Point2)
     has_larger_distance_to_point(p::Point3, q::Point3, r::Point3)
@@ -1338,10 +1193,6 @@ See also: [`compare_squared_distance()`](@ref),
 """
 has_larger_distance_to_point(p::Point23, q::Point23, r::Point23)
 
-
-# =====================================
-# = has_larger_signed_distance_to_line
-# =====================================
 
 """
     has_larger_signed_distance_to_line(l::Line2, p::Point2, q::Point2)
@@ -1381,10 +1232,6 @@ See also: [`compare_squared_distance()`](@ref),
 has_larger_signed_distance_to_line(p::Point2, q::Point2, r::Point2, s::Point2)
 
 
-# =====================================
-# = has_larger_signed_distance_to_plane
-# =====================================
-
 """
     has_larger_signed_distance_to_plane(h::Plane3, p::Point3, q::Point3)
 
@@ -1423,10 +1270,6 @@ See also: [`compare_squared_distance()`](@ref),
 has_larger_signed_distance_to_plane(p::Point3, q::Point3, r::Point3, s::Point3, t::Point3)
 
 
-# =====================================
-# = has_smaller_distance_to_point
-# =====================================
-
 """
     has_smaller_distance_to_point(p::Point2, q::Point2, r::Point2)
     has_smaller_distance_to_point(p::Point3, q::Point3, r::Point3)
@@ -1446,10 +1289,6 @@ See also: [`compare_squared_distance()`](@ref),
 """
 has_smaller_distance_to_point(p::Point23, q::Point23, r::Point23)
 
-
-# =====================================
-# = has_smaller_signed_distance_to_line
-# =====================================
 
 """
     has_smaller_signed_distance_to_line(l::Line2, p::Point2, q::Point2)
@@ -1489,10 +1328,6 @@ See also: [`compare_squared_distance()`](@ref),
 has_smaller_signed_distance_to_line(p::Point2, q::Point2, r::Point2, s::Point2)
 
 
-# =====================================
-# = has_smaller_signed_distance_to_plane
-# =====================================
-
 """
     has_smaller_signed_distance_to_plane(h::Plane3, p::Point3, q::Point3)
 
@@ -1530,10 +1365,6 @@ See also: [`compare_squared_distance()`](@ref),
 """
 has_smaller_signed_distance_to_plane(p::Point3, q::Point3, r::Point3, s::Point3, t::Point3)
 
-
-# =====================================
-# = intersection
-# =====================================
 
 """
     intersection(obj₁::Type1, obj₂::Type2)
@@ -1618,10 +1449,6 @@ Segment_2(PointC2(0, 0), PointC2(2, 2))
 intersection(obj₁, obj₂)
 
 
-# =====================================
-# = l_infinity_distance
-# =====================================
-
 """
     l_infinity_distance(p::Point2, q::Point2)
     l_infinity_distance(p::Point3, q::Point3)
@@ -1630,10 +1457,6 @@ Returns the distance between `p` and `q` in the L-infinity metric.
 """
 l_infinity_distance(p::Point23, q::Point23)
 
-
-# =====================================
-# = left_turn
-# =====================================
 
 """
     left_turn(p::Point2, q::Point2, r::Point2)
@@ -1644,10 +1467,6 @@ See also: [`collinear()`](@ref), [`orientation()`](@ref), [`right_turn`](@ref).
 """
 left_turn(p::Point2, q::Point2, r::Point2)
 
-
-# =====================================
-# = lexicographically_xy_larger
-# =====================================
 
 """
     lexicographically_xy_larger(p::Point2, q::Point2)
@@ -1662,10 +1481,6 @@ See also: [`compare_xy()`](@ref),
 """
 lexicographically_xy_larger(p::Point2, q::Point2)
 
-
-# =====================================
-# = lexicographically_xy_larger_or_equal
-# =====================================
 
 """
     lexicographically_xy_larger_or_equal(p::Point2, q::Point2)
@@ -1682,10 +1497,6 @@ See also: [`compare_xy()`](@ref),
 lexicographically_xy_larger_or_equal(p::Point2, q::Point2)
 
 
-# =====================================
-# = lexicographically_xy_smaller
-# =====================================
-
 """
     lexicographically_xy_smaller(p::Point2, q::Point2)
 
@@ -1699,10 +1510,6 @@ See also: [`compare_xy()`](@ref),
 """
 lexicographically_xy_smaller(p::Point2, q::Point2)
 
-
-# =====================================
-# = lexicographically_xy_smaller_or_equal
-# =====================================
 
 """
     lexicographically_xy_smaller_or_equal(p::Point2, q::Point2)
@@ -1719,10 +1526,6 @@ See also: [`compare_xy()`](@ref),
 lexicographically_xy_smaller_or_equal(p::Point2, q::Point2)
 
 
-# =====================================
-# = lexicographically_xyz_smaller
-# =====================================
-
 """
     lexicographically_xyz_smaller(p::Point3, q::Point3)
 
@@ -1734,10 +1537,6 @@ See also: [`compare_xyz()`](@ref),
 """
 lexicographically_xyz_smaller(p::Point3, q::Point3)
 
-
-# =====================================
-# = lexicographically_xyz_smaller_or_equal
-# =====================================
 
 """
     lexicographically_xyz_smaller_or_equal(p::Point3, q::Point3)
@@ -1751,10 +1550,6 @@ See also: [`compare_xyz()`](@ref),
 """
 lexicographically_xyz_smaller_or_equal(p::Point3, q::Point3)
 
-
-# =====================================
-# = max_vertex
-# =====================================
 
 """
     max_vertex(ir::IsoRectangle2)
@@ -1773,10 +1568,6 @@ cuboid `ic`.
 max_vertex(ic::IsoCuboid3)
 
 
-# =====================================
-# = midpoint
-# =====================================
-
 """
     midpoint(p::Point2, q::Point2)
     midpoint(p::Point3, q::Point3)
@@ -1785,10 +1576,6 @@ Computes the midpoint of the segment `pq`.
 """
 midpoint(p::Point23, q::Point23)
 
-
-# =====================================
-# = min_vertex
-# =====================================
 
 """
     min_vertex(ir::IsoRectangle2)
@@ -1807,10 +1594,6 @@ cuboid `ic`.
 min_vertex(ic::IsoCuboid3)
 
 
-# =====================================
-# = normal
-# =====================================
-
 """
     normal(p::Point3, q::Point3, r::Point3)
 
@@ -1822,10 +1605,6 @@ Computes the normal vector for the vectors `q-p` and `r-p`.
 """
 normal(p::Point3, q::Point3, r::Point3)
 
-
-# =====================================
-# = orientation
-# =====================================
 
 """
     orientation(p::Point2, q::Point2, r::Point2)
@@ -1873,10 +1652,6 @@ See also: [`collinear()`](@ref), [`left_turn()`](@ref), [`right_turn()`](@ref).
 orientation(u::Vector3, v::Vector3, w::Vector3)
 
 
-# =====================================
-# = orthogonal_vector
-# =====================================
-
 """
     orthogonal_vector(p::Point3, q::Point3, r::Point3)
 
@@ -1885,10 +1660,6 @@ is directed to the positive side of this plane.
 """
 orthogonal_vector(p::Point3, q::Point3, r::Point3)
 
-
-# =====================================
-# = parallel
-# =====================================
 
 for (T, t) ∈ ((:Line23, :l)
             , (:Ray23, :r)
@@ -1908,10 +1679,6 @@ for (T, t) ∈ ((:Line23, :l)
 end
 
 
-# =====================================
-# = radical_line
-# =====================================
-
 """
     radical_line(c₁::Circle2, c₂::Circle2)
 
@@ -1924,10 +1691,6 @@ Returns the radical line of the two circles.
 radical_line(c₁::Circle2, c₂::Circle2)
 
 
-# =====================================
-# = radical_plane
-# =====================================
-
 """
     radical_plane(s₁::Sphere3, s₂::Sphere3)
 
@@ -1939,10 +1702,6 @@ Returns the radical plane of the two spheres.
 """
 radical_plane(s₁::Sphere3, s₂::Sphere3)
 
-
-# =====================================
-# = rational_rotation_approximation
-# =====================================
 
 """
     rational_rotation_approximation(dirx::RT, diry::RT,
@@ -1999,10 +1758,6 @@ rational_rotation_approximation(dirx::Real, diry::Real,
     end
 
 
-# =====================================
-# = left_turn
-# =====================================
-
 """
     right_turn(p::Point2, q::Point2, r::Point2)
 
@@ -2013,10 +1768,6 @@ See also: [`collinear()`](@ref), [`left_turn()`](@ref), [`orientation()`](@ref).
 right_turn(p::Point2, q::Point2, r::Point2)
 
 
-# =====================================
-# = scalar_product
-# =====================================
-
 """
     scalar_product(u::Vector2, v::Vector2)
     scalar_product(u::Vector3, v::Vector3)
@@ -2025,10 +1776,6 @@ Returns the scalar product of `u` and `v`.
 """
 scalar_product(u::Vector23, v::Vector23)
 
-
-# =====================================
-# = side_of_bounded_circle
-# =====================================
 
 """
     side_of_bounded_circle(p::Point2, q::Point2, r::Point2, t::Point2)
@@ -2058,10 +1805,6 @@ See also: [`coplanar_side_of_bounded_circle()`](@ref),
 """
 side_of_bounded_circle(p::Point2, q::Point2, t::Point2)
 
-
-# =====================================
-# = side_of_bounded_sphere
-# =====================================
 
 """
     side_of_bounded_sphere(p::Point3, q::Point3, r::Point3, s::Point3, t::Point3)
@@ -2101,10 +1844,6 @@ See also: [`side_of_oriented_sphere()`](@ref).
 side_of_bounded_sphere(p::Point3, q::Point3, t::Point3)
 
 
-# =====================================
-# = side_of_oriented_circle
-# =====================================
-
 """
     side_of_oriented_circle(p::Point2, q::Point2, r::Point2, test::Point2)
 
@@ -2123,10 +1862,6 @@ See also: [`side_of_bounded_circle()`](@ref)
 """
 side_of_oriented_circle(p::Point2, q::Point2, r::Point2, test::Point2)
 
-
-# =====================================
-# = side_of_oriented_sphere
-# =====================================
 
 """
     side_of_oriented_sphere(p::Point3, q::Point3, r::Point3, s::Point3, test::Point3)
@@ -2150,10 +1885,6 @@ See also: [`side_of_bounded_sphere()`](@ref)
 side_of_oriented_sphere(p::Point3, q::Point3, r::Point3, s::Point3, test::Point3)
 
 
-# =====================================
-# = squared_area
-# =====================================
-
 """
     squared_area(p::Point3, q::Point3, r::Point3)
 
@@ -2161,10 +1892,6 @@ Returns the squared area of the triangle defined by the points `p`, `q` and `r`.
 """
 squared_area(p::Point3, q::Point3, r::Point3)
 
-
-# =====================================
-# = squared_distance
-# =====================================
 
 """
     squared_distance(obj₁::Type1, obj₂::Type2)
@@ -2206,10 +1933,6 @@ See also: [`compare_distance_to_point()`](@ref),
 """
 squared_distance(obj₁, obj₂)
 
-
-# =====================================
-# = squared_radius
-# =====================================
 
 """
     squared_radius(p::Point2, q::Point2, r::Point2)
@@ -2262,10 +1985,6 @@ and `r` and whose center is in the same plane as those three points.
 squared_radius(p::Point3, q::Point3, r::Point3)
 
 
-# =====================================
-# = unit_normal
-# =====================================
-
 """
     unit_normal(p::Point3, q::Point3, r::Point3)
 
@@ -2278,10 +1997,6 @@ Computes the unit normal vector for the vectors `q-p` and `r-p`.
 unit_normal(p::Point3, q::Point3, r::Point3)
 
 
-# =====================================
-# = volume
-# =====================================
-
 """
     volume(p₀::Point3, p₁::Point3, p₂::Point3, p₃::Point3)
 
@@ -2290,10 +2005,6 @@ Computes the signed volume of the tetrahedron defined by the four points `p₀`,
 """
 volume(p₀::Point3, p₁::Point3, p₂::Point3, p₃::Point3)
 
-
-# =====================================
-# = x_equal
-# =====================================
 
 """
     x_equal(p::Point2, q::Point2)
@@ -2306,10 +2017,6 @@ See also: [`compare_x()`](@ref), [`y_equal()`](@ref), [`z_equal()`](@ref).
 x_equal(p::Point23, q::Point23)
 
 
-# =====================================
-# = y_equal
-# =====================================
-
 """
     y_equal(p::Point2, q::Point2)
     y_equal(p::Point3, q::Point3)
@@ -2321,10 +2028,6 @@ See also: [`compare_y()`](@ref), [`x_equal()`](@ref), [`z_equal()`](@ref).
 y_equal(p::Point23, q::Point23)
 
 
-# =====================================
-# = z_equal
-# =====================================
-
 """
     z_equal(p::Point3, q::Point3)
 
@@ -2335,10 +2038,6 @@ See also: [`compare_z()`](@ref), [`x_equal()`](@ref), [`y_equal()`](@ref).
 z_equal(p::Point3, q::Point3)
 
 
-# =====================================
-# = +
-# =====================================
-
 """
     +(p::Point2, v::Vector2)
     +(p::Point3, v::Vector3)
@@ -2348,10 +2047,6 @@ Returns the point obtained by translating `p` by the vector `v`.
 +(p::Point23, v::Vector23)
 
 
-# =====================================
-# = -
-# =====================================
-
 """
     -(p::Point2, v::Vector2)
     -(p::Point3, v::Vector3)
@@ -2360,10 +2055,6 @@ Returns the point obtained by translating `p` by the vector -`v`.
 """
 -(p::Point23, v::Vector23)
 
-
-# =====================================
-# = *
-# =====================================
 
 """
     *(v::Vector2, s::RT)
@@ -2388,10 +2079,6 @@ for V ∈ (Vector2, Vector3)
     @eval @cxxdereference Base.:*(s::Real, v::$V) = convert(RT, s) * v
 end
 
-
-# =====================================
-# = do_overlap
-# =====================================
 
 """
     do_overlap(bb₁::Bbox2, bb₂::Bbox2)

@@ -17,10 +17,6 @@ const NT = RT
 export NT
 
 
-# =====================================
-# = compare
-# =====================================
-
 """
     compare(x::NT, y::NT)
     compare(x::Real, y::Real)
@@ -30,10 +26,6 @@ second, i.e. it returns [`LARGER`](@ref) if ``x`` is larger than ``y``.
 """
 compare(x::NT, y::NT)
 
-
-# =====================================
-# = intgral_division
-# =====================================
 
 """
     integral_division(x::NT, y::NT)
@@ -45,10 +37,6 @@ without remainder) maps ring elements ``(x, y)`` to ring element ``z`` such that
 """
 integral_division(x::NT, y::NT)
 
-
-# =====================================
-# = inverse
-# =====================================
 
 """
     inverse(x::NT)
@@ -64,10 +52,6 @@ multiplication.
 inverse(x::NT)
 
 
-# =====================================
-# = is_negative
-# =====================================
-
 """
     is_negative(x::NT)
     is_negative(x::Real)
@@ -76,10 +60,6 @@ The function [`is_negative()`](@ref) determines if a value is negative or not.
 """
 is_negative(x::NT)
 
-
-# =====================================
-# = is_positive
-# =====================================
 
 """
     is_positive(x::NT)
@@ -90,10 +70,6 @@ The function [`is_positive()`](@ref) determines if a value is positive or not.
 is_positive(x::NT)
 
 
-# =====================================
-# = is_square
-# =====================================
-
 """
     is_square(x::NT, y::Ref{NT} = Ref{NT}())
 
@@ -102,10 +78,6 @@ A ring element ``x`` is said to be a square iff there exists a ring element
 """
 is_square(x::NT, y::Ref{NT} = Ref{NT}())
 
-
-# =====================================
-# = is_zero
-# =====================================
 
 """
     is_zero(x::NT)
@@ -118,10 +90,6 @@ is_zero(x::NT)
 @cxxdereference Base.iszero(x::NT) = is_zero(x)
 
 
-# =====================================
-# = sign
-# =====================================
-
 """
     sign(x::NT)
 
@@ -132,10 +100,6 @@ See also: [`Sign`](@ref).
 sign(x::NT)
 
 
-# =====================================
-# = to_double
-# =====================================
-
 """
     to_double(x::NT)
 
@@ -143,10 +107,6 @@ The function [`to_double()`](@ref) returns a double approximation of a number.
 """
 to_double(x::NT)
 
-
-# =====================================
-# = to_interval
-# =====================================
 
 """
     to_interval(x::NT)
@@ -156,10 +116,6 @@ interval containing ``x``.
 """
 to_interval(x::NT)
 
-
-# =====================================
-# = unit_part
-# =====================================
 
 """
     unit_part(x::NT)
