@@ -32,14 +32,14 @@ convert(::Type{Loc}, ::Origin) = u0(world_cs)
     xy(float(x(p)), float(y(p)), world_cs)
 @cxxdereference convert(::Type{Loc}, p::Point3) =
     xyz(float(x(p)), float(y(p)), float(z(p)), world_cs)
-for WP ∈ (WeightedPoint2, WeightedPoint3)
+for WP ∈ (:WeightedPoint2, :WeightedPoint3)
     # lossy conversion
     @eval @cxxdereference convert(::Type{Loc}, wp::$WP) =
         convert(Loc, point(wp))
 end
 
-for P ∈ (Point2, Point3
-       , WeightedPoint2, WeightedPoint3)
+for P ∈ (:Point2, :Point3
+       , :WeightedPoint2, :WeightedPoint3)
     @eval begin
         convert(::Type{$P}, p::Point) = convert($P, p.position)
         @cxxdereference convert(::Type{Point}, p::$P) =
@@ -62,7 +62,7 @@ convert(::Type{Vec}, ::NullVector) = vxy(0, 0, world_cs)
     vxy(float(x(u)), float(y(u)), world_cs)
 @cxxdereference convert(::Type{Vec}, u::Vector3) =
     vxyz(float(x(u)), float(y(u)), float(z(u)), world_cs)
-for D ∈ (Direction2, Direction3)
+for D ∈ (:Direction2, :Direction3)
     @eval @cxxdereference convert(::Type{Vec}, d::$D) =
         convert(Vec, vector(d))
 end
@@ -81,7 +81,7 @@ convert(::Type{Circle3}, c::Union{Circle,SurfaceCircle,Khepri.CircularPath}) =
         n = convert(Vec, orthogonal_vector(supporting_plane(c)))
         circular_path(loc_from_o_vz(cₒ, n), float(√squared_radius(c)))
     end
-for C ∈ (Circle2, Circle3)
+for C ∈ (:Circle2, :Circle3)
     @eval begin
         @cxxdereference convert(::Type{Circle}, c::$C) =
             let cp = convert(Path, c)
@@ -105,31 +105,31 @@ convert(::Type{Sphere3}, s::Sphere) =
     sphere(convert(Loc, center(s)), float(√squared_radius(s)))
 
 # lines/rays/segments
-for T ∈ (Line2, Line3
-       , Ray2, Ray3
-       , Segment2, Segment3)
+for T ∈ (:Line2, :Line3
+       , :Ray2, :Ray3
+       , :Segment2, :Segment3)
     @eval convert(::Type{$T}, l::Union{Line,Khepri.PolygonalPath}) =
         $T(convert.(_pointfor($T), l.vertices[1:2])...)
 end
 
-for L ∈ (Line2, Line3)
+for L ∈ (:Line2, :Line3)
     @eval @cxxdereference convert(::Type{Path}, l::$L) =
         polygonal_path(convert.(Loc, point.([l], [0, 1])))
 end
-for R ∈ (Ray2, Ray3)
+for R ∈ (:Ray2, :Ray3)
     @eval @cxxdereference convert(::Type{Path}, r::$R) =
         let s = source(r)
             polygonal_path(convert.(Loc, [s, s + to_vector(r)]))
         end
 end
-for S ∈ (Segment2, Segment3)
+for S ∈ (:Segment2, :Segment3)
     @eval @cxxdereference convert(::Type{Path}, s::$S) =
         polygonal_path(convert.(Loc, [source(s), target(s)]))
 end
 
-for T ∈ (Line2, Line3
-       , Ray2, Ray3
-       , Segment2, Segment3)
+for T ∈ (:Line2, :Line3
+       , :Ray2, :Ray3
+       , :Segment2, :Segment3)
     @eval @cxxdereference convert(::Type{Line}, t::$T) =
         let p = convert(Path, t)
             line(p.vertices)
@@ -193,7 +193,7 @@ convert(T::Type{<:Union{Triangle2,Triangle3}},
     T(convert.(_pointfor(T), p.vertices[1:3])...)
 convert(T::Type{<:Union{Triangle2,Triangle3}}, sp::SurfacePath) =
     convert(T, sp.path)
-for T ∈ (Triangle2, Triangle3)
+for T ∈ (:Triangle2, :Triangle3)
     @eval begin
         @cxxdereference convert(::Type{Path}, t::$T) =
             closed_polygonal_path(convert.(Loc, vertex.([t], 0:2)))
