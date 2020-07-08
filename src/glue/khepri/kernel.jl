@@ -14,8 +14,7 @@ for T ∈ (:AffTransformation
        , :Vector
        , :WeightedPoint), D ∈ (2, 3)
     AT = any(endswith.(string(T), string.((2,3)))) ? T : Symbol(T, D)
-    P = reference_type_union(eval(AT))
-    @eval _pointfor(::Type{<:$P}) = $(Symbol(:Point, D))
+    @eval _pointfor(::Type{$AT}) = $(Symbol(:Point, D))
 end
 
 # points
@@ -109,9 +108,8 @@ convert(::Type{Sphere3}, s::Sphere) =
 for T ∈ (Line2, Line3
        , Ray2, Ray3
        , Segment2, Segment3)
-    P = _pointfor(T)
     @eval convert(::Type{$T}, l::Union{Line,Khepri.PolygonalPath}) =
-        $T(convert.($P, l.vertices[1:2])...)
+        $T(convert.(_pointfor($T), l.vertices[1:2])...)
 end
 
 for L ∈ (Line2, Line3)
