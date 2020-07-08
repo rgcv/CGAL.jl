@@ -29,9 +29,9 @@ convert(::Type{Point3}, p::Loc) =
 
 convert(::Type{Loc}, ::Origin) = u0(world_cs)
 @cxxdereference convert(::Type{Loc}, p::Point2) =
-    xy(float(x(p)), float(y(p)), world_cs)
+    xy(x(p)[], y(p)[], world_cs)
 @cxxdereference convert(::Type{Loc}, p::Point3) =
-    xyz(float(x(p)), float(y(p)), float(z(p)), world_cs)
+    xyz(x(p)[], y(p)[], z(p)[], world_cs)
 for WP ∈ (:WeightedPoint2, :WeightedPoint3)
     # lossy conversion
     @eval @cxxdereference convert(::Type{Loc}, wp::$WP) =
@@ -59,9 +59,9 @@ convert(T::Type{<:Union{Direction3,Vector3}}, u::Vec) =
 
 convert(::Type{Vec}, ::NullVector) = vxy(0, 0, world_cs)
 @cxxdereference convert(::Type{Vec}, u::Vector2) =
-    vxy(float(x(u)), float(y(u)), world_cs)
+    vxy(x(u)[], y(u)[], world_cs)
 @cxxdereference convert(::Type{Vec}, u::Vector3) =
-    vxyz(float(x(u)), float(y(u)), float(z(u)), world_cs)
+    vxyz(x(u)[], y(u)[], z(u)[], world_cs)
 for D ∈ (:Direction2, :Direction3)
     @eval @cxxdereference convert(::Type{Vec}, d::$D) =
         convert(Vec, vector(d))
@@ -75,11 +75,11 @@ convert(::Type{Circle3}, c::Union{Circle,SurfaceCircle,Khepri.CircularPath}) =
             convert(Vector3, vz(1, c.center.cs)))
 
 @cxxdereference convert(::Type{Path}, c::Circle2) =
-    circular_path(convert(Loc, center(c)), float(√squared_radius(c)))
+    circular_path(convert(Loc, center(c)), √squared_radius(c))
 @cxxdereference convert(::Type{Path}, c::Circle3) =
     let cₒ = convert(Loc, center(c)),
         n = convert(Vec, orthogonal_vector(supporting_plane(c)))
-        circular_path(loc_from_o_vz(cₒ, n), float(√squared_radius(c)))
+        circular_path(loc_from_o_vz(cₒ, n), √squared_radius(c))
     end
 for C ∈ (:Circle2, :Circle3)
     @eval begin
@@ -102,7 +102,7 @@ end
 convert(::Type{Sphere3}, s::Sphere) =
     Sphere3(convert(Point3, s.center), s.radius^2)
 @cxxdereference convert(::Type{Sphere}, s::Sphere3) =
-    sphere(convert(Loc, center(s)), float(√squared_radius(s)))
+    sphere(convert(Loc, center(s)), √squared_radius(s))
 
 # lines/rays/segments
 for T ∈ (:Line2, :Line3
