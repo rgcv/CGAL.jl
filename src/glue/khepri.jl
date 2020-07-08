@@ -8,6 +8,7 @@ import .Khepri:
     Cuboid, cuboid,
     Line, line,
     Path, circular_path, closed_polygonal_path, polygonal_path, rectangular_path,
+        path_vertices,
     Polygon, polygon,
     Rectangle, rectangle,
     RightCuboid, right_cuboid,
