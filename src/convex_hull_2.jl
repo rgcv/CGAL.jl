@@ -555,10 +555,11 @@ ch_we_point(ps::AbstractVector{Point2})
 
 for S ∈ (:e, :n, :ns, :nswe, :s, :w, :we)
     F = Symbol(:ch_, S, :_point)
-    N = length(string(S))
-    R = N == 1 ? :(Point2()) : :(tuple((Point2() for _ ∈ 1:$N)...))
     @eval begin
-        $F(ps::AbstractVector) = isempty(ps) ? $R : $F(CxxRef.(ps))
+        $F(ps::AbstractVector) =
+            isempty(ps) ?
+                $F([CxxRef(Point2())]) :
+                $F(CxxRef.(ps))
         $F(ps::reference_type_union(Point2)...) = $F(collect(CxxRef.(ps)))
     end
 end
