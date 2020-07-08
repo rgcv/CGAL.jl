@@ -47,6 +47,16 @@ See also: [`Orientation`](@ref)
 """
 Sign
 
+# make Sign look more like a Number
+Base.promote_rule(::Type{Sign}, ::Type{T}) where T <: Number = T
+Base.promote_rule(::Type{Sign}, ::Type{Bool}) = Sign
+(::Type{T})(x::Sign) where T <: AbstractFloat = T(convert(Integer, x))
+
+# reimplement these in julia
+Base.:-(x::Sign) = opposite(x)
+Base.:*(a::Sign, b::Sign) = reinterpret(Sign, convert(Integer, a) * convert(Integer, b))
+
+
 """
     Orientation
 
@@ -241,13 +251,10 @@ Angle
 """
 BoxParameterSpace2
 
-
-for E ∈ (Angle, BoundedSide, BoxParameterSpace2, Sign)
-    for op ∈ (:(==), :<, :>, :<=, :>=, :+, :-, :*, :/)
-        @eval begin
-            Base.$op(x::Number, e::$E) = $op(x, convert(Int32, e))
-            Base.$op(e::$E, x::Number) = $op(convert(Int32, e), x)
-        end
-    end
-    @eval Base.copysign(x::Real, e::$E) = copysign(x, convert(Int32, e))
+# despite undocumented, might as well just define `opposite` for all of them
+for E ∈ (:Sign
+       , :Angle
+       , :BoundedSide
+       , :BoxParameterSpace2)
+    @eval opposite(x::$E) = reinterpret($E, -convert(Integer, x))
 end
