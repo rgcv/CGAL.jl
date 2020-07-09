@@ -9,7 +9,6 @@ Note that the circle can be degenerated, i.e. the squared radius may be zero.
 Circle3
 
 @doc raw"""
-    Circle3(center::Point3, r²::FT, plane::Plane3)
     Circle3(center::Point3, r²::Real, plane::Plane3)
 
 Introduces a variable `c` of type [`Circle3`](@ref).
@@ -21,13 +20,12 @@ plane `plane`.
 
     `center` lies in `plane` and `r²` ``\ge`` 0.
 """
-Circle3(center::Point3, r², plane::Plane3)
+Circle3(center::Point3, r²::Real, plane::Plane3)
 
 @cxxdereference Circle3(center::Point3, r²::Real, plane::Plane3) =
     Circle3(center, convert(FT, r²), plane)
 
 @doc raw"""
-    Circle3(center::Point3, r²::FT, n::Vector3)
     Circle3(center::Point3, r²::Real, n::Vector3)
 
 Introduces a variable `c` of type [`Circle3`](@ref).
@@ -39,7 +37,7 @@ plane normal to the vector `n`.
 
     `r²` ``\ge`` 0.
 """
-Circle3(center::Point3, r², n::Vector3)
+Circle3(center::Point3, r²::Real, n::Vector3)
 
 @cxxdereference Circle3(center::Point3, r²::Real, n::Vector3) =
     Circle3(center, convert(FT, r²), n)

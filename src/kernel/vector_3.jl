@@ -28,36 +28,31 @@ Introduces the vector `target(s) - source(s)`.
 Vector3(s::Segment3)
 
 """
-    Vector3()
-    Vector3(NULL_VECTOR::NullVector)
+    Vector3(::NullVector = NULL_VECTOR)
 
 Introduces a null vector `v`.
 """
-Vector3()
+Vector3(::NullVector = NULL_VECTOR)
 
 """
-    Vector3(x::FT, y::FT, z::FT)
     Vector3(x::Real, y::Real, z::Real)
 
 Introduces a vector `v` initialized to ``(x, y, z)``.
 """
-Vector3(x, y, z)
+Vector3(x::Real, y::Real, z::Real) =
+    Vector3(convert(FT, x), convert(FT, y), convert(FT, z))
 
 @doc raw"""
-    Vector3(hx::RT, hy::RT, hz::RT, hw::RT = RT(1))
     Vector3(hx::Real, hy::Real, hz::Real, hw::Real = 1)
 
 Introduces a vector `v` initialized to `(hx/hw,hy/hw,hz/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``≠`` `RT(0)`
+    `hw` ``≠`` `0`
 """
-Vector3(hx, hy, hz, hw)
-
-Vector3(x::Real, y::Real, z::Real, hw::Real = 1) = isone(hw) ?
-    Vector3(convert.(FT, (x, y, z))...) :
-    Vector3(convert.(RT, (x, y, z, hw))...)
+Vector3(hx::Real, hy::Real, hz::Real, hw::Real) =
+    Vector3(convert(RT, x), convert(RT, y), convert(RT, z), convert(RT, hw))
 
 """
     hx(p::Vector3)
@@ -183,11 +178,10 @@ Returns the scalar product (= inner product) of the two vectors.
 *(v::Vector3, w::Vector3)
 
 """
-    /(v::Vector3, s::RT)
     /(v::Vector3, s::Real)
 
 Division by a scalar.
 """
-/(v::Vector3, s)
+/(v::Vector3, s::Real)
 
 @cxxdereference Base.:/(v::Vector3, s::Real) = v / convert(RT, s)

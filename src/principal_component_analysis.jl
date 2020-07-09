@@ -3,11 +3,9 @@ export barycenter,
        bounding_box
 
 """
-    barycenter(wps::AbstractVector{<:WeightedPoint23})
+    barycenter(wps::AbstractVector{WeightedPoint23})
     barycenter(wp₁::WeightedPoint23, wp₂::WeightedPoint23, wps::WeightedPoint23...)
-    barycenter(ps::AbstractVector{<:Point23}, ws::AbstractVector{<:FT})
-    barycenter(ps::AbstractVector{<:Point23}, ws::AbstractVector{<:Real})
-    barycenter(p₁::Point23, p₂::Point23, ps::Point23...)
+    barycenter(ps::AbstractVector{Point23}, ws::AbstractVector{Real})
 
 Computes the barycenter of a non-empty set of 2D or 3D weighted points.
 
@@ -18,7 +16,7 @@ input values.
 
     `length(ps) > 1`, and the sum of the weights is non-zero.
 """
-barycenter(wps::AbstractVector{<:WeightedPoint23})
+barycenter(wps::AbstractVector{WeightedPoint23})
 
 barycenter(ps::AbstractVector) =
     length(ps) > 1 ?
@@ -27,7 +25,7 @@ barycenter(ps::AbstractVector) =
 
 for D ∈ 2:3
     P = Symbol(:Point, D)
-    WP = Symbol(:WeightedPoint, D)
+    WP = Symbol(:Weighted, P)
     @eval begin
         @cxxdereference barycenter(wp₁::$WP, wp₂::$WP,
                                    wps::reference_type_union($WP)...) =
@@ -38,14 +36,14 @@ for D ∈ 2:3
     end
 end
 
-barycenter(ps::AbstractVector, ws::AbstractVector{<:Real}) =
+barycenter(ps::AbstractVector, ws::AbstractVector) =
     length(ws) > 1 && length(ps) > 1 ?
         let f = iscxxtype(FT) ? CxxRef : identity
             barycenter(CxxRef.(ps), f.(convert.(FT, ws)))
         end : barycenter(ps)
 
 """
-    bounding_box(ps::AbstractVector{<:Point23})
+    bounding_box(ps::AbstractVector{Point23})
     bounding_box(p::Point23, q::Point23, ps::Point23...)
 
 Computes the bounding box of a non-empty set of 2D or 3D points.
@@ -57,11 +55,11 @@ dimension of the input values.
 
     `length(ps) > 1`
 """
-bounding_box(ps::AbstractVector{<:Point23})
+bounding_box(ps::AbstractVector{Point23})
 
 bounding_box(ps::AbstractVector) =
     length(ps) > 1 ?
-        bounding_box(CxxRef.(ps)) :
+        bounding_box(collect(CxxRef{_pointfor(ps[1])}, CxxRef.(ps))) :
         error("length(ps) ≯ 1")
 
 for P ∈ (Point2, Point3)

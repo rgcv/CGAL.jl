@@ -13,7 +13,6 @@ can be degenerated, i.e. the squared radius may be zero.
 Sphere3
 
 @doc raw"""
-    Sphere3(center::Point3, r²::FT, ori::Orientation = COUNTERCLOCKWISE)
     Sphere3(center::Point3, r²::Real, ori::Orientation = COUNTERCLOCKWISE)
 
 Introduces a variable `s` of type [`Sphere3`](@ref).
@@ -25,7 +24,7 @@ It is initialized to the circle with center `center`, squared radius
 
     `ori` ``≠`` `COPLANAR`, and further, `squared_radius` ``≥ 0``.
 """
-Sphere3(center::Point3, r², ori::Orientation = COUNTERCLOCKWISE)
+Sphere3(center::Point3, r²::Real, ori::Orientation = COUNTERCLOCKWISE)
 
 @cxxdereference Sphere3(c::Point3, r²::Real, ori::Union{Orientation,Ref{Orientation}} = COUNTERCLOCKWISE) =
     Sphere3(c, convert(FT, r²), ori)

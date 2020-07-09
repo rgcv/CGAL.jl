@@ -48,9 +48,8 @@ Direction3(s::Segment3)
 Introduces a direction `d` initialized with the direction from the origin and
 the point with Cartesian coordinates ``(x, y, z)``.
 """
-Direction3(x, y, z)
-
-Direction3(x::Real, y::Real, z::Real) = Direction3(convert.(FT, (x, y, z))...)
+Direction3(x::Real, y::Real, z::Real) =
+    Direction3(convert(FT, x), convert(FT, y), convert(FT, z))
 
 @doc raw"""
     delta(d::Direction3, i::Integer)

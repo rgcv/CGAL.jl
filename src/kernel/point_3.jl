@@ -7,36 +7,31 @@ Euclidean space ``Ε^3``.
 Point3
 
 """
-    Point3()
-    Point3(ORIGIN::Origin)
+    Point3(::Origin = ORIGIN)
 
 Introduces a variable `p` with Cartesian coordinates ``(0, 0, 0)``.
 """
-Point3()
+Point3(::Origin = ORIGIN)
 
 """
-    Point3(x::FT, y::FT, z::FT)
     Point3(x::Real, y::Real, z::Real)
 
 Introduces a point `p` initialized to ``(x, y, z)``.
 """
-Point3(x, y, z)
+Point3(x::Real, y::Real, z::Real) =
+    Point3(convert(FT, x), convert(FT, y), convert(FT, z))
 
 @doc raw"""
-    Point3(hx::RT, hy::RT, hz::RT, hw::RT = RT(1))
     Point3(hx::Real, hy::Real, hz::Real, hw::Real = 1)
 
 Introduces a point `p` initialized to `(hx/hw,hy/hw,hz/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``≠`` `RT(0)`
+    `hw` ``≠`` `0`
 """
-Point3(x, y, z, hw)
-
-Point3(x::Real, y::Real, z::Real, hw::Real = 1) = isone(hw) ?
-    Point3(convert.(FT, (x, y, z))...) :
-    Point3(convert.(RT, (x, y, z, hw))...)
+Point3(x::Real, y::Real, z::Real, hw::Real) =
+    Point3(convert(RT, x), convert(RT, y), convert(RT, z), convert(RT, hw))
 
 """
     Point3(wp::WeightedPoint3)

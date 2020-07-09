@@ -22,10 +22,9 @@ Bbox3()
 Introduces a bounding box `b` with lower left corner at `(xmin, ymin, zmin)` and
 with upper right corner at `(xmax, ymax, zmax)`.
 """
-Bbox3(xmin, ymin, zmin, xmax, ymax, zmax)
-
 Bbox3(xmin::Real, ymin::Real, zmin::Real, xmax::Real, ymax::Real, zmax::Real) =
-    Bbox3(convert.(Float64, (xmin, ymin, zmin, xmax, ymax, zmax))...)
+    Bbox3(convert(Float64, xmin), convert(Float64, ymin), convert(Float64, zmin),
+          convert(Float64, xmax), convert(Float64, ymax), convert(Float64, zmax))
 
 """
     dimension(b::Bbox3)

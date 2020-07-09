@@ -37,15 +37,13 @@ Line_2(-6, 3, 3)
 Line2
 
 """
-    Line2(a::RT, b::RT, c::RT)
     Line2(a::Real, b::Real, c::Real)
 
 Introduces a line `l` with the line equation in Cartesian coordinates
 ``ax + by + c = 0``.
 """
-Line2(a, b, c)
-
-Line2(a::Real, b::Real, c::Real) = Line2(convert.(FT, (a, b, c))...)
+Line2(a::Real, b::Real, c::Real) =
+    Line2(convert(FT, a), convert(FT, b), convert(FT, c))
 
 """
     Line2(p::Point2, q::Point2)
@@ -115,7 +113,6 @@ Returns the third coefficient of `l`.
 c(l::Line2)
 
 """
-    point(l::Line2, i::FT)
     point(l::Line2, i::Real)
 
 Returns an arbitrary point on `l`.
@@ -123,7 +120,7 @@ Returns an arbitrary point on `l`.
 It holds `point(l, i) == point(l, j)`, iff `i == j`. Furthermore, `l` is
 directed from `point(l, i)` to `point(l, j)`, for all `i` ``<`` `j`.
 """
-point(l::Line2, i)
+point(l::Line2, i::Real)
 
 @cxxdereference point(l::Line2, i::Real) = point(l, convert(FT, i))
 
@@ -135,7 +132,6 @@ Returns the orthogonal projection of `p` onto `l`.
 projection(l::Line2, p::Point2)
 
 """
-    x_at_y(l::Line2, y::FT)
     x_at_y(l::Line2, y::Real)
 
 Returns the ``x``-coordinate of the point at `l` with the given
@@ -145,12 +141,11 @@ Returns the ``x``-coordinate of the point at `l` with the given
 
     `l` is not horizontal.
 """
-x_at_y(l::Line2, y)
+x_at_y(l::Line2, y::Real)
 
 @cxxdereference x_at_y(l::Line2, y::Real) = x_at_y(l, convert(FT, y))
 
 """
-    y_at_x(l::Line2, x::FT)
     y_at_x(l::Line2, x::Real)
 
 Returns the ``y``-coordinate of the point at `l` with the given

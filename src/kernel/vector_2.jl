@@ -42,36 +42,30 @@ Introduces the vector having the same direction as `t`.
 Vector2(l::Line2)
 
 """
-    Vector2()
-    Vector2(NULL_VECTOR::NullVector)
+    Vector2(::NullVector = NULL_VECTOR)
 
 Introduces a null vector `v`.
 """
-Vector2()
+Vector2(::NullVector = NULL_VECTOR)
 
 """
-    Vector2(x::FT, y::FT)
     Vector2(x::Real, y::Real)
 
 Introduces a vector `v` initialized to ``(x, y)``.
 """
-Vector2(x, y)
+Vector2(x::Real, y::Real) = Vector2(convert(FT, x), convert(FT, y))
 
 @doc raw"""
-    Vector2(hx::RT, hy::RT, hw::RT = RT(1))
     Vector2(hx::Real, hy::Real, hw::Real = 1)
 
 Introduces a vector `v` initialized to `(hx/hw,hy/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``≠`` `RT(0)`
+    `hw` ``≠`` `0`
 """
-Vector2(hx, hy, hw)
-
-Vector2(hx::Real, hy::Real, hw::Real = 1) = isone(hw) ?
-    Vector2(convert.(FT, (hx, hy))...) :
-    Vector2(convert.(RT, (hx, hy, hw))...)
+Vector2(hx::Real, hy::Real, hw::Real) =
+    Vector2(convert(RT, hx), convert(RT, hy), convert(RT, hw))
 
 """
     hx(p::Vector2)
@@ -205,11 +199,10 @@ Returns the scalar product (= inner product) of the two vectors.
 *(v::Vector2, w::Vector2)
 
 """
-    /(v::Vector2, s::RT)
     /(v::Vector2, s::Real)
 
 Division by a scalar.
 """
-/(v::Vector2, s)
+/(v::Vector2, s::Real)
 
 @cxxdereference Base.:/(v::Vector2, s::Real) = v / convert(RT, s)

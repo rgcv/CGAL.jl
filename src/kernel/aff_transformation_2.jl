@@ -101,7 +101,6 @@ Introduces a translation by vector `v`.
 AffTransformation2(::Translation, v::Vector2)
 
 """
-    AffTransformation2(::Rotation, d::Direction2, num::RT, den::RT = RT(1))
     AffTransformation2(::Rotation, d::Direction2, num::Real, den::Real = 1)
 
 Approximates the rotation over the angle indicated by direction `d`, such that
@@ -112,13 +111,12 @@ the approximating rotation are at most `num/den` each.
 
     ``num/den>0`` and ``d ≠ 0``.
 """
-AffTransformation2(::Rotation, d::Direction2, num::RT, den::RT = RT(1))
+AffTransformation2(::Rotation, d::Direction2, num::Real, den::Real = 1)
 
-@cxxdereference AffTransformation2(::Union{Rotation,Ref{Rotation}}, d::Direction2, num::Real, den::Real = 1) =
-    AffTransformation2(ROTATION, d, convert.(FT, (num, den))...)
+@cxxdereference AffTransformation2(R::Union{Rotation,Ref{Rotation}}, d::Direction2, num::Real, den::Real = 1) =
+    AffTransformation2(R, d, convert(FT, num), convert(FT, den))
 
 @doc raw"""
-    AffTransformation2(::Rotation, sineᵨ::RT, cosineᵨ::RT, hw::RT = RT(1))
     AffTransformation2(::Rotation, sineᵨ::Real, cosineᵨ::Real, hw::Real = 1)
 
 Introduces a rotation by the angle `ρ`.
@@ -127,21 +125,20 @@ Introduces a rotation by the angle `ρ`.
 
     ``sine_ρ^2 + cosine_ρ^2 = hw^2``.
 """
-AffTransformation2(::Rotation, sinᵨ::RT, cosᵨ::RT, hw::RT = RT(1))
+AffTransformation2(::Rotation, sinᵨ::Real, cosᵨ::Real, hw::Real = 1)
 
-AffTransformation2(::Union{Rotation,Ref{Rotation}}, sinᵨ::Real, cosᵨ::Real, hw::Real = 1) =
-    AffTransformation2(ROTATION, convert.(FT, (sinᵨ, cosᵨ, hw))...)
+AffTransformation2(R::Union{Rotation,Ref{Rotation}}, sinᵨ::Real, cosᵨ::Real, hw::Real = 1) =
+    AffTransformation2(R, convert(FT, sinᵨ), convert(FT, cosᵨ), convert(FT, hw))
 
 """
-    AffTransformation2(::Scaling, s::RT, hw::RT = RT(1))
     AffTransformation2(::Scaling, s::Real, hw::Real = 1)
 
 Introduces a scaling by a scale factor ``s/hw``.
 """
-AffTransformation2(::Scaling, s::RT, hw::RT = RT(1))
+AffTransformation2(::Scaling, s::Real, hw::Real = 1)
 
-AffTransformation2(::Union{Scaling,Ref{Scaling}}, s::Real, hw::Real = 1) =
-    AffTransformation2(SCALING, convert.(FT, (s, hw))...)
+AffTransformation2(S::Union{Scaling,Ref{Scaling}}, s::Real, hw::Real = 1) =
+    AffTransformation2(S, convert(FT, s), convert(FT, hw))
 
 """
     AffTransformation2(::Reflection, l::Line2)
@@ -151,9 +148,6 @@ Introduces a reflection by a line ``l``.
 AffTransformation2(::Reflection, l::Line2)
 
 @doc raw"""
-    AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT,
-                       m₁₀::RT, m₁₁::RT, m₁₂::RT,
-                                                  hw::RT = RT(1))
     AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real,
                        m₁₀::Real, m₁₁::Real, m₁₂::Real,
                                                         hw::Real = 1)
@@ -176,10 +170,6 @@ contains the scaling and rotation information, the vector ``
 ``
 contains the translational part of the transformation.
 """
-AffTransformation2(m₀₀::RT, m₀₁::RT, m₀₂::RT,
-                   m₁₀::RT, m₁₁::RT, m₁₂::RT,
-                                              hw::RT = RT(1))
-
 AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real,
                    m₁₀::Real, m₁₁::Real, m₁₂::Real,
                                                     hw::Real = 1) =
@@ -188,9 +178,6 @@ AffTransformation2(m₀₀::Real, m₀₁::Real, m₀₂::Real,
                                                     hw))...)
 
 @doc raw"""
-    AffTransformation2(m₀₀::RT, m₀₁::RT,
-                       m₁₀::RT, m₁₁::RT,
-                                         hw::RT = RT(1))
     AffTransformation2(m₀₀::Real, m₀₁::Real,
                        m₁₀::Real, m₁₁::Real,
                                              hw::Real = 1)
@@ -202,10 +189,6 @@ Introduces a general linear transformation ``
 ``,
 i.e. there is no translational part.
 """
-AffTransformation2(m₀₀::RT, m₀₁::RT,
-                   m₁₀::RT, m₁₁::RT,
-                                     hw::RT = RT(1))
-
 AffTransformation2(m₀₀::Real, m₀₁::Real,
                    m₁₀::Real, m₁₁::Real,
                                          hw::Real = 1) =

@@ -46,8 +46,8 @@ of ``top``.
 IsoRectangle2(left::Point2, right::Point2, bottom::Point2, top::Point2)
 
 """
-    IsoRectangle2(min_hx::RT, min_hy::RT, max_hx::RT, max_hy::RT, hw::RT = RT(1))
-    IsoRectangle2(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real = 1)
+    IsoRectangle2(min_hx::Real, min_hy::Real,
+                  max_hx::Real, max_hy::Real, hw::Real = 1)
 
 Introduces an iso-oriented rectangle `r` with diagonal opposite vertices
 `(min_hx/hw, min_hy/hw)` and `(max_hx/hw, max_hy/hw)`.
@@ -56,9 +56,8 @@ Introduces an iso-oriented rectangle `r` with diagonal opposite vertices
 
     `hw` ``≠`` `0`.
 """
-IsoRectangle2(min_hx, min_hy, max_hx, max_hy, hw = 1)
-
-IsoRectangle2(min_hx::Real, min_hy::Real, max_hx::Real, max_hy::Real, hw::Real = 1) =
+IsoRectangle2(min_hx::Real, min_hy::Real,
+              max_hx::Real, max_hy::Real, hw::Real = 1) =
     IsoRectangle2(convert.(FT, (min_hx, min_hy, max_hx, max_hy, hw))...)
 
 """

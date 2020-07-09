@@ -9,12 +9,11 @@ See also: [`Point2`](@ref)
 WeightedPoint2
 
 """
-    WeightedPoint2()
-    WeightedPoint2(ORIGIN::Origin)
+    WeightedPoint2(::Origin = ORIGIN)
 
 Introduces a weighted point with Cartesian coordinates `(0, 0)` and weight `0`.
 """
-WeightedPoint2()
+WeightedPoint2(::Origin = ORIGIN)
 
 """
     WeightedPoint2(p::Point2)
@@ -24,25 +23,22 @@ Introduces a weighted point from point `p` and weight `0`.
 WeightedPoint2(p::Point2)
 
 """
-    WeightedPoint2(p::Point2, w::FT)
     WeightedPoint2(p::Point2, w::Real)
 
 Introduces a weighted point from point `p` and weight `w`.
 """
-WeightedPoint2(p::Point2, w)
+WeightedPoint2(p::Point2, w::Real)
 
 @cxxdereference WeightedPoint2(p::Point2, w::Real) =
     WeightedPoint2(p, convert(FT, w))
 
 """
-    WeightedPoint2(x::FT, y::FT)
     WeightedPoint2(x::Real, y::Real)
 
 Introduces a weighted point with coordinates `x`, `y`, and weight `0`.
 """
-WeightedPoint2(x, y)
-
-WeightedPoint2(x::Real, y::Real) = WeightedPoint2(convert.(FT, (x, y))...)
+WeightedPoint2(x::Real, y::Real) =
+    WeightedPoint2(convert(FT, x), convert(FT, y))
 
 """
     point(p::WeightedPoint2)

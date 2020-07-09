@@ -19,17 +19,15 @@ Cartesian coordinates ``(px, py, pz)`` is on the positive side of `h`, iff
 Plane3
 
 @doc raw"""
-    Plane3(a::RT, b::RT, c::RT, d::RT)
     Plane3(a::Real, b::Real, c::Real, d::Real)
 
 Create a plane `h` defined by the equation ``a\, px + b\, py + c\, pz + d = 0``.
 
 Notice that `h` is degenerate if ``a = b = c = 0``.
 """
-Plane3(a, b, c, d)
-
 Plane3(a::Real, b::Real, c::Real, d::Real) =
-    Plane3(convert.(FT, (a, b, c, d))...)
+    Plane3(convert(FT, a), convert(FT, b),
+           convert(FT, c), convert(FT, d))
 
 """
     Plane3(p::Point3, q::Point3, r::Point3)

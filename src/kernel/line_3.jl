@@ -53,14 +53,13 @@ and the same direction.
 ==(l::Line3, h::Line3)
 
 """
-    point(l::Line3, i::FT)
     point(l::Line3, i::Real)
 
 Returns an arbitrary point on `l`.
 
 It holds `point(l, i) == point(l, j)`, iff `i == j`.
 """
-point(l::Line3, i)
+point(l::Line3, i::Real)
 
 @cxxdereference point(l::Line3, i::Real) = point(l, convert(FT, i))
 

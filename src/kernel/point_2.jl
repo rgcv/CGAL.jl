@@ -16,36 +16,30 @@ julia> p, q = Point2(), Point2(1.0, 2.0)
 Point2
 
 """
-    Point2()
-    Point2(ORIGIN::Origin)
+    Point2(::Origin = ORIGIN)
 
 Introduces a variable `p` with Cartesian coordinates ``(0, 0)``.
 """
-Point2()
+Point2(::Origin = ORIGIN)
 
 """
-    Point2(x::FT, y::FT)
     Point2(x::Real, y::Real)
 
 Introduces a point `p` initialized to ``(x, y)``.
 """
-Point2(x, y)
+Point2(x::Real, y::Real) = Point2(convert(FT, x), convert(FT, y))
 
 @doc raw"""
-    Point2(x::RT, y::RT, hw::RT = RT(1))
     Point2(x::Real, y::Real, hw::Real = 1)
 
 Introduces a point `p` initialized to `(hx/hw,hy/hw)`.
 
 !!! info "Precondition"
 
-    `hw` ``≠`` `RT(0)`
+    `hw` ``≠`` `0`
 """
-Point2(x, y, hw)
-
-Point2(x::Real, y::Real, hw::Real = 1) = isone(hw) ?
-    Point2(convert.(FT, (x, y))...) :
-    Point2(convert.(RT, (x, y, hw))...)
+Point2(x::Real, y::Real, hw::Real) =
+    Point2(convert(RT, x), convert(RT, y), convert(RT, hw))
 
 """
     Point2(wp::WeightedPoint2)

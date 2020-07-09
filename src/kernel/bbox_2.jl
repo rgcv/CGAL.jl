@@ -15,16 +15,14 @@ and with upper right corner point at ``(-∞, -∞)``, ``∞`` being [`Inf`](@re
 Bbox2()
 
 """
-    Bbox2(xmin::Float64, ymin::Float64, xmax::Float64, ymax::Float64)
     Bbox2(xmin::Real, ymin::Real, xmax::Real, ymax::Real)
 
 Introduces a bounding box `b` with lower left corner at `(xmin, ymin)` and with
 upper right corner at `(xmax, ymax)`.
 """
-Bbox2(xmin, ymin, xmax, ymax)
-
 Bbox2(xmin::Real, ymin::Real, xmax::Real, ymax::Real) =
-    Bbox2(convert.(Float64, (xmin, ymin, xmax, ymax))...)
+    Bbox2(convert(Float64, xmin), convert(Float64, ymin),
+          convert(Float64, xmax), convert(Float64, ymax))
 
 """
     dimension(b::Bbox2)

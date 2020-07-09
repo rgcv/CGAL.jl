@@ -48,15 +48,12 @@ Introduces the direction `d` of segment `s`.
 Direction2(s::Segment2)
 
 """
-    Direction2(x::RT, y::RT)
     Direction2(x::Real, y::Real)
 
 Introduces a direction `d` passing through the origin and the point with
 Cartesian coordinates ``(x, y)``.
 """
-Direction2(x, y)
-
-Direction2(x::Real, y::Real) = Direction2(convert.(FT, (x, y))...)
+Direction2(x::Real, y::Real) = Direction2(convert(FT, x), convert(FT, y))
 
 @doc raw"""
     delta(d::Direction2, i::Integer)

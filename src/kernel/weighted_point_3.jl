@@ -9,13 +9,12 @@ See also: [`Point3`](@ref)
 WeightedPoint3
 
 """
-    WeightedPoint3()
-    WeightedPoint3(ORIGIN::Origin)
+    WeightedPoint3(::Origin = ORIGIN)
 
 Introduces a weighted point with Cartesian coordinates `(0, 0, 0)` and weight
 `0`.
 """
-WeightedPoint3()
+WeightedPoint3(::Origin = ORIGIN)
 
 """
     WeightedPoint3(p::Point3)
@@ -25,25 +24,21 @@ Introduces a weighted point from point `p` and weight `0`.
 WeightedPoint3(p::Point3)
 
 """
-    WeightedPoint3(p::Point3, w::FT)
     WeightedPoint3(p::Point3, w::Real)
 
 Introduces a weighted point from point `p` and weight `w`.
 """
-WeightedPoint3(p::Point3, w)
+WeightedPoint3(p::Point3, w::Real)
 
-@cxxdereference WeightedPoint3(p::Point3, w::Real) =
-    WeightedPoint3(p, convert(FT, w))
+WeightedPoint3(p, w::Real) = WeightedPoint3(p, convert(FT, w))
 
 """
-    WeightedPoint3(x::FT, y::FT)
     WeightedPoint3(x::Real, y::Real)
 
 Introduces a weighted point with coordinates `x`, `y`, and weight `0`.
 """
-WeightedPoint3(x, y)
-
-WeightedPoint3(x::Real, y::Real) = WeightedPoint3(convert.(FT, (x, y))...)
+WeightedPoint3(x::Real, y::Real) =
+    WeightedPoint3(convert(FT, x), convert(FT, y))
 
 """
     point(p::WeightedPoint3)

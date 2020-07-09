@@ -66,8 +66,7 @@ export angle,
        do_overlap
 
 """
-    angle(u::Vector2, v::Vector2)
-    angle(u::Vector3, v::Vector3)
+    angle(u::Vector23, v::Vector23)
 
 Returns [`OBTUSE`](@ref), [`RIGHT`](@ref) or [`ACUTE`](@ref) depending on the
 angle formed by the two vectors `u` and `v`.
@@ -75,8 +74,7 @@ angle formed by the two vectors `u` and `v`.
 angle(u::Vector23, v::Vector23)
 
 """
-    angle(p::Point2, q::Point2, r::Point2)
-    angle(p::Point3, q::Point3, r::Point3)
+    angle(p::Point23, q::Point23, r::Point23)
 
 Returns [`OBTUSE`](@ref), [`RIGHT`](@ref) or [`ACUTE`](@ref) depending on the
 angle formed by the three points `p`, `q`, `r` (`q` being the vertex of the
@@ -87,8 +85,7 @@ The returned value is the same as `angle(p - q, r - q)`.
 angle(p::Point23, q::Point23, r::Point23)
 
 """
-    angle(p::Point2, q::Point2, r::Point2, s::Point2)
-    angle(p::Point3, q::Point3, r::Point3, s::Point3)
+    angle(p::Point23, q::Point23, r::Point23, s::Point23)
 
 Returns [`OBTUSE`](@ref), [`RIGHT`](@ref) or [`ACUTE`](@ref) depending on the
 angle formed by the two vectors `pq`, `rs`.
@@ -157,8 +154,7 @@ area(p::Point2, q::Point2, r::Point2)
 
 
 """
-    are_ordered_along_line(p::Point2, q::Point2, r::Point2)
-    are_ordered_along_line(p::Point3, q::Point3, r::Point3)
+    are_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 Returns `true`, iff the three points are collinear and `q` lies between `p` and
 `r`.
@@ -169,8 +165,7 @@ are_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 
 """
-    are_strictly_ordered_along_line(p::Point2, q::Point2, r::Point2)
-    are_strictly_ordered_along_line(p::Point3, q::Point3, r::Point3)
+    are_strictly_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 Returns `true`, iff the three points are collinear and `q` lies strictly between
 `p` and `r`.
@@ -181,72 +176,59 @@ are_strictly_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 
 """
-    barycenter(p₁::Point2, w₁::FT, p₂::Point2)
-    barycenter(p₁::Point2, w₁::Real, p₂::Point2)
-    barycenter(p₁::Point3, w₁::FT, p₂::Point3)
-    barycenter(p₁::Point3, w₁::Real, p₂::Point3)
+    barycenter(p₁::Point23, w₁::Real, p₂::Point23)
 
 Compute the barycenter of the points `p₁` and `p₂` with corresponding weights
 `w₁` and `1-w₁`.
 """
-barycenter(p₁::Point23, w₁, p₂::Point23)
+barycenter(p₁::Point23, w₁::Real, p₂::Point23)
 
 """
-    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT)
-    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real)
-    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT)
-    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real)
+    barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real)
 
 Compute the barycenter of the points `p₁` and `p₂` with corresponding weights
 `w₁` and `w₂`.
 """
-barycenter(p₁::Point23, w₁, p₂::Point23, w₂)
+barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real)
 
 """
-    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2)
-    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2)
-    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3)
-    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3)
+    barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real, p₃::Point23)
 
-Compute the barycenter of the points `p₁`,`p₂` and `p₃` with corresponding weights
-`w₁,w₂` and `1-w₁-w₂`.
+Compute the barycenter of the points `p₁`,`p₂` and `p₃` with corresponding
+weights `w₁,w₂` and `1-w₁-w₂`.
 """
-barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23)
+barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real, p₃::Point23)
 
 """
-    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2, w₃::FT)
-    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2, w₃::Real)
-    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3, w₃::FT)
-    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3, w₃::Real)
+    barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real,
+               p₃::Point23, w₃::Real)
 
-Compute the barycenter of the points `p₁`,`p₂` and `p₃` with corresponding weights
-`w₁,w₂` and `w₃`.
+Compute the barycenter of the points `p₁`,`p₂` and `p₃` with corresponding
+weights `w₁,w₂` and `w₃`.
 """
-barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23, w₃)
+barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real, p₃::Point23, w₃::Real)
 
 """
-    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2, w₃::FT, p₄::Point2)
-    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2, w₃::Real, p₄::Point2)
-    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3, w₃::FT, p₄::Point3)
-    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3, w₃::Real, p₄::Point3)
+    barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real,
+               p₃::Point23, w₃::Real, p₄::Point23)
 
 Compute the barycenter of the points `p₁`,`p₂`, `p₃` and `p₄` with corresponding
 weights `w₁,w₂,w₃` and `1-w₁-w₂-w₃`.
 """
-barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23, w₃, p₄::Point23)
+barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real, p₃::Point23, w₃::Real,
+           p₄::Point23)
 
 """
-    barycenter(p₁::Point2, w₁::FT, p₂::Point2, w₂::FT, p₃::Point2, w₃::FT, p4::Point2, w4::FT)
-    barycenter(p₁::Point2, w₁::Real, p₂::Point2, w₂::Real, p₃::Point2, w₃::Real, p4::Point2, w4::Real)
-    barycenter(p₁::Point3, w₁::FT, p₂::Point3, w₂::FT, p₃::Point3, w₃::FT, p4::Point3, w4::FT)
-    barycenter(p₁::Point3, w₁::Real, p₂::Point3, w₂::Real, p₃::Point3, w₃::Real, p4::Point3, w4::Real)
+    barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real,
+               p₃::Point23, w₃::Real, p4::Point23, w4::Real)
 
 Compute the barycenter of the points `p₁`,`p₂`, `p₃` and `p₄` with corresponding
 weights `w₁,w₂,w₃` and `w₄`.
 """
-barycenter(p₁::Point23, w₁, p₂::Point23, w₂, p₃::Point23, w₃, p₄::Point23, w₄)
+barycenter(p₁::Point23, w₁::Real, p₂::Point23, w₂::Real, p₃::Point23, w₃::Real,
+           p₄::Point23, w₄::Real)
 
-for P ∈ (Point2, Point3)
+for P ∈ (:Point2, :Point3)
     @eval begin
         @cxxdereference barycenter(p₁::$P, w₁::Real, p₂::$P) =
             barycenter(p₁, convert(FT, w₁), p₂)
@@ -320,24 +302,21 @@ bisector(h₁::Plane3, h₂::Plane3)
 
 
 """
-    centroid(p::Point2, q::Point2, r::Point2)
-    centroid(p::Point3, q::Point3, r::Point3)
+    centroid(p::Point23, q::Point23, r::Point23)
 
 Compute the centroid of the points `p`, `q`, and `r`.
 """
 centroid(p::Point23, q::Point23, r::Point23)
 
 """
-    centroid(p::Point2, q::Point2, r::Point2, s::Point2)
-    centroid(p::Point3, q::Point3, r::Point3, s::Point3)
+    centroid(p::Point23, q::Point23, r::Point23, s::Point23)
 
 Compute the centroid of the points `p`, `q`, `r`, and `s`.
 """
 centroid(p::Point23, q::Point23, r::Point23, s::Point23)
 
 """
-    centroid(t::Triangle2)
-    centroid(t::Triangle3)
+    centroid(t::Triangle23)
 
 Compute the centroid of the triangle `t`.
 """
@@ -352,8 +331,7 @@ centroid(t::Tetrahedron3)
 
 
 """
-    circumcenter(p::Point2, q::Point2)
-    circumcenter(p::Point3, q::Point3)
+    circumcenter(p::Point23, q::Point23)
 
 Compute the center of the smallest circle passing through the points `p` and
 `q`.
@@ -363,8 +341,7 @@ Note: this is the same as `midpoint(p, q)` but is provided for homogeneity.
 circumcenter(p::Point23, q::Point23)
 
 """
-    circumcenter(p::Point2, q::Point2, s::Point2)
-    circumcenter(p::Point3, q::Point3, s::Point3)
+    circumcenter(p::Point23, q::Point23, s::Point23)
 
 Compute the center of the circle passing through the points `p`, `q`, and `r`.
 
@@ -375,8 +352,7 @@ Compute the center of the circle passing through the points `p`, `q`, and `r`.
 circumcenter(p::Point23, q::Point23, r::Point23)
 
 """
-    circumcenter(t::Triangle2)
-    circumcenter(t::Triangle3)
+    circumcenter(t::Triangle23)
 
 Compute the center of the circle passing through the vertices of `t`.
 
@@ -395,8 +371,7 @@ circumcenter(t::Tetrahedron3)
 
 
 """
-    collinear_are_ordered_along_line(p::Point2, q::Point2, r::Point2)
-    collinear_are_ordered_along_line(p::Point3, q::Point3, r::Point3)
+    collinear_are_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 Returns `true`, iff `q` lies between `p` and `r`.
 
@@ -408,8 +383,7 @@ collinear_are_ordered_along_line(p::Point23, q::Point23)
 
 
 """
-    collinear_are_strictly_ordered_along_line(p::Point2, q::Point2, r::Point2)
-    collinear_are_strictly_ordered_along_line(p::Point3, q::Point3, r::Point3)
+    collinear_are_strictly_ordered_along_line(p::Point23, q::Point23, r::Point23)
 
 Returns `true`, iff `q` lies strictly between `p` and `r`.
 
@@ -421,8 +395,7 @@ collinear_are_strictly_ordered_along_line(p::Point23, q::Point23)
 
 
 """
-    collinear(p::Point2, q::Point2, r::Point2)
-    collinear(p::Point3, q::Point3, r::Point3)
+    collinear(p::Point23, q::Point23, r::Point23)
 
 Returns `true`, iff `p`, `q`, and `r` are collinear.
 """
@@ -430,7 +403,6 @@ collinear(p::Point23, q::Point23, r::Point23)
 
 
 @doc raw"""
-    compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, cosine::FT)
     compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, cosine::Real)
 
 Compares the dihedral angles ``θ_1`` and ``θ_2``, where ``θ_1`` is the dihedral
@@ -441,7 +413,7 @@ b₁)`, and ``θ_2`` is the angle, in ``[0, π]``, such that ``cos(θ_2) = cosin
 
     `a₁`, `b₁`, `c₁` are not collinear, and `a₁`, `b₁`, `d₁` are not collinear.
 """
-compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, cosine)
+compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, cosine::Real)
 
 @cxxdereference compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3, cosine::Real) =
     compare_dihedral_angle(a₁, b₁, c₁, d₁, convert(FT, cosine))
@@ -466,7 +438,6 @@ compare_dihedral_angle(a₁::Point3, b₁::Point3, c₁::Point3, d₁::Point3,
 
 
 @doc raw"""
-    compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, cosine::FT)
     compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, cosine::Real)
 
 Compares the dihedral angles ``θ_1`` and ``θ_2``, where ``θ_1`` is the dihedral
@@ -478,7 +449,7 @@ cosine`.
 
     `u₁` and `v₁` are not collinear, and `u₁` and `w₁` are not collinear.
 """
-compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, cosine)
+compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, cosine::Real)
 
 @cxxdereference compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3, cosine) =
     compare_dihedral_angle(u₁, v₁, w₁, convert(FT, cosine))
@@ -502,10 +473,9 @@ compare_dihedral_angle(u₁::Vector3, v₁::Vector3, w₁::Vector3,
 
 
 """
-    compare_distance_to_point(p::Point2, q::Point2, r::Point2)
-    compare_distance_to_point(p::Point3, q::Point3, r::Point3)
+    compare_distance_to_point(p::Point23, q::Point23, r::Point23)
 
-Compares the distances of points `q` and `r` to Point23 `p`.
+Compares the distances of points `q` and `r` to `p`.
 
 Returns [`SMALLER`](@ref), iff `q` is closer to `p` than `r`, [`LARGER`](@ref)
 iff `r` is closer to `p` than `q`, and [`EQUAL`](@ref) otherwise.
@@ -654,10 +624,7 @@ compare_slope(p::Point3, q::Point3, r::Point3, s::Point3)
 
 
 """
-    compare_squared_distance(p::Point2, q::Point2, d²::FT)
-    compare_squared_distance(p::Point2, q::Point2, d²::Real)
-    compare_squared_distance(p::Point3, q::Point3, d²::FT)
-    compare_squared_distance(p::Point3, q::Point3, d²::Real)
+    compare_squared_distance(p::Point23, q::Point23, d²::Real)
 
 Compares the squared distance of points `p` and `q` to `d²`.
 
@@ -673,48 +640,42 @@ See also: [`compare_squared_distance()`](@ref),
 """
 compare_squared_distance(p::Point23, q::Point23, d²::Real)
 
-for P ∈ (Point2, Point3)
-    @eval @cxxdereference compare_squared_distance(p::$P, q::$P, d²::Real) =
-        compare_squared_distance(p, q, convert(FT, d²))
-end
+compare_squared_distance(p, q, d²::Real) =
+    compare_squared_distance(p, q, convert(FT, d²))
 
 
 """
-    compare_squared_radius(p::Point3, r²::FT)
     compare_squared_radius(p::Point3, r²::Real)
 
 Compares the squared radius of the sphere of radius 0 center at `p` to `r²`.
 
 This returns the opposite sign of `r²`.
 """
-compare_squared_radius(p::Point3, r²)
+compare_squared_radius(p::Point3, r²::Real)
 
 """
-    compare_squared_radius(p::Point3, q::Point3, r²::FT)
     compare_squared_radius(p::Point3, q::Point3, r²::Real)
 
 Compares the squared radius of the sphere defined by the points `p` and `q` to
 `r²`.
 """
-compare_squared_radius(p::Point3, q::Point3, r²)
+compare_squared_radius(p::Point3, q::Point3, r²::Real)
 
 """
-    compare_squared_radius(p::Point3, q::Point3, r::Point3, r²::FT)
     compare_squared_radius(p::Point3, q::Point3, r::Point3, r²::Real)
 
 Compares the squared radius of the sphere defined by the points `p`, `q`, and
 `r` to `r²`.
 """
-compare_squared_radius(p::Point3, q::Point3, r::Point3, r²)
+compare_squared_radius(p::Point3, q::Point3, r::Point3, r²::Real)
 
 """
-    compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²::FT)
     compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²::Real)
 
 Compares the squared radius of the sphere defined by the points `p`, `q`, `r`,
 and `s` to `r²`.
 """
-compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²)
+compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²::Real)
 
 @cxxdereference compare_squared_radius(p::Point3, r²::Real) =
     compare_squared_radius(p, convert(FT, r²))
@@ -727,8 +688,7 @@ compare_squared_radius(p::Point3, q::Point3, r::Point3, s::Point3, r²)
 
 
 """
-    compare_x(p::Point2, q::Point2)
-    compare_x(p::Point3, q::Point3)
+    compare_x(p::Point23, q::Point23)
 
 Compares the ``x``-coordinates of `p` and `q`.
 
@@ -776,8 +736,7 @@ compare_x(l₁::Line2, l₂::Line2, h₁::Line2, h₂::Line2)
 
 
 """
-    compare_xy(p::Point2, q::Point2)
-    compare_xy(p::Point3, q::Point3)
+    compare_xy(p::Point23, q::Point23)
 
 Compares the Cartesian coordinates of points `p` and `q` lexicographically in
 ``xy`` order: first ``x``-coordinates are compared, if they are equal,
@@ -969,8 +928,7 @@ compare_y_at_x(p::Point2, s₁::Segment2, s₂::Segment2)
 
 
 """
-    compare_y(p::Point2, q::Point2)
-    compare_y(p::Point3, q::Point3)
+    compare_y(p::Point23, q::Point23)
 
 Compares the ``y``-coordinates of `p` and `q`.
 
@@ -1175,8 +1133,7 @@ do_intersect(obj₁, obj₂)
 
 
 """
-    has_larger_distance_to_point(p::Point2, q::Point2, r::Point2)
-    has_larger_distance_to_point(p::Point3, q::Point3, r::Point3)
+    has_larger_distance_to_point(p::Point23, q::Point23, r::Point23)
 
 Returns `true` iff the distance between `q` and `p` is larger than the distance
 between `r` and `p`.
@@ -1271,8 +1228,7 @@ has_larger_signed_distance_to_plane(p::Point3, q::Point3, r::Point3, s::Point3, 
 
 
 """
-    has_smaller_distance_to_point(p::Point2, q::Point2, r::Point2)
-    has_smaller_distance_to_point(p::Point3, q::Point3, r::Point3)
+    has_smaller_distance_to_point(p::Point23, q::Point23, r::Point23)
 
 Returns `true` iff the distance between `q` and `p` is smaller than the distance
 between `r` and `p`.
@@ -1408,7 +1364,7 @@ The following tables give the possible values for `Type1` and `Type2`.
 
 **3D Intersections**
 
-|          Type1      |          Type2      |                                      Return Type: T...                                       |
+|        Type1        |        Type2        |                                      Return Type: T...                                       |
 |:--------------------|:--------------------|:---------------------------------------------------------------------------------------------|
 | [`Line3`](@ref)     | [`Line3`](@ref)     | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
 | [`Line3`](@ref)     | [`Plane3`](@ref)    | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
@@ -1450,8 +1406,7 @@ intersection(obj₁, obj₂)
 
 
 """
-    l_infinity_distance(p::Point2, q::Point2)
-    l_infinity_distance(p::Point3, q::Point3)
+    l_infinity_distance(p::Point23, q::Point23)
 
 Returns the distance between `p` and `q` in the L-infinity metric.
 """
@@ -1569,8 +1524,7 @@ max_vertex(ic::IsoCuboid3)
 
 
 """
-    midpoint(p::Point2, q::Point2)
-    midpoint(p::Point3, q::Point3)
+    midpoint(p::Point23, q::Point23)
 
 Computes the midpoint of the segment `pq`.
 """
@@ -1704,26 +1658,19 @@ radical_plane(s₁::Sphere3, s₂::Sphere3)
 
 
 """
-    rational_rotation_approximation(dirx::RT, diry::RT,
-                                    sin_num::Ref{RT},
-                                    cos_num::Ref{RT},
-                                    denom::Ref{RT},
-                                    eps_num::RT, eps_den::RT)
-    rational_rotation_approximation(dirx::Real, diry::Real,
-                                    sin_num::Ref{Real},
-                                    cos_num::Ref{Real},
-                                    denom::Ref{Real},
-                                    eps_num::Real, eps_den::Real)
+    rational_rotation_approximation(dirx::Real, diry::Real
+                                   ;num_eps::Real = eps(Float64),
+                                    den_eps::Real = 1)
 
-Computes integers `sin_num`, `cos_num` and `denom`, such that `sin_num`/`denom`
+Returns integers `sin_num`, `cos_num` and `denom`, such that `sin_num`/`denom`
 approximates the sine of direction `(dirx,diry)`.
 
 The difference between the sine and the approximating rational is bounded by
-`eps_num`/`eps_den`.
+`num_eps`/`den_eps`.
 
 !!! info "Precondition"
 
-    `eps_num` ``≠ 0``.
+    `num_eps` ``≠ 0``.
 
 **Implementation**
 
@@ -1734,27 +1681,15 @@ the approximation.
 
 See also: [`AffTransformation2`](@ref)
 """
-rational_rotation_approximation(dirx, diry,
-                                sin_num::Ref,
-                                cos_num::Ref,
-                                denom::Ref,
-                                eps_num, eps_den)
+rational_rotation_approximation(dirx::Real, diry::Real
+                               ;num_eps::Real=eps(Float64), den_eps::Real=1) =
+    let (sin_num, cos_num, denom) = Ref{RT}.((0, 0, 0)),
+        res = rational_rotation_approximation(
+                  convert(RT, dirx), convert(RT, diry),
+                  sin_num, cos_num, denom,
+                  convert(RT, num_eps), convert(RT, den_eps))
 
-rational_rotation_approximation(dirx::Real, diry::Real,
-                                sin_num::Ref{U},
-                                cos_num::Ref{V},
-                                denom::Ref{W},
-                                eps_num::Real, eps_den::Real) where {U<:Real,V<:Real,W<:Real} =
-    let (rsin_num, rcos_num, rdenom) = Ref.(RT.((0,0,0))),
-        res = rational_rotation_approximation(convert.(RT, (dirx, diry))...,
-                                              rsin_num, rcos_num, rdenom,
-                                              convert.(RT, (eps_num, eps_den))...)
-
-        sin_num[] = convert(U, rsin_num[])
-        cos_num[] = convert(V, rcos_num[])
-        denom[]   = convert(W, rdenom[])
-
-        res
+        sin_num[], cos_num[], denom[]
     end
 
 
@@ -1769,8 +1704,7 @@ right_turn(p::Point2, q::Point2, r::Point2)
 
 
 """
-    scalar_product(u::Vector2, v::Vector2)
-    scalar_product(u::Vector3, v::Vector3)
+    scalar_product(u::Vector23, v::Vector23)
 
 Returns the scalar product of `u` and `v`.
 """
@@ -1947,8 +1881,7 @@ and `r`.
 squared_radius(p::Point2, q::Point2, r::Point2)
 
 """
-    squared_radius(p::Point2, q::Point2)
-    squared_radius(p::Point3, q::Point3)
+    squared_radius(p::Point23, q::Point23)
 
 Compute the squared radius of the smallest circle passing through `p`, and `q`,
 i.e. one fourth of the squared distance between `p` and `q`.
@@ -1956,8 +1889,7 @@ i.e. one fourth of the squared distance between `p` and `q`.
 squared_radius(p::Point23, q::Point23)
 
 """
-    squared_radius(p::Point2)
-    squared_radius(p::Point3)
+    squared_radius(p::Point23)
 
 Computes the squared radius of the smallest circle passing through `p`, i.e.
 ``0``.
@@ -2007,8 +1939,7 @@ volume(p₀::Point3, p₁::Point3, p₂::Point3, p₃::Point3)
 
 
 """
-    x_equal(p::Point2, q::Point2)
-    x_equal(p::Point3, q::Point3)
+    x_equal(p::Point23, q::Point23)
 
 Returns `true`, iff `p` and `q` have the same x-coordinate.
 
@@ -2018,8 +1949,7 @@ x_equal(p::Point23, q::Point23)
 
 
 """
-    y_equal(p::Point2, q::Point2)
-    y_equal(p::Point3, q::Point3)
+    y_equal(p::Point23, q::Point23)
 
 Returns `true`, iff `p` and `q` have the same y-coordinate.
 
@@ -2039,8 +1969,7 @@ z_equal(p::Point3, q::Point3)
 
 
 """
-    +(p::Point2, v::Vector2)
-    +(p::Point3, v::Vector3)
+    +(p::Point23, v::Vector23)
 
 Returns the point obtained by translating `p` by the vector `v`.
 """
@@ -2048,8 +1977,7 @@ Returns the point obtained by translating `p` by the vector `v`.
 
 
 """
-    -(p::Point2, v::Vector2)
-    -(p::Point3, v::Vector3)
+    -(p::Point23, v::Vector23)
 
 Returns the point obtained by translating `p` by the vector -`v`.
 """
@@ -2057,32 +1985,29 @@ Returns the point obtained by translating `p` by the vector -`v`.
 
 
 """
-    *(v::Vector2, s::RT)
-    *(v::Vector2, s::Real)
-    *(v::Vector3, s::RT)
-    *(v::Vector3, s::Real)
+    *(v::Vector23, s::Real)
 
 Multiplication with a scalar from the right.
 """
-*(v::Vector23, s)
+*(v::Vector23, s::Real)
 
 """
-    *(s::RT, v::Vector2)
-    *(s::Real, v::Vector2)
+    *(s::Real, v::Vector23)
 
 Multiplication with a scalar from the left.
 """
-*(s, v::Vector23)
+*(s::Real, v::Vector23)
 
-for V ∈ (Vector2, Vector3)
-    @eval @cxxdereference Base.:*(v::$V, s::Real) = v * convert(RT, s)
-    @eval @cxxdereference Base.:*(s::Real, v::$V) = convert(RT, s) * v
+for V ∈ (:Vector2, :Vector3)
+    @eval begin
+        @cxxdereference Base.:*(v::$V, s::Real) = v * convert(RT, s)
+        @cxxdereference Base.:*(s::Real, v::$V) = convert(RT, s) * v
+    end
 end
 
 
 """
-    do_overlap(bb₁::Bbox2, bb₂::Bbox2)
-    do_overlap(bb₁::Bbox3, bb₂::Bbox3)
+    do_overlap(bb₁::Bbox23, bb₂::Bbox23)
 
 Returns `true` iff `bb₁` and `bb₂` overlap, i.e., iff their intersection is
 non-empty.

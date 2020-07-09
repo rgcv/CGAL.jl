@@ -36,7 +36,8 @@ Note that the object is brought in the canonical form.
 IsoCuboid3(p::Point3, q::Point3, ::Integer)
 
 @doc raw"""
-    IsoCuboid3(left::Point3, right::Point3, bottom::Point3, top::Point3, far::Point3, close::Point3)
+    IsoCuboid3(left::Point3, right::Point3, bottom::Point3, top::Point3,
+               far::Point3, close::Point3)
 
 Introduces an iso-oriented cuboid `c` whose minimal ``x`` coordinate is the
 one of `left`, the maximal ``x`` coordinate is the one of `right`, the minimal
@@ -44,11 +45,12 @@ one of `left`, the maximal ``x`` coordinate is the one of `right`, the minimal
 of ``top``, the minimal ``z`` coordinate is the one of ``far``, the maximal
 ``z`` coordinate is the one of ``close``.
 """
-IsoCuboid3(left::Point3, right::Point3, bottom::Point3, top::Point3, far::Point3, close::Point3)
+IsoCuboid3(left::Point3, right::Point3, bottom::Point3, top::Point3,
+           far::Point3, close::Point3)
 
 """
-    IsoCuboid3(min_hx::RT, min_hy::RT, min_hz::RT, max_hx::RT, max_hy::RT, max_hz::RT, hw::RT = RT(1))
-    IsoCuboid3(min_hx::Real, min_hy::Real, min_hz::Real, max_hx::Real, max_hy::Real, max_hz::Real, hw::Real = 1)
+    IsoCuboid3(min_hx::Real, min_hy::Real, min_hz::Real,
+               max_hx::Real, max_hy::Real, max_hz::Real, hw::Real = 1)
 
 Introduces an iso-oriented cuboid `c` with diagonal opposite vertices
 `(min_hx/hw, min_hy/hw, min_hz/hw)` and `(max_hx/hw, max_hy/hw, max_hz/hw)`.
@@ -57,10 +59,10 @@ Introduces an iso-oriented cuboid `c` with diagonal opposite vertices
 
     `hw` ``≠`` `0`.
 """
-IsoCuboid3(min_hx, min_hy, min_hz, max_hx, max_hy, max_hz, hw = 1)
-
-IsoCuboid3(min_hx::Real, min_hy::Real, min_hz::Real, max_hx::Real, max_hy::Real, max_hz::Real, hw::Real = 1) =
-    IsoCuboid3(convert.(FT, (min_hx, min_hy, min_hz, max_hx, max_hy, max_hz, hw))...)
+IsoCuboid3(min_hx::Real, min_hy::Real, min_hz::Real,
+           max_hx::Real, max_hy::Real, max_hz::Real, hw::Real = 1) =
+    IsoCuboid3(convert.(FT, (min_hx, min_hy, min_hz,
+                             max_hx, max_hy, max_hz, hw))...)
 
 """
     IsoCuboid3(bbox::Bbox3)

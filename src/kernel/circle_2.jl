@@ -13,7 +13,6 @@ can be degenerated, i.e. the squared radius may be zero.
 Circle2
 
 @doc raw"""
-    Circle2(center::Point2, squared_radius::FT, ori::Orientation = COUNTERCLOCKWISE)
     Circle2(center::Point2, squared_radius::Real, ori::Orientation = COUNTERCLOCKWISE)
 
 Introduces a variable `c` of type [`Circle2`](@ref).
@@ -25,7 +24,7 @@ It is initialized to the circle with center `center`, squared radius
 
     `ori` ``≠`` `COLLINEAR`, and further, `squared_radius` ``≥ 0``.
 """
-Circle2(center::Point2, squared_radius, ori::Orientation = COUNTERCLOCKWISE)
+Circle2(center::Point2, squared_radius::Real, ori::Orientation = COUNTERCLOCKWISE)
 
 @cxxdereference Circle2(c::Point2, r²::Real, ori::Union{Orientation,Ref{Orientation}} = COUNTERCLOCKWISE) =
     Circle2(c, convert(FT, r²), ori)

@@ -52,7 +52,6 @@ Returns the source of `r`.
 source(r::Ray2)
 
 @doc raw"""
-    point(r::Ray2, i::FT)
     point(r::Ray2, i::Real)
 
 Returns a point on `r`.
@@ -61,7 +60,7 @@ Returns a point on `r`.
 
     ``i ≥ 0``.
 """
-point(r::Ray2, i)
+point(r::Ray2, i::Real)
 
 @cxxdereference point(r::Ray2, i::Real) = point(r, convert(FT, i))
 

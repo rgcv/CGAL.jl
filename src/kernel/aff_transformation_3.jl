@@ -45,21 +45,16 @@ Introduces a translation by vector `v`.
 AffTransformation3(::Translation, v::Vector3)
 
 """
-    AffTransformation3(::Scaling, s::RT, hw::RT = RT(1))
     AffTransformation3(::Scaling, s::Real, hw::Real = 1)
 
 Introduces a scaling by a scale factor ``s/hw``.
 """
-AffTransformation3(::Scaling, s::RT, hw::RT = RT(1))
+AffTransformation3(S::Scaling, s::Real, hw::Real = 1)
 
-AffTransformation3(::Union{Scaling,Ref{Scaling}}, s::Real, hw::Real = 1) =
-    AffTransformation3(SCALING, convert.(FT, (s, hw))...)
+AffTransformation3(S, s::Real, hw::Real = 1) =
+    AffTransformation3(S, convert(FT, s), convert(FT, hw))
 
 @doc raw"""
-    AffTransformation3(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₀₃::RT,
-                       m₁₀::RT, m₁₁::RT, m₁₂::RT, m₁₃::RT,
-                       m₂₀::RT, m₂₁::RT, m₂₂::RT, m₂₃::RT,
-                                                           hw::RT = RT(1))
     AffTransformation3(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₀₃::Real,
                        m₁₀::Real, m₁₁::Real, m₁₂::Real, m₁₃::Real,
                        m₂₀::Real, m₂₁::Real, m₂₂::Real, m₂₃::Real,
@@ -83,11 +78,6 @@ defines the scaling and rotation part of the transformation, while the vector ``
 ``
 contains the translational part.
 """
-AffTransformation3(m₀₀::RT, m₀₁::RT, m₀₂::RT, m₀₃::RT,
-                   m₁₀::RT, m₁₁::RT, m₁₂::RT, m₁₃::RT,
-                   m₂₀::RT, m₂₁::RT, m₂₂::RT, m₂₃::RT,
-                                                       hw::RT = RT(1))
-
 AffTransformation3(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₀₃::Real,
                    m₁₀::Real, m₁₁::Real, m₁₂::Real, m₁₃::Real,
                    m₂₀::Real, m₂₁::Real, m₂₂::Real, m₂₃::Real,
@@ -98,10 +88,6 @@ AffTransformation3(m₀₀::Real, m₀₁::Real, m₀₂::Real, m₀₃::Real,
                                                          hw))...)
 
 @doc raw"""
-    AffTransformation3(m₀₀::RT, m₀₁::RT, m₀₂::RT,
-                       m₁₀::RT, m₁₁::RT, m₁₂::RT,
-                       m₂₀::RT, m₂₁::RT, m₂₂::RT,
-                                                  hw::RT = RT(1))
     AffTransformation3(m₀₀::Real, m₀₁::Real, m₀₂::Real,
                        m₁₀::Real, m₁₁::Real, m₁₂::Real,
                        m₂₀::Real, m₂₁::Real, m₂₂::Real,
@@ -114,11 +100,6 @@ Introduces a general linear transformation ``
 ``,
 i.e. an affine transformation without translational part.
 """
-AffTransformation3(m₀₀::RT, m₀₁::RT, m₀₂::RT,
-                   m₁₀::RT, m₁₁::RT, m₁₂::RT,
-                   m₂₀::RT, m₂₁::RT, m₂₂::RT,
-                                              hw::RT = RT(1))
-
 AffTransformation3(m₀₀::Real, m₀₁::Real, m₀₂::Real,
                    m₁₀::Real, m₁₁::Real, m₁₂::Real,
                    m₂₀::Real, m₂₁::Real, m₂₂::Real,
@@ -135,7 +116,8 @@ The transformations classes provide a [`transform`](@ref) function has methods
 for points, vectors, directions, and planes. The same functionality is available
 through the invocation of [`AffTransformation3`](@ref) instances.
 """
-transform(t::AffTransformation3, p::Union{Point3,Vector3,Direction3,Plane3})
+transform(t::AffTransformation3, p::Union{Point3,Vector3,Direction3,Plane3}),
+(::AffTransformation3)(x::Union{Point3,Vector3,Direction3,Line3})
 
 """
     *(t::AffTransformation3, s::AffTransformation3)
