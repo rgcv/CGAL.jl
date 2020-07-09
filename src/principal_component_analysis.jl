@@ -20,7 +20,7 @@ barycenter(wps::AbstractVector{WeightedPoint23})
 
 barycenter(ps::AbstractVector) =
     length(ps) > 1 ?
-        barycenter(CxxRef.(ps)) :
+        barycenter(collect(CxxRef{_pointfor(ps[1])}, CxxRef.(ps))) :
         error("length(ps) ≯ 1")
 
 for D ∈ 2:3
@@ -30,17 +30,16 @@ for D ∈ 2:3
         @cxxdereference barycenter(wp₁::$WP, wp₂::$WP,
                                    wps::reference_type_union($WP)...) =
             barycenter(CxxRef.([wp₁, wp₂, wps...]))
-        @cxxdereference barycenter(p₁::$P, p₂::$P,
-                                   ps::reference_type_union($P)...) =
-            barycenter(CxxRef.($WP.([p₁, p₂, ps...], 1)))
     end
 end
 
 barycenter(ps::AbstractVector, ws::AbstractVector) =
     length(ws) > 1 && length(ps) > 1 ?
-        let f = iscxxtype(FT) ? CxxRef : identity
-            barycenter(CxxRef.(ps), f.(convert.(FT, ws)))
-        end : barycenter(ps)
+        barycenter(collect(CxxRef{_pointfor(ps[1])}, CxxRef.(ps)),
+                   iscxxtype(FT) ?
+                       CxxRef.(collect(FT, convert.(FT, ws))) :
+                       collect(FT, convert.(FT, ws))) :
+        barycenter(ps)
 
 """
     bounding_box(ps::AbstractVector{Point23})
