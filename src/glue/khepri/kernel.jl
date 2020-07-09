@@ -1,22 +1,3 @@
-for T ∈ (:AffTransformation
-       , :Bbox
-       , :Circle
-       , :Direction
-       , :IsoRectangle2, :IsoCuboid3
-       , :Line
-       , :Plane3
-       , :Point
-       , :Ray
-       , :Segment
-       , :Sphere3
-       , :Tetrahedron3
-       , :Triangle
-       , :Vector
-       , :WeightedPoint), D ∈ (2, 3)
-    AT = any(endswith.(string(T), string.((2,3)))) ? T : Symbol(T, D)
-    @eval _pointfor(::Type{$AT}) = $(Symbol(:Point, D))
-end
-
 # points
 convert(::Type{Point2}, p::Loc) =
     let q = in_world(p)
