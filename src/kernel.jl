@@ -149,22 +149,21 @@ export # Operations
 
 _pointfor(x) = _pointfor(typeof(x))
 _pointfor(::Type) = Any
-for T ∈ (:AffTransformation
-       , :Bbox
-       , :Circle
-       , :Direction
+for T ∈ (:AffTransformation2, :AffTransformation3
+       , :Bbox2, :Bbox3
+       , :Circle2, :Circle3
+       , :Direction2, :Direction3
        , :IsoRectangle2, :IsoCuboid3
-       , :Line
+       , :Line2, :Line3
        , :Plane3
-       , :Point
-       , :Ray
-       , :Segment
+       , :Point2, :Point3
+       , :Ray2, :Ray3
+       , :Segment2, :Segment3
        , :Sphere3
        , :Tetrahedron3
-       , :Triangle
-       , :Vector
-       , :WeightedPoint), D ∈ (2, 3)
-    PT = any(endswith.(string(T), string.((2,3)))) ? T : Symbol(T, D)
+       , :Triangle2, :Triangle3
+       , :Vector2, :Vector3
+       , :WeightedPoint2, :WeightedPoint3)
     @eval _pointfor(::Type{<:reference_type_union($PT)}) = $(Symbol(:Point, D))
 end
 
