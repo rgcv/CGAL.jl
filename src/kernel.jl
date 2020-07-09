@@ -164,7 +164,8 @@ for T ∈ (:AffTransformation2, :AffTransformation3
        , :Triangle2, :Triangle3
        , :Vector2, :Vector3
        , :WeightedPoint2, :WeightedPoint3)
-    @eval _pointfor(::Type{<:reference_type_union($PT)}) = $(Symbol(:Point, D))
+    D = Symbol(last(string(T)))
+    @eval _pointfor(::Type{<:reference_type_union($T)}) = $(Symbol(:Point, D))
 end
 
 include("kernel/aff_transformation_2.jl")
