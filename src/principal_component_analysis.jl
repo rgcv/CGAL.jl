@@ -98,19 +98,27 @@ For three dimensional inputs, `T` must be either [`Point3`](@ref),
 
     `!isempty(xs)`
 """
-centroid(xs::AbstractVector{<:_centroid_T})
+centroid(xs::AbstractVector{_centroid_T})
 
 centroid(xs::AbstractVector) =
     !isempty(xs) ?
         centroid(CxxRef.(xs)) :
         error("isempty(xs)")
-for T ∈ (Point2, Point3
-       , Segment2, Segment3
-       , Triangle2, Triangle3
-       , IsoRectangle2, IsoCuboid3
-       , Circle2, Sphere3
-       , Tetrahedron3)
+
+for T ∈ (:Segment2, :Segment3
+       , :IsoRectangle2, :IsoCuboid3
+       , :Circle2, :Sphere3)
     @eval @cxxdereference centroid(x::$T,
                                    xs::reference_type_union($T)...) =
         centroid(CxxRef.([x, xs...]))
+end
+for T ∈ (:Triangle2, :Triangle3, :Tetrahedron3)
+    @eval @cxxdereference centroid(x::$T, y::$T,
+                                   xs::reference_type_union($T)...) =
+        centroid(CxxRef.([x, y, xs...]))
+end
+for P ∈ (:Point2, :Point3)
+    @eval @cxxdereference centroid(a::$P, b::$P, c::$P, d::$P, e::$P,
+                                   xs::reference_type_union($P)...) =
+        centroid(CxxRef.([a, b, c, d, e, xs...]))
 end
