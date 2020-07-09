@@ -13,7 +13,7 @@ export OrientedSide
        ON_ORIENTED_BOUNDARY,
        ON_POSITIVE_SIDE
 
-export ComparisonResult
+export ComparisonResult,
        SMALLER,
        EQUAL,
        LARGER
