@@ -1683,6 +1683,7 @@ See also: [`AffTransformation2`](@ref)
 """
 rational_rotation_approximation(dirx::Real, diry::Real
                                ;num_eps::Real=eps(Float64), den_eps::Real=1) =
+    iszero(num_eps) ? error("num_eps = 0") :
     let (sin_num, cos_num, denom) = Ref{RT}.((0, 0, 0)),
         res = rational_rotation_approximation(
                   convert(RT, dirx), convert(RT, diry),
