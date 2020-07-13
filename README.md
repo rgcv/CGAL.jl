@@ -1,6 +1,6 @@
 # CGAL.jl - [CGAL][1] meets [Julia](https://julialang.org)
 
-[![Build Status](https://github.com/rgcv/Euclide.jl/workflows/CI/badge.svg)](https://github.com/rgcv/Euclide.jl/actions)
+[![Build Status](https://github.com/rgcv/CGAL.jl/workflows/CI/badge.svg)](https://github.com/rgcv/CGAL.jl/actions)
 
 A package exposing a series of types, constructs, functions, predicates, and
 algorithms from [CGAL][1] (Computational Geometry Algorithms Library), a
