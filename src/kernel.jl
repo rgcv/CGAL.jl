@@ -38,7 +38,6 @@ else
     end
     Base.:+(x::Ref{FT}) = +x[]
     Base.:-(x::Ref{FT}) = -x[]
-    Base.float(x::Ref{FT}) = float(x[])
 end
 
 Base.convert(::Type{FT}, x::Ref{FT}) = x[]
