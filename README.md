@@ -107,7 +107,7 @@ println(" midpoint(p,q) = $(midpoint(p, q))")
 ## Installation
 
 Until it some day makes its way to the official Julia package registry, you can
-add it directly from this repo right here! Drop into a REPL and type de
+add it directly from this repo right here! Drop into a REPL and type the
 following:
 
 ```julia
