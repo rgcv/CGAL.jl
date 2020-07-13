@@ -1153,7 +1153,7 @@ do_intersect(obj₁, obj₂)
 
 Checks whether `obj₁`, `obj₂`, and `obj₃` intersect.
 
-The types `Type1`, `Type2` and `Type3` and be respectively of types
+The types `Type1`, `Type2` and `Type3` can be respectively of types
 
 - [`Sphere3`](@ref), [`Sphere3`](@ref), and [`Plane3`](@ref)
 - [`Plane3`](@ref), [`Sphere3`](@ref), and [`Sphere3`](@ref)
