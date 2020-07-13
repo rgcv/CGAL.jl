@@ -52,6 +52,7 @@ Base.isnan(x::Ref{FT}) = isnan(x[])
 export AffTransformation2, AffTransformation3,
        Bbox2, Bbox3,
        Circle2, Circle3,
+       CircularArc2, CircularArc3,
        Direction2, Direction3,
        IsoRectangle2, IsoCuboid3,
        Line2, Line3,
@@ -68,6 +69,7 @@ export AffTransformation2, AffTransformation3,
 const AffTransformation23 = Union{AffTransformation2,AffTransformation3}
 const Bbox23 = Union{Bbox2,Bbox3}
 const Circle23 = Union{Circle2,Circle3}
+const CircularArc23 = Union{CircularArc2,CircularArc3}
 const Direction23 = Union{Direction2,Direction3}
 const IsoBox23 = Union{IsoRectangle2,IsoCuboid3}
 const Line23 = Union{Line2,Line3}
@@ -120,6 +122,7 @@ export # Operations
        is_degenerate,
        is_even, is_odd,
        is_horizontal, is_vertical,
+       is_x_monotone, is_y_monotone,
        orientation,
        oriented_side,
        orthogonal_direction,
@@ -130,11 +133,17 @@ export # Operations
        center,
        dimension,
        homogeneous,
-       hm, hw, hx, hy, hz,
-       m, x, y, z,
+       hm,
+       hw,
+       hx, hy, hz,
+       left,
+       m,
        orientation,
+       right,
        squared_radius,
+       supporting_circle,
        weight,
+       x, y, z,
        # Miscellaneous
        area,
        bbox,
@@ -152,6 +161,7 @@ _pointfor(::Type) = Any
 for T ∈ (:AffTransformation2, :AffTransformation3
        , :Bbox2, :Bbox3
        , :Circle2, :Circle3
+       , :CircularArc2, :CircularArc3
        , :Direction2, :Direction3
        , :IsoRectangle2, :IsoCuboid3
        , :Line2, :Line3
@@ -171,6 +181,7 @@ end
 include("kernel/aff_transformation_2.jl")
 include("kernel/bbox_2.jl")
 include("kernel/circle_2.jl")
+include("kernel/circular_arc_2.jl")
 include("kernel/direction_2.jl")
 include("kernel/iso_rectangle_2.jl")
 include("kernel/line_2.jl")
@@ -184,6 +195,7 @@ include("kernel/weighted_point_2.jl")
 include("kernel/aff_transformation_3.jl")
 include("kernel/bbox_3.jl")
 include("kernel/circle_3.jl")
+include("kernel/circular_arc_3.jl")
 include("kernel/direction_3.jl")
 include("kernel/iso_cuboid_3.jl")
 include("kernel/line_3.jl")

@@ -33,7 +33,6 @@ export angle,
        has_smaller_signed_distance_to_line,
        has_smaller_signed_distance_to_plane,
        intersection,
-       # TODO: more 3D + other circular intersections
        l_infinity_distance,
        left_turn,
        lexicographically_xy_larger, lexicographically_xy_larger_or_equal,
@@ -1096,11 +1095,11 @@ determinant(u::Vector3, v::Vector3, w::Vector3)
 
 Checks whether `obj₁` and `obj₂` intersect.
 
-Two objects `obj₁` and `obj₂` intersect if there is a Point23 `p` that is part of
-both `obj₁` and `obj₂`.  The intersection region of those two object sis defined
-as the set of all points `p` that are part of both `obj₁` and `obj₂`.  Note that
-for objects like triangles and polygons that enclose a bounded region, this
-region is part of the object.
+Two objects `obj₁` and `obj₂` intersect if there is a Point23 `p` that is
+part of both `obj₁` and `obj₂`.  The intersection region of those two objects
+is defined as the set of all points `p` that are part of both `obj₁` and
+`obj₂`.  Note that for objects like triangles and polygons that enclose a
+bounded region, this region is part of the object.
 
 The types `Type1` and `Type2` can be any of the following:
 
@@ -1111,26 +1110,57 @@ The types `Type1` and `Type2` can be any of the following:
 - [`Triangle2`](@ref)
 - [`IsoRectangle2`](@ref)
 
-Also, `Type1` and `Type2` can be both of type
+Also, `Type1` and `Type2` can be respectively of types
 
-- [`Line2`](@ref)
-- [`Circle2`](@ref)
+- [`Circle2`](@ref) and [`CircularArc2`](@ref) (or the contrary)
+- [`Circle2`](@ref) and [`Line2`](@ref) (or the contrary)
+- [`Circle2`](@ref) and [`Segment2`](@ref) (or the contrary)
+- [`CircularArc2`](@ref) and [`Line2`](@ref) (or the contrary)
+- [`CircularArc2`](@ref) and [`Segment2`](@ref) (or the contrary)
 
 In three-dimensional space, the types `Type1` and `Type2` can be any of the
 following:
 
-- [`Point3`](@ref)
-- [`Plane3`](@ref)
+- [`Bbox3`](@ref)
+- [`IsoCuboid3`](@ref)
 - [`Line3`](@ref)
+- [`Plane3`](@ref)
+- [`Point3`](@ref)
 - [`Ray3`](@ref)
 - [`Segment3`](@ref)
+- [`Sphere3`](@ref)
+- [`Tetrahedron3`](@ref)
 - [`Triangle3`](@ref)
-- [`Bbox3`](@ref)
+
+Also, `Type1` and `Type2` can be both of type
+
+- [`Circle3`](@ref)
+- [`CircularArc3`](@ref)
+
+Furthermore, `Type1` and `Type2` can be interchangeably of types
+
+- [`Circle3`](@ref) and [`Line3`](@ref)
+- [`Circle3`](@ref) and [`Plane3`](@ref)
+- [`Circle3`](@ref) and [`Sphere3`](@ref)
+- [`CircularArc3`](@ref) and [`Plane3`](@ref)
 
 See also: [`intersection`](@ref).
 """
 do_intersect(obj₁, obj₂)
 
+"""
+    do_intersect(obj₁::Type1, obj₂::Type2, obj₃::Type3)
+
+Checks whether `obj₁`, `obj₂`, and `obj₃` intersect.
+
+The types `Type1`, `Type2` and `Type3` and be respectively of types
+
+- [`Sphere3`](@ref), [`Sphere3`](@ref), and [`Plane3`](@ref)
+- [`Plane3`](@ref), [`Sphere3`](@ref), and [`Sphere3`](@ref)
+- [`Plane3`](@ref), [`Plane3`](@ref), and [`Sphere3`](@ref)
+- [`Sphere3`](@ref), [`Plane3`](@ref), and [`Plane3`](@ref)
+"""
+do_intersect(obj₁, obj₂, obj₃)
 
 """
     has_larger_distance_to_point(p::Point23, q::Point23, r::Point23)
@@ -1325,8 +1355,8 @@ has_smaller_signed_distance_to_plane(p::Point3, q::Point3, r::Point3, s::Point3,
 """
     intersection(obj₁::Type1, obj₂::Type2)
 
-Two objects `obj₁` and `obj₂` intersect if there is a Point23 `p` that is part of
-both `obj₁` and `obj₂`.
+Two objects `obj₁` and `obj₂` intersect if there is a Point23 `p` that is
+part of both `obj₁` and `obj₂`.
 
 The intersection region of those two objects is defined as the set of all points
 `p` that are part of both `obj₁` and `obj₂`.  Note that for objects like
@@ -1343,9 +1373,13 @@ The following tables give the possible values for `Type1` and `Type2`.
 
 |          Type1          |          Type2          |                                       Return Type: T...                                      |
 |:------------------------|:------------------------|:---------------------------------------------------------------------------------------------|
-| [`Circle2`](@ref)       | [`Circle2`](@ref)       | [`Point2`](@ref), or [`Vector{Point2}`](@ref)                                                |
+| [`Circle2`](@ref)       | [`Circle2`](@ref)       | [`Point2`](@ref), [`Vector{Point2}`](@ref), or [`Circle2`](@ref)                             |
+| [`Circle2`](@ref)       | [`CircularArc2`](@ref)  | [`Point2`](@ref), [`Vector{Point2}`](@ref), or [`CircularArc2`](@ref)                        |
 | [`Circle2`](@ref)       | [`Line2`](@ref)         | [`Point2`](@ref), or [`Vector{Point2}`](@ref)                                                |
 | [`Circle2`](@ref)       | [`Segment2`](@ref)      | [`Point2`](@ref), or [`Vector{Point2}`](@ref)                                                |
+| [`CircularArc2`](@ref)  | [`CircularArc2`](@ref)  | [`Point2`](@ref), [`Vector{Point2}`](@ref), or [`CircularArc2`](@ref)                        |
+| [`CircularArc2`](@ref)  | [`Line2`](@ref)         | [`Point2`](@ref), or [`Vector{Point2}`](@ref)                                                |
+| [`CircularArc2`](@ref)  | [`Segment2`](@ref)      | [`Point2`](@ref), or [`Vector{Point2}`](@ref)                                                |
 | [`IsoRectangle2`](@ref) | [`IsoRectangle2`](@ref) | [`IsoRectangle2`](@ref)                                                                      |
 | [`IsoRectangle2`](@ref) | [`Line2`](@ref)         | [`Point2`](@ref), or [`Segment2`](@ref)                                                      |
 | [`IsoRectangle2`](@ref) | [`Ray2`](@ref)          | [`Point2`](@ref), or [`Segment2`](@ref)                                                      |
@@ -1364,25 +1398,32 @@ The following tables give the possible values for `Type1` and `Type2`.
 
 **3D Intersections**
 
-|        Type1        |        Type2        |                                      Return Type: T...                                       |
-|:--------------------|:--------------------|:---------------------------------------------------------------------------------------------|
-| [`Line3`](@ref)     | [`Line3`](@ref)     | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
-| [`Line3`](@ref)     | [`Plane3`](@ref)    | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
-| [`Line3`](@ref)     | [`Ray3`](@ref)      | [`Point3`](@ref), or [`Ray3`](@ref)                                                          |
-| [`Line3`](@ref)     | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Line3`](@ref)     | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Plane3`](@ref)    | [`Plane3`](@ref)    | [`Line3`](@ref), or [`Segment3`](@ref)                                                       |
-| [`Plane3`](@ref)    | [`Ray3`](@ref)      | [`Point3`](@ref), or [`Ray3`](@ref)                                                          |
-| [`Plane3`](@ref)    | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Plane3`](@ref)    | [`Sphere3`](@ref)   | [`Point3`](@ref), or [`Circle3`](@ref)                                                       |
-| [`Plane3`](@ref)    | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref), or [`Triangle3`](@ref)                              |
-| [`Ray3`](@ref)      | [`Ray3`](@ref)      | [`Point3`](@ref), or [`Ray3`](@ref), or [`Segment3`](@ref)                                   |
-| [`Ray3`](@ref)      | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Ray3`](@ref)      | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Segment3`](@ref)  | [`Segment3`](@ref)  | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Segment3`](@ref)  | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
-| [`Segment3`](@ref)  | [`Sphere3`](@ref)   | [`Point3`](@ref), or [`Circle3`](@ref), or [`Sphere3`](@ref)                                 |
-| [`Triangle3`](@ref) | [`Triangle3`](@ref) | [`Point3`](@ref), or [`Segment3`](@ref), or [`Triangle3`](@ref), or [`Vector{Point3}`](@ref) |
+|         Type1          |         Type2          |                                      Return Type: T...                                       |
+|:-----------------------|:-----------------------|:---------------------------------------------------------------------------------------------|
+| [`Circle3`](@ref)      | [`Circle3`](@ref)      | [`Point3`](@ref), [`Circle3`](@ref), or [`Vector{Point3}`](@ref)                             |
+| [`Circle3`](@ref)      | [`Line3`](@ref)        | [`Point3`](@ref), [`Vector{Point3}`](@ref)                                                   |
+| [`Circle3`](@ref)      | [`Plane3`](@ref)       | [`Point3`](@ref), [`Circle3`](@ref), or [`Vector{Point3}`](@ref)                             |
+| [`Circle3`](@ref)      | [`Sphere3`](@ref)      | [`Point3`](@ref), [`Circle3`](@ref), or [`Vector{Point3}`](@ref)                             |
+| [`CircularArc3`](@ref) | [`CircularArc3`](@ref) | [`Point3`](@ref), [`Circle3`](@ref), or [`CircularArc3`](@ref), or [`Vector{Point3}`](@ref)  |
+| [`CircularArc3`](@ref) | [`Plane3`](@ref)       | [`Point3`](@ref), [`CircularArc3`](@ref), or [`Vector{Point3}`](@ref)                        |
+| [`Line3`](@ref)        | [`Line3`](@ref)        | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
+| [`Line3`](@ref)        | [`Line3`](@ref)        | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
+| [`Line3`](@ref)        | [`Plane3`](@ref)       | [`Point3`](@ref), or [`Line3`](@ref)                                                         |
+| [`Line3`](@ref)        | [`Ray3`](@ref)         | [`Point3`](@ref), or [`Ray3`](@ref)                                                          |
+| [`Line3`](@ref)        | [`Segment3`](@ref)     | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Line3`](@ref)        | [`Triangle3`](@ref)    | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Plane3`](@ref)       | [`Plane3`](@ref)       | [`Line3`](@ref), or [`Segment3`](@ref)                                                       |
+| [`Plane3`](@ref)       | [`Ray3`](@ref)         | [`Point3`](@ref), or [`Ray3`](@ref)                                                          |
+| [`Plane3`](@ref)       | [`Segment3`](@ref)     | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Plane3`](@ref)       | [`Sphere3`](@ref)      | [`Point3`](@ref), or [`Circle3`](@ref)                                                       |
+| [`Plane3`](@ref)       | [`Triangle3`](@ref)    | [`Point3`](@ref), or [`Segment3`](@ref), or [`Triangle3`](@ref)                              |
+| [`Ray3`](@ref)         | [`Ray3`](@ref)         | [`Point3`](@ref), or [`Ray3`](@ref), or [`Segment3`](@ref)                                   |
+| [`Ray3`](@ref)         | [`Segment3`](@ref)     | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Ray3`](@ref)         | [`Triangle3`](@ref)    | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Segment3`](@ref)     | [`Segment3`](@ref)     | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Segment3`](@ref)     | [`Triangle3`](@ref)    | [`Point3`](@ref), or [`Segment3`](@ref)                                                      |
+| [`Segment3`](@ref)     | [`Sphere3`](@ref)      | [`Point3`](@ref), or [`Circle3`](@ref), or [`Sphere3`](@ref)                                 |
+| [`Triangle3`](@ref)    | [`Triangle3`](@ref)    | [`Point3`](@ref), or [`Segment3`](@ref), or [`Triangle3`](@ref), or [`Vector{Point3}`](@ref) |
 
 # Examples
 
@@ -1403,6 +1444,26 @@ Segment_2(PointC2(0, 0), PointC2(2, 2))
 ```
 """
 intersection(obj₁, obj₂)
+
+
+"""
+    intersection(obj₁::Type1, obj₂::Type2, obj₃::Type3)
+
+Computes the intersection of the three given objects.
+
+The return type is `Union{Circle3,Plane3,Sphere3,Vector{Point3},Nothing}`.
+
+The following table gives the possible types for `Type1`, `Type2`, and `Type3`.
+
+|         Type1          |         Type2          |         Type3          |
+|:-----------------------|:-----------------------|:-----------------------|
+| [`Sphere3`](@ref)      | [`Sphere3`](@ref)      | [`Sphere3`](@ref)      |
+| [`Sphere3`](@ref)      | [`Sphere3`](@ref)      | [`Plane3`](@ref)       |
+| [`Plane3`](@ref)       | [`Sphere3`](@ref)      | [`Sphere3`](@ref)      |
+| [`Plane3`](@ref)       | [`Plane3`](@ref)       | [`Sphere3`](@ref)      |
+| [`Sphere3`](@ref)      | [`Plane3`](@ref)       | [`Plane3`](@ref)       |
+"""
+intersection(obj₁, obj₂, obj₃)
 
 
 """
