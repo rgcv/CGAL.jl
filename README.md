@@ -106,18 +106,16 @@ println(" midpoint(p,q) = $(midpoint(p, q))")
 
 ## Installation
 
-Until it some day makes its way to the official Julia package registry, you can
-add it directly from this repo right here! Drop into a REPL and type the
-following:
+Drop into a REPL and type the following:
 
 ```julia
-julia> import Pkg; Pkg.add("https://github.com/rgcv/CGAL.jl")
+julia> import Pkg; Pkg.add("CGAL")
 ```
 
 Alternatively, in a blank REPL, after hitting `]`,
 
 ```julia
-pkg> add https://github.com/rgcv/CGAL.jl
+pkg> add CGAL
 ```
 
 ## Using a different kernel
