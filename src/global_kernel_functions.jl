@@ -1680,16 +1680,16 @@ for (T, t) ∈ ((:Line23, :l)
             , (:Ray23, :r)
             , (:Segment23, :s)
             , (:Plane3, :h))
-    a, b = string.(t, ("₁", "₂"))
-    args = join(join.(([a, T], [b, T]), "::"), ", ")
+    t1, t2 = string.(t, ("₁", "₂"))
+    args = join(join.(([t1, T], [t2, T]), "::"), ", ")
     @eval begin
         """
             parallel($($args))
 
-        Returns `true`, if `$($a)` and `$($b)` are parallel or if one of those
+        Returns `true`, if `$($t1)` and `$($t2)` are parallel or if one of those
         (or both) is degenerate.
         """
-        parallel($a::$T, $b::$T)
+        parallel($t1::$T, $t2::$T)
     end
 end
 
