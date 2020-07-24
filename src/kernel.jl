@@ -29,7 +29,7 @@ if iscxxtype(FT) # define a couple more constructors, conversions, promotions
     @cxxdereference Base.oftype(x::FT, y) = convert(FT, y)
     @cxxdereference Base.isinteger(x::FT) = isinteger(float(x))
 else
-    for op ∈ (:<, :<=, :>, :>=, :/, :+, :-, :*)
+    for op ∈ (:<, :<=, :>, :>=, :/, :+, :-, :*, :^)
         @eval begin
             Base.$op(x::Ref{FT}, y::Ref{FT}) = $op(x[], y[]) # solves ambiguity
             Base.$op(x::Ref{FT}, y) = $op(x[], y)
