@@ -46,13 +46,13 @@ export bounded_faces,
        up,
        vertices
 
-VoronoiDiagram2(ps::AbstractVector) =
-    VoronoiDiagram2(collect(CxxRef{Point2}, CxxRef.(ps)))
-VoronoiDiagram2(ps::reference_type_union(Point2)...) =
-    VoronoiDiagram2(collect(CxxRef.(ps)))
+VoronoiDiagram2{T}(ps::AbstractVector) where T =
+    VoronoiDiagram2(collect(CxxRef{_triangulation_point(T)}, CxxRef.(ps)))
+VoronoiDiagram2{T}(ps...) where T = VoronoiDiagram2(collect(ps))
 
 @cxxdereference Base.insert!(vd::VoronoiDiagram2, ps::AbstractVector) =
-    insert!(vd, collect(CxxRef{Point2}, CxxRef.(ps)))
+    insert!(vd, collect(CxxRef{_triangulation_point(typeof(vd).parameters[1])},
+                        CxxRef.(ps)))
 @cxxdereference finite_edges(vd::VoronoiDiagram2) =
     let dg = dual(vd)
         dual.([dg], edges(dg))
