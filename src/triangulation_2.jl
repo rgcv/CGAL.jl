@@ -33,7 +33,7 @@ export all_edges,
        vertices
 
 _triangulation_point(::Type) = Point2
-_triangulation_point(::Type{RegularTriangulation2}) = WeightedPoint2
+_triangulation_point(::Type{<:reference_type_union(RegularTriangulation2)}) = WeightedPoint2
 
 for T ∈ (:Triangulation2
        , :DelaunayTriangulation2
