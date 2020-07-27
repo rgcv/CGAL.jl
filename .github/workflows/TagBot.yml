@@ -8,7 +8,9 @@ jobs:
     steps:
       - uses: JuliaRegistries/TagBot@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          ssh: ${{ secrets.SSH_KEY }}
+          email: rventura.pt@outlook.com
           gpg: ${{ secrets.GPG_KEY }}
           gpg_password: ${{ secrets.GPG_PASSWORD }}
+          user: Rui Ventura
+          ssh: ${{ secrets.SSH_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
