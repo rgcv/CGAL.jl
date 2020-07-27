@@ -1,11 +1,15 @@
 name: CI
 on:
   push:
-    paths-ignore:
-      - README.md
+    paths:
+      - .github/workflows/ci.yml
+      - Project.toml
+      - **.jl
   pull_request:
-    paths-ignore:
-      - README.md
+    paths:
+      - .github/workflows/ci.yml
+      - Project.toml
+      - **.jl
 jobs:
   test:
     name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }}
