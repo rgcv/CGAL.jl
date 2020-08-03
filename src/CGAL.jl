@@ -17,10 +17,6 @@ libcgal_julia() = haskey(ENV, "JLCGAL_EXACT_CONSTRUCTIONS") ?
                       libcgal_julia_exact :
                       libcgal_julia_inexact
 
-iscxxtype(T::Type) = _iscxxtype(Base.invokelatest(cpp_trait_type, T))
-_iscxxtype(::Type) = false
-_iscxxtype(::Type{IsCxxType}) = true
-
 macro singleton(name::Symbol, cname::Union{Symbol,Nothing}=nothing)
     if isnothing(cname)
         cname = Symbol(uppercase(replace(string(name), r"(?<!)(?=[A-Z])" => "_")))
@@ -44,10 +40,11 @@ end
 @singleton Scaling
 @singleton Translation
 
-@wrapmodule(get(ENV, "JLCGAL_LIBPATH", libcgal_julia()))
 
-include("origin.jl")
-include("enum.jl")
+iscxxtype(T::Type) = _iscxxtype(cpp_trait_type(T))
+_iscxxtype(x) = false
+_iscxxtype(::Type{IsCxxType}) = true
+
 include("kernel.jl")
 include("algebra.jl")
 include("global_kernel_functions.jl")
