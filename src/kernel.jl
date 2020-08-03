@@ -31,21 +31,21 @@ if iscxxtype(FT) # define a couple more constructors, conversions, promotions
 else
     for op ∈ (:<, :<=, :>, :>=, :/, :+, :-, :*, :^)
         @eval begin
-            Base.$op(x::Ref{FT}, y::Ref{FT}) = $op(x[], y[]) # solves ambiguity
-            Base.$op(x::Ref{FT}, y) = $op(x[], y)
-            Base.$op(x, y::Ref{FT}) = $op(x, y[])
+            Base.$op(x::CxxBaseRef{FT}, y::CxxBaseRef{FT}) = $op(x[], y[]) # solves ambiguity
+            Base.$op(x::CxxBaseRef{FT}, y) = $op(x[], y)
+            Base.$op(x, y::CxxBaseRef{FT}) = $op(x, y[])
         end
     end
-    Base.:+(x::Ref{FT}) = +x[]
-    Base.:-(x::Ref{FT}) = -x[]
+    Base.:+(x::CxxBaseRef{FT}) = +x[]
+    Base.:-(x::CxxBaseRef{FT}) = -x[]
 end
 
-Base.convert(::Type{FT}, x::Ref{FT}) = x[]
-Base.convert(::Type{T}, x::Ref{FT}) where {T<:Real} = convert(T, x[])
+Base.convert(::Type{FT}, x::CxxBaseRef{FT}) = x[]
+Base.convert(::Type{T}, x::CxxBaseRef{FT}) where {T<:Real} = convert(T, x[])
 
-(::Type{T})(x::Ref{FT}) where {T<:Real} = T(float(x))
-FT(x::Ref{FT}) = FT(x[])
-Base.isnan(x::Ref{FT}) = isnan(x[])
+(::Type{T})(x::CxxBaseRef{FT}) where {T<:Real} = T(float(x))
+FT(x::CxxBaseRef{FT}) = FT(x[])
+Base.isnan(x::CxxBaseRef{FT}) = isnan(x[])
 
 export AffTransformation2, AffTransformation3,
        Bbox2, Bbox3,
