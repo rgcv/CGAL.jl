@@ -40,6 +40,7 @@ end
 @singleton Scaling
 @singleton Translation
 
+@wrapmodule get(ENV, "JLCGAL_LIBPATH", libcgal_julia())
 
 iscxxtype(T::Type) = _iscxxtype(cpp_trait_type(T))
 _iscxxtype(x) = false
