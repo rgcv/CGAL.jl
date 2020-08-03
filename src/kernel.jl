@@ -176,6 +176,7 @@ for T ∈ (:AffTransformation2, :AffTransformation3
     @eval _pointfor(::Type{<:reference_type_union($T)}) = $(Symbol(:Point, D))
 end
 
+## 2D Kernel Objects
 include("kernel/aff_transformation_2.jl")
 include("kernel/bbox_2.jl")
 include("kernel/circle_2.jl")
@@ -190,6 +191,7 @@ include("kernel/triangle_2.jl")
 include("kernel/vector_2.jl")
 include("kernel/weighted_point_2.jl")
 
+## 3D Kernel Objects
 include("kernel/aff_transformation_3.jl")
 include("kernel/bbox_3.jl")
 include("kernel/circle_3.jl")
@@ -206,3 +208,307 @@ include("kernel/tetrahedron_3.jl")
 include("kernel/triangle_3.jl")
 include("kernel/vector_3.jl")
 include("kernel/weighted_point_3.jl")
+
+
+## Enumerations and Related Functions
+export Sign,
+       NEGATIVE,
+       ZERO,
+       POSITIVE
+
+export Orientation,
+       LEFT_TURN, RIGHT_TURN,
+       CLOCKWISE, COUNTERCLOCKWISE,
+       COLLINEAR, COPLANAR, DEGENERATE
+
+export OrientedSide
+       ON_NEGATIVE_SIDE,
+       ON_ORIENTED_BOUNDARY,
+       ON_POSITIVE_SIDE
+
+export ComparisonResult,
+       SMALLER,
+       EQUAL,
+       LARGER
+
+export BoundedSide,
+       ON_UNBOUNDED_SIDE,
+       ON_BOUNDARY,
+       ON_BOUNDED_SIDE
+
+export Angle,
+       OBTUSE,
+       RIGHT,
+       ACUTE
+
+export BoxParameterSpace2,
+       LEFT_BOUNDARY, RIGHT_BOUNDARY,
+       BOTTOM_BOUNDARY, TOP_BOUNDARY,
+       INTERIOR, EXTERIOR
+
+
+"""
+    Sign
+
+See also: [`Orientation`](@ref)
+
+|     Enumerator     |
+|:-------------------|
+| [`NEGATIVE`](@ref) |
+| [`ZERO`](@ref)     |
+| [`POSITIVE`](@ref) |
+"""
+Sign
+
+# make Sign look more like a Number
+Base.promote_rule(::Type{Sign}, ::Type{T}) where T <: Number = T
+Base.promote_rule(::Type{Sign}, ::Type{Bool}) = Sign
+(::Type{T})(x::Sign) where T <: AbstractFloat = T(convert(Integer, x))
+
+# reimplement these in julia
+Base.:-(x::Sign) = opposite(x)
+Base.:*(a::Sign, b::Sign) = reinterpret(Sign, convert(Integer, a) * convert(Integer, b))
+
+
+"""
+    Orientation
+
+See also: [`LEFT_TURN`](@ref), [`RIGHT_TURN`](@ref), [`COLLINEAR`](@ref),
+[`CLOCKWISE`](@ref), [`COUNTERCLOCKWISE`](@ref), [`COPLANAR`](@ref)
+"""
+const Orientation = Sign
+
+"""
+    CLOCKWISE = NEGATIVE
+
+See also: [`COUNTERCLOCKWISE`](@ref)
+"""
+CLOCKWISE
+
+"""
+    COLLINEAR = ZERO
+
+See also: [`LEFT_TURN`](@ref), [`RIGHT_TURN`](@ref)
+"""
+COLLINEAR
+
+"""
+    COUNTERCLOCKWISE = POSITIVE
+
+See also: [`CLOCKWISE`]
+"""
+COUNTERCLOCKWISE
+
+"""
+    LEFT_TURN = POSITIVE
+
+See also: [`COLLINEAR`](@ref), [`RIGHT_TURN`](@ref)
+"""
+LEFT_TURN
+
+"""
+    RIGHT_TURN = NEGATIVE
+
+See also: [`COLLINEAR`](@ref), [`LEFT_TURN`](@ref)
+"""
+RIGHT_TURN
+
+"`COPLANAR = ZERO`" COPLANAR
+"`DEGENERATE = ZERO`" DEGENERATE
+
+
+"""
+    OrientedSide
+
+|           Enumerator           |
+|:-------------------------------|
+| [`ON_NEGATIVE_SIDE`](@ref)     |
+| [`ON_ORIENTED_BOUNDARY`](@ref) |
+| [`ON_POSITIVE_SIDE`](@ref)     |
+"""
+const OrientedSide = Sign
+
+"""
+    ON_NEGATIVE_SIDE
+
+See also: [`ON_POSITIVE_SIDE`](@ref)
+"""
+ON_NEGATIVE_SIDE
+
+"""
+    ON_ORIENTED__BOUNDARY
+
+See also: [`ON_NEGATIVE_SIDE`](@ref), [`ON_POSITIVE_SIDE`](@ref)
+"""
+ON_ORIENTED_BOUNDARY
+
+"""
+    ON_POSITIVE_SIDE
+
+See also: [`ON_NEGATIVE_SIDE`](@ref)
+"""
+ON_POSITIVE_SIDE
+
+"""
+    opposite(o::OrientedSide)
+
+Returns the opposite side (for example [`ON_POSITIVE_SIDE`](@ref) if `o ==
+[ON_NEGATIVE_SIDE](@ref)`, or `[ON_ORIENTED_BOUNDARY](@ref) if o ==
+[ON_ORIENTED_BOUNDARY](@ref)`)
+"""
+opposite(o::OrientedSide)
+
+
+"""
+    ComparisonResult
+
+|    Enumerator     |
+|:------------------|
+| [`SMALLER`](@ref) |
+| [`EQUAL`](@ref)   |
+| [`LARGER`](@ref)  |
+"""
+const ComparisonResult = Sign
+
+"""
+    SMALLER = NEGATIVE
+
+See also: [`LARGER`](@ref)
+"""
+SMALLER
+
+"""
+    EQUAL = ZERO
+
+See also: [`SMALLER`](@ref), [`LARGER`](@ref)
+"""
+EQUAL
+
+"""
+    LARGER = POSITIVE
+
+See also: [`SMALLER`](@ref)
+"""
+LARGER
+
+
+"""
+    BoundedSide
+
+See also: [`opposite(o::BoundedSide)`](@ref)
+
+|         Enumerator          |
+|:----------------------------|
+| [`ON_UNBOUNDED_SIDE`](@ref) |
+| [`ON_BOUNDARY`](@ref)       |
+| [`ON_BOUNDED_SIDE`](@ref)   |
+"""
+BoundedSide
+
+"""
+    ON_UNBOUNDED_SIDE = NEGATIVE
+
+See also: [`ON_BOUNDED_SIDE`](@ref)
+"""
+ON_UNBOUNDED_SIDE
+
+"""
+    ON_BOUNDARY = ZERO
+
+See also: [`ON_UNBOUNDED_SIDE`](@ref), [`ON_BOUNDED_SIDE`](@ref)
+"""
+ON_BOUNDARY
+
+"""
+    ON_BOUNDED_SIDE = POSITIVE
+
+See also: [`ON_UNBOUNDED_SIDE`](@ref)
+"""
+ON_BOUNDED_SIDE
+
+"""
+    opposite(o::BoundedSide)
+
+Returns the opposite side (for example [`ON_BOUNDED_SIDE`](@ref) if `o ==
+[ON_UNBOUNDED_SIDE](@ref)`, or `[ON_BOUNDARY](@ref) if o ==
+[ON_BOUNDARY](@ref)`)
+"""
+opposite(o::BoundedSide)
+
+
+"""
+    Angle
+
+See also: [`angle`](@ref)
+
+|    Enumerator    |
+|:-----------------|
+| [`OBTUSE`](@ref) |
+| [`RIGHT`](@ref)  |
+| [`ACUTE`](@ref)  |
+"""
+Angle
+
+
+"""
+    BoxParameterSpace2
+
+|        Enumerator         |
+|:--------------------------|
+| [`LEFT_BOUNDARY`](@ref)   |
+| [`RIGHT_BOUNDARY`](@ref)  |
+| [`BOTTOM_BOUNDARY`](@ref) |
+| [`TOP_BOUNDARY`](@ref)    |
+| [`INTERIOR`](@ref)        |
+| [`EXTERIOR`](@ref)        |
+"""
+BoxParameterSpace2
+
+# despite undocumented, might as well just define `opposite` for all of them
+for E ∈ (:Sign
+       , :Angle
+       , :BoundedSide
+       , :BoxParameterSpace2)
+    @eval opposite(x::$E) = reinterpret($E, -convert(Integer, x))
+end
+
+
+## Origin & NullVector
+export ORIGIN, NULL_VECTOR
+
+"""
+    ORIGIN
+
+A symbolic constant which denotes the point at the origin.
+
+This constant is used in the conversion between points and vectors.
+
+# Example
+
+```jldoctest
+julia> p = Point2(1.0, 1.0)
+PointC2(1, 1)
+
+julia> v = p - ORIGIN
+VectorC2(1, 1)
+
+julia> q = ORIGIN + v
+PointC2(1, 1)
+
+julia> p == q
+true
+```
+
+See also: [`Point2`](@ref), [`Point3`](@ref)
+"""
+ORIGIN
+
+
+"""
+    NULL_VECTOR
+
+A symbolic constant used to construct zero length vectors.
+
+See also: [`Vector2`](@ref), [`Vector3`](@ref)
+"""
+NULL_VECTOR
