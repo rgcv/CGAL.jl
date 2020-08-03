@@ -15,7 +15,7 @@ export NT
 
 if !iscxxtype(NT)
     for F ∈ (:abs, :sqrt, :float, :iszero, :isone, :sign)
-        @eval Base.$F(x::Ref{NT}) = $F(x[])
+        @eval Base.$F(x::CxxBaseRef{NT}) = $F(x[])
     end
 end
 
