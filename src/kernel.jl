@@ -1,5 +1,3 @@
-import CxxWrap.CxxWrapCore: cpp_trait_type, IsCxxType
-
 export FT, RT, FieldType, RingType
 
 if !@isdefined FieldType
@@ -176,39 +174,47 @@ for T ∈ (:AffTransformation2, :AffTransformation3
     @eval _pointfor(::Type{<:reference_type_union($T)}) = $(Symbol(:Point, D))
 end
 
-## 2D Kernel Objects
-include("kernel/aff_transformation_2.jl")
-include("kernel/bbox_2.jl")
-include("kernel/circle_2.jl")
-include("kernel/circular_arc_2.jl")
-include("kernel/direction_2.jl")
-include("kernel/iso_rectangle_2.jl")
-include("kernel/line_2.jl")
-include("kernel/point_2.jl")
-include("kernel/ray_2.jl")
-include("kernel/segment_2.jl")
-include("kernel/triangle_2.jl")
-include("kernel/vector_2.jl")
-include("kernel/weighted_point_2.jl")
 
-## 3D Kernel Objects
-include("kernel/aff_transformation_3.jl")
-include("kernel/bbox_3.jl")
-include("kernel/circle_3.jl")
-include("kernel/circular_arc_3.jl")
-include("kernel/direction_3.jl")
-include("kernel/iso_cuboid_3.jl")
-include("kernel/line_3.jl")
-include("kernel/plane_3.jl")
-include("kernel/point_3.jl")
-include("kernel/ray_3.jl")
-include("kernel/segment_3.jl")
-include("kernel/sphere_3.jl")
-include("kernel/tetrahedron_3.jl")
-include("kernel/triangle_3.jl")
-include("kernel/vector_3.jl")
-include("kernel/weighted_point_3.jl")
+## Origin & NullVector
+export ORIGIN, NULL_VECTOR
 
+"""
+    ORIGIN
+
+A symbolic constant which denotes the point at the origin.
+
+This constant is used in the conversion between points and vectors.
+
+# Example
+
+```jldoctest
+julia> p = Point2(1.0, 1.0)
+PointC2(1, 1)
+
+julia> v = p - ORIGIN
+VectorC2(1, 1)
+
+julia> q = ORIGIN + v
+PointC2(1, 1)
+
+julia> p == q
+true
+```
+
+See also: [`Point2`](@ref), [`Point3`](@ref)
+"""
+ORIGIN
+
+
+"""
+    NULL_VECTOR
+
+A symbolic constant used to construct zero length vectors.
+
+See also: [`Vector2`](@ref), [`Vector3`](@ref)
+"""
+NULL_VECTOR
+ 
 
 ## Enumerations and Related Functions
 export Sign,
@@ -473,42 +479,35 @@ for E ∈ (:Sign
 end
 
 
-## Origin & NullVector
-export ORIGIN, NULL_VECTOR
+## 2D Kernel Objects
+include("kernel/aff_transformation_2.jl")
+include("kernel/bbox_2.jl")
+include("kernel/circle_2.jl")
+include("kernel/circular_arc_2.jl")
+include("kernel/direction_2.jl")
+include("kernel/iso_rectangle_2.jl")
+include("kernel/line_2.jl")
+include("kernel/point_2.jl")
+include("kernel/ray_2.jl")
+include("kernel/segment_2.jl")
+include("kernel/triangle_2.jl")
+include("kernel/vector_2.jl")
+include("kernel/weighted_point_2.jl")
 
-"""
-    ORIGIN
-
-A symbolic constant which denotes the point at the origin.
-
-This constant is used in the conversion between points and vectors.
-
-# Example
-
-```jldoctest
-julia> p = Point2(1.0, 1.0)
-PointC2(1, 1)
-
-julia> v = p - ORIGIN
-VectorC2(1, 1)
-
-julia> q = ORIGIN + v
-PointC2(1, 1)
-
-julia> p == q
-true
-```
-
-See also: [`Point2`](@ref), [`Point3`](@ref)
-"""
-ORIGIN
-
-
-"""
-    NULL_VECTOR
-
-A symbolic constant used to construct zero length vectors.
-
-See also: [`Vector2`](@ref), [`Vector3`](@ref)
-"""
-NULL_VECTOR
+## 3D Kernel Objects
+include("kernel/aff_transformation_3.jl")
+include("kernel/bbox_3.jl")
+include("kernel/circle_3.jl")
+include("kernel/circular_arc_3.jl")
+include("kernel/direction_3.jl")
+include("kernel/iso_cuboid_3.jl")
+include("kernel/line_3.jl")
+include("kernel/plane_3.jl")
+include("kernel/point_3.jl")
+include("kernel/ray_3.jl")
+include("kernel/segment_3.jl")
+include("kernel/sphere_3.jl")
+include("kernel/tetrahedron_3.jl")
+include("kernel/triangle_3.jl")
+include("kernel/vector_3.jl")
+include("kernel/weighted_point_3.jl")
