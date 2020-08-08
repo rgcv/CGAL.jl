@@ -1,5 +1,5 @@
 if !iscxxtype(FT)
-    Base.show(io::IO, x::Ref{FT}) = show(io, x[])
+    Base.show(io::IO, x::CxxBaseRef{FT}) = show(io, x[])
 end
 
 foreach(methods(CGAL.repr)) do r
