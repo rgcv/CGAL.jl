@@ -156,10 +156,10 @@ FieldType # numeric type from CGAL. when using inexact constructions => Float64
 
 ### Loading a custom wrapper library
 
-The full path to an alternative version of the wrapper library can be specified
-by defining the `JLCGAL_LIBPATH` environment variable. This will override the
-`JLCGAL_EXACT_CONSTRUCTIONS` definition since the former is more specific than
-the latter.
+The full path to an alternative version of the wrapper library can be
+specified by defining the `JLCGAL_LIBPATH` environment variable.  This will
+override the `JLCGAL_EXACT_CONSTRUCTIONS` definition since the former is more
+specific than the latter.
 
 [1]: https://www.cgal.org
 [2]: https://github.com/rgcv/libcgal-julia
