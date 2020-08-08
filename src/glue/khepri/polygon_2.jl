@@ -4,7 +4,7 @@ convert(::Type{Polygon2},
     Polygon2(convert.(Point2, poly.vertices))
 convert(::Type{Polygon2}, sp::SurfacePath) = convert(Polygon2, sp.path)
 @cxxdereference convert(::Type{Path}, poly::Polygon2) =
-    closed_polygonal_path(convert(Loc, vertices(poly)))
+    closed_polygonal_path(convert.(Loc, vertices(poly)))
 @cxxdereference convert(::Type{ClosedLine}, poly::Polygon2) =
     closed_line(path_vertices(convert(Path, poly)))
 @cxxdereference convert(::Type{Line}, poly::Polygon2) =
@@ -19,7 +19,8 @@ convert(::Type{Polygon2}, sp::SurfacePath) = convert(Polygon2, sp.path)
     surface_path(convert(Path, poly))
 
 convert(::Type{PolygonWithHoles2},
-        v::AbstractVector{<:Union{ClosedLine,Line,Polygon}}) =
+        v::AbstractVector{<:Union{ClosedLine,Line,Polygon,
+                                  Khepri.ClosedPolygonalPath}}) =
     length(v) > 1 ?
         PolygonWithHoles2(convert(Polygon2, first(v)),
                           convert.(Polygon2, v[2:end])) :
