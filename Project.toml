@@ -12,6 +12,7 @@ libcgal_julia_jll = "e9ad47b2-a301-5fb7-a0bd-6eece649b37c"
 CxxWrap = "0.11"
 Requires = "1"
 julia = "1.4"
+libcgal_julia_jll = "0.15"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
