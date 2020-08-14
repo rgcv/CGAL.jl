@@ -52,6 +52,7 @@ include("global_kernel_functions.jl")
 include("convex_hull_2.jl")
 include("principal_component_analysis.jl")
 include("polygon_2.jl")
+include("straight_skeleton_2.jl")
 include("triangulation_2.jl")
 include("voronoi_diagram_2.jl")
 
