@@ -29,6 +29,6 @@ convert(::Type{PolygonWithHoles2},
 @cxxdereference convert(P::Type{<:Union{ClosedLine,Line,Path,Polygon}},
                         poly::PolygonWithHoles2) =
     convert(P, outer_boundary(poly))
-@cxxdereference convert(::Type{Surface}, p::PolygonWithHoles2) =
+@cxxdereference convert(::Type{Surface}, poly::PolygonWithHoles2) =
     subtraction(convert(Surface, outer_boundary(poly)),
                 convert.(Surface, holes(poly)))
