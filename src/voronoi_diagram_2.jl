@@ -2,8 +2,8 @@ export VoronoiDiagram2
 
 export bounded_faces,
        bounded_halfedges,
-       ccb_halfedges,
        ccb,
+       ccb_halfedges,
        degree,
        down,
        dual,

@@ -20,8 +20,8 @@ export # Convex Hull Functions
        ch_ns_point,
        ch_nswe_point,
        ch_s_point,
-       ch_we_point,
-       ch_w_point
+       ch_w_point,
+       ch_we_point
 
 @doc raw"""
     ch_akl_toussaint(ps::AbstractVector{Point2})

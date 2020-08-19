@@ -1,11 +1,15 @@
 module CGAL
 
 using CxxWrap
-using libcgal_julia_jll
-using Requires
+using CxxWrap.CxxWrapCore:
+    CxxBaseRef,
+    IsCxxType,
+    
+    cpp_trait_type,
+    reference_type_union
 
-import CxxWrap.CxxWrapCore:
-    CxxBaseRef, IsCxxType, cpp_trait_type, reference_type_union
+using Requires
+using libcgal_julia_jll
 
 function __init__()
    @initcxx
