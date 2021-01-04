@@ -11,17 +11,13 @@ on:
       - Project.toml
       - "**.jl"
 jobs:
-  check_skip:
-    name: Check if should skip CI
-    runs-on: ubuntu-latest
+  test:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }}
     if: |
       !contains(format('{0} {1} {2}',
                 github.event.head_commit.message,
                 github.event.pull_request.title,
                 github.event.pull_request.body), '[skip ci]')
-  test:
-    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }}
-    needs: check_skip
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
