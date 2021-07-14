@@ -12,14 +12,16 @@ on:
       - "**.jl"
 jobs:
   test:
-    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }}
+    name: Julia ${{ matrix.julia_version }} - ${{ matrix.os }} - ${{ matrix.arch }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: ${{ matrix.julia_version != "nightly" }}
       matrix:
-        version:
+        julia_version:
           - 1.3
           - 1.4
           - 1.5
+          - 1.6
           - nightly
         os:
           - ubuntu-latest
@@ -28,25 +30,25 @@ jobs:
         arch:
           - x64
     if: |
-      !contains(format('{0} {1} {2}',
+      !contains(format("{0} {1} {2}",
                 github.event.head_commit.message,
                 github.event.pull_request.title,
-                github.event.pull_request.body), '[skip ci]')
+                github.event.pull_request.body), "[skip ci]")
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
         with:
-          version: ${{ matrix.version }}
+          julia_version: ${{ matrix.julia_version }}
           arch: ${{ matrix.arch }}
       - uses: actions/cache@v2
         env:
           cache-name: cache-artifacts
         with:
           path: ~/.julia/artifacts
-          key: ${{ runner.os }}-${{ matrix.version }}-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
+          key: ${{ runner.os }}-julia+${{ matrix.julia_version }}-${{ env.cache-name }}-${{ hashFiles('**/Project.toml') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.version }}-${{ env.cache-name }}-
-            ${{ runner.os }}-${{ matrix.version }}-
+            ${{ runner.os }}-julia+${{ matrix.julia_version }}-${{ env.cache-name }}-
+            ${{ runner.os }}-julia+${{ matrix.julia_version }}-
             ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@latest
       - uses: julia-actions/julia-runtest@latest
