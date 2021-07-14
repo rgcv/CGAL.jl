@@ -15,7 +15,7 @@ jobs:
     name: Julia ${{ matrix.julia_version }} - ${{ matrix.os }} - ${{ matrix.arch }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: ${{ matrix.julia_version != "nightly" }}
+      fail-fast: false
       matrix:
         julia_version:
           - 1.3
