@@ -156,6 +156,24 @@ Returns `true`, if the transformation is reflecting.
 is_odd(t::AffTransformation3)
 
 """
+    is_scaling(t::AffTransformation3)
+
+Returns `true`, if the object was constructed using the tag
+[`CGAL.Scaling`](@ref), or is the result of the composition of only such scaling
+transformation objects.
+"""
+is_scaling(t::AffTransformation3)
+
+"""
+    is_translation(t::AffTransformation3)
+
+Returns `true`, if the object was constructed using the tag
+[`CGAL.Translation`](@ref), or is the result of the composition of only such
+translation transformation objects.
+"""
+is_translation(t::AffTransformation3)
+
+"""
     m(t::AffTransformation3, i::Integer, j::Integer)
 
 Returns entry ``m_{ij}`` in a matrix representation in which ``m_{22}`` is 1.

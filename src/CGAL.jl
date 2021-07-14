@@ -4,7 +4,7 @@ using CxxWrap
 using CxxWrap.CxxWrapCore:
     CxxBaseRef,
     IsCxxType,
-    
+
     cpp_trait_type,
     reference_type_union
 

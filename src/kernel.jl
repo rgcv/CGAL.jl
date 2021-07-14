@@ -134,7 +134,7 @@ export # Operations
        bounded_side,
        collinear_has_on,
        has_on,
-       has_on_boundary, 
+       has_on_boundary,
        has_on_bounded_side,
        has_on_negative_side,
        has_on_positive_side,
@@ -144,6 +144,10 @@ export # Operations
        is_even,
        is_horizontal,
        is_odd,
+       is_reflection,
+       is_rotation,
+       is_scaling,
+       is_translation,
        is_vertical,
        is_x_monotone,
        is_y_monotone,
@@ -246,7 +250,7 @@ A symbolic constant used to construct zero length vectors.
 See also: [`Vector2`](@ref), [`Vector3`](@ref)
 """
 NULL_VECTOR
- 
+
 
 ## Enumerations and Related Functions
 export Sign,
