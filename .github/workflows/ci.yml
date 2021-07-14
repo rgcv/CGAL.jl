@@ -38,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
         with:
-          julia_version: ${{ matrix.julia_version }}
+          version: ${{ matrix.julia_version }}
           arch: ${{ matrix.arch }}
       - uses: actions/cache@v2
         env:
@@ -49,6 +49,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-julia+${{ matrix.julia_version }}-${{ env.cache-name }}-
             ${{ runner.os }}-julia+${{ matrix.julia_version }}-
-            ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@latest
       - uses: julia-actions/julia-runtest@latest
