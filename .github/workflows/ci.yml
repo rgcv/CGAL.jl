@@ -49,5 +49,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-julia+${{ matrix.julia_version }}-${{ env.cache-name }}-
             ${{ runner.os }}-julia+${{ matrix.julia_version }}-
+            ${{ runner.os }}-
       - uses: julia-actions/julia-buildpkg@latest
       - uses: julia-actions/julia-runtest@latest
