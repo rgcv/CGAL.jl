@@ -55,5 +55,5 @@ VoronoiDiagram2{T}(ps...) where T = VoronoiDiagram2(collect(ps))
                         CxxRef.(ps)))
 @cxxdereference finite_edges(vd::VoronoiDiagram2) =
     let dg = dual(vd)
-        dual.([dg], edges(dg))
+        dual.(Ref(dg), edges(dg))
     end

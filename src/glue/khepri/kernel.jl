@@ -95,7 +95,7 @@ end
 
 for L ∈ (:Line2, :Line3)
     @eval @cxxdereference convert(::Type{Path}, l::$L) =
-        polygonal_path(convert.(Loc, point.([l], [0, 1])))
+        polygonal_path(convert.(Loc, point.(Ref(l), [0, 1])))
 end
 for R ∈ (:Ray2, :Ray3)
     @eval @cxxdereference convert(::Type{Path}, r::$R) =
@@ -177,7 +177,7 @@ convert(T::Type{<:Union{Triangle2,Triangle3}}, sp::SurfacePath) =
 for T ∈ (:Triangle2, :Triangle3)
     @eval begin
         @cxxdereference convert(::Type{Path}, t::$T) =
-            closed_polygonal_path(convert.(Loc, vertex.([t], 0:2)))
+            closed_polygonal_path(convert.(Loc, vertex.(Ref(t), 0:2)))
         @cxxdereference convert(::Type{Polygon}, t::$T) =
             polygon(path_vertices(convert(Path, t)))
         @cxxdereference convert(::Type{Surface}, t::$T) =
@@ -196,7 +196,7 @@ convert( ::Type{Tetrahedron3},
 convert(::Type{Tetrahedron3}, sp::SurfacePath) =
     convert(Tetrahedron3, sp.path)
 @cxxdereference convert(::Type{Path}, t::Tetrahedron3) =
-    closed_polygonal_path(convert.(Loc, vertex.([t], 0:3)))
+    closed_polygonal_path(convert.(Loc, vertex.(Ref(t), 0:3)))
 @cxxdereference convert(::Type{Polygon}, t::Tetrahedron3) =
     polygon(path_vertices(convert(Path, t)))
 @cxxdereference convert(::Type{Surface}, t::Tetrahedron3) =
