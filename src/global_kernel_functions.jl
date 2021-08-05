@@ -1690,7 +1690,7 @@ for (T, t) ∈ ((:Line23, :l)
             , (:Segment23, :s)
             , (:Plane3, :h))
     t1, t2 = string.(t, ("₁", "₂"))
-    args = join(join.(([t1, T], [t2, T]), "::"), ", ")
+    args = join(string.((t1, t2), "::", T), ", ")
     @eval begin
         """
             parallel($($args))
