@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/rgcv/CGAL.jl/workflows/CI/badge.svg)](https://github.com/rgcv/CGAL.jl/actions)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5129263.svg)](https://doi.org/10.5281/zenodo.5129263)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5164008.svg)](https://doi.org/10.5281/zenodo.5164008)
 This is the Concept DOI.  For a specific version, please follow the link.
 
 A package exposing a series of types, constructs, functions, predicates, and

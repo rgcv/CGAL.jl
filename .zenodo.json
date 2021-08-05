@@ -1,0 +1,20 @@
+{
+  "title": "CGAL.jl",
+  "license": "MIT",
+  "language": "eng",
+  "upload_type": "software",
+  "keywords": [
+    "cgal",
+    "geometry",
+    "algorithms",
+    "cpp",
+    "julia"
+  ],
+  "creators": [
+    {
+      "name": "Ventura, Rui",
+      "affiliation": "Instituto Superior Técnico, Universidade de Lisboa (IST-UL)",
+      "orcid": "0000-0003-0607-2382"
+    }
+  ]
+}
