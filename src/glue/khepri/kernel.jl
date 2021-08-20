@@ -1,18 +1,10 @@
 # points
-convert(::Type{Point2}, p::Loc) =
-    let q = in_world(p)
-        Point2(cx(q), cy(q))
-    end
-convert(::Type{Point3}, p::Loc) =
-    let q = in_world(p)
-        Point3(cx(q), cy(q), cz(q))
-    end
+convert(::Type{Point2}, p::Loc) = Point2(cx(q), cy(q))
+convert(::Type{Point3}, p::Loc) = Point3(cx(q), cy(q), cz(q))
 
-convert(::Type{Loc}, ::Origin) = u0(world_cs)
-@cxxdereference convert(::Type{Loc}, p::Point2) =
-    xy(x(p)[], y(p)[], world_cs)
-@cxxdereference convert(::Type{Loc}, p::Point3) =
-    xyz(x(p)[], y(p)[], z(p)[], world_cs)
+convert(::Type{Loc}, ::Origin) = u0()
+@cxxdereference convert(::Type{Loc}, p::Point2) = xy( x(p)[], y(p)[])
+@cxxdereference convert(::Type{Loc}, p::Point3) = xyz(x(p)[], y(p)[], z(p)[])
 for WP ∈ (:WeightedPoint2, :WeightedPoint3)
     # lossy conversion
     @eval @cxxdereference convert(::Type{Loc}, wp::$WP) =
