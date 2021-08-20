@@ -1,6 +1,6 @@
 # points
-convert(::Type{Point2}, p::Loc) = Point2(cx(q), cy(q))
-convert(::Type{Point3}, p::Loc) = Point3(cx(q), cy(q), cz(q))
+convert(::Type{Point2}, p::Loc) = Point2(cx(p), cy(p))
+convert(::Type{Point3}, p::Loc) = Point3(cx(p), cy(p), cz(p))
 
 convert(::Type{Loc}, ::Origin) = u0()
 @cxxdereference convert(::Type{Loc}, p::Point2) = xy( x(p)[], y(p)[])
