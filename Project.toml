@@ -11,7 +11,7 @@ Requires = "ae029012-a4dd-5104-9daa-d747884805df"
 [compat]
 julia = "1.3"
 libcgal_julia_jll = "0.17, 0.18"
-CxxWrap = "0.11"
+CxxWrap = "0.14"
 Requires = "1"
 
 [extras]
